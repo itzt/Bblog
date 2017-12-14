@@ -133,4 +133,9 @@ Route::group(['prefix' => 'Homecontacts'], function(){
       Route::match(['get', 'post'],'/index', 'Home\ContactsController@index');
     
 });
+// 前台comment
+Route::group(['prefix' => 'comment'], function(){
+    // 评论列表
+    Route::match(['get', 'post'],'/index', 'Home\CommentsController@index');  
+});
 
