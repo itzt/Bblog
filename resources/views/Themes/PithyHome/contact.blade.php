@@ -179,49 +179,23 @@
 						<p class="text-contact"><i class="fa fa-map-marker"></i> 216 King Street, Toronto, Canada</p>
 						<p class="text-contact"><i class="fa fa-phone"></i> 1800-186-686  <a href="#"><i class="fa fa-envelope"></i> hello@laread.com</a></p>
 						<div class="contact-form-vertical">
-							<form id='signupForm' action='' method="post">
-								<input class="contact-input" name='name'  placeholder="Name" type="text" />
-								<input class="contact-input" name='subject' placeholder="Subject" type="text" />
-								<input class="contact-input" name='email' placeholder="Email" type="text" />
+							<form id='signupForm'  action="/Homecontacts/index" class="form" method="post">
+							   {{csrf_field()}} 
+								<input class="contact-input" id='name' name='name'  placeholder="Name" type="text" />
+								<input class="contact-input" id='subject' name='subject' placeholder="Subject" type="text" />
+								<input class="contact-input" id='email' name='email' placeholder="Email" type="text" />
 								<label>Message</label>
-								<textarea class="contact-textarea" name='message'></textarea>
-								<button class="btn btn-golden btn-block"><span>SEND MESSAGE</span></button>
+								<textarea class="contact-textarea"id='message' name='message'></textarea>
+								<button  type="submit" class="btn btn-golden btn-block"><span>SEND MESSAGE</span></button>
+						
 							</form>
 						</div>
-					</div>
-					<div class="embed-responsive embed-responsive-16by9 contact-map">
-						<div id="map"></div>
-					</div>
-					<div class="laread-contact-touch">
-						<h4>Get In Touch</h4>
-						<p>If you dig the site, subscribe by RSS or email. Comments and emails are always appreciated. You can also contact me through one of my social media.</p>
-
-						<div class="newsletter-box clearfix">
-							<input type="text" class="" placeholder="Join our mailing list">
-							<button class="btn btn-golden" type="button">SEND</button>
-						</div>
-
-						<ul class="about-social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<footer class="container-fluid footer">
-			<div class="container text-center">
-				<div class="footer-logo"><img src="/assets/img/logo-black.png" alt=""></div>
-				<p class="laread-motto">Designed for Read.</p>
-				<div class="laread-social">
-					<a href="#" class="fa fa-twitter"></a>
-					<a href="#" class="fa fa-facebook"></a>
-					<a href="#" class="fa fa-pinterest"></a>
-				</div>
-			</div>
-		</footer>
+
 	</div>
 
 	<!-- Bootstrap core JavaScript
@@ -230,41 +204,48 @@
 	@include('Themes.PithyHome.Common.footer');
 </body>
 </html>
+<script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="/assets/js/jquery.form.js"></script>
 <script>
-$(function(){
-
+$().ready(function() {
+	$('.btn-golden').click(function(){
+		$("#signupForm").submit();
+	})
 // 在键盘按下并释放及提交后验证提交表单
-  $("#signupForm").validate({
-    rules: {
-      name: "required",
-      subject: "required",
-	  email:"required",
-	  message:"required",
-  
-    },
-    messages: {
-		name: "请输入您的名字",
-		subject: "请输入您的标题",
-		email:"请输入您的邮箱",
-	    message:"请输入您评论的内容", 
-     },
+ 	$("#signupForm").validate({
+		rules: {
+		name:"required",
+		subject: "required",
+		email:"required",
+		message:"required",
+	
+		},
+		messages: {
+			name: "	<span style='color:red;'>请输入您的名字</span>",
+			subject: "<span style='color:red;'>请输入您的标题</span>",
+			email:"<span style='color:red;'>请输入您的邮箱</span>",
+			message:"<span style='color:red;'>请输入您评论的内容</span>", 
+		},
 	    onkeyup:false,
         focusCleanup:true,
         success:"valid",
         submitHandler:function(form){
             $(form).ajaxSubmit({
                 type:'post',
-                url:'',
+                url:'/Homecontacts/index',
 				success:function ($data) {
 					layer.msg('添加成功',{icon:1,time:1000});
+					window.location.reload();
                 },
 				error:function ($data) {
                     layer.msg('添加失败',{icon:0,time:1000});
                 }
-			})
+			});
         }
     })
 });

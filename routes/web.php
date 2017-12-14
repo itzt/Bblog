@@ -128,9 +128,9 @@ Route::group(['prefix' => 'comment'], function(){
 });
 
 // 前台Contacts
-Route::group(['prefix' => 'Contacts'], function(){
+Route::group(['prefix' => 'Homecontacts'], function(){
       // 留言
-      Route::get('/index ','Home\ContactsController@index');
+      Route::match(['get', 'post'],'/index', 'Home\ContactsController@index');
     
 });
 
