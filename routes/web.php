@@ -117,6 +117,7 @@ Route::group(['prefix' => 'Login'], function () {
         Route::get('/sign','Admin\AdminsController@sign');
 });
 
+<<<<<<< HEAD
 // 前台Contacts
 Route::group(['prefix' => 'Contacts'], function () {
     
@@ -124,3 +125,15 @@ Route::group(['prefix' => 'Contacts'], function () {
     Route::get('/index ','Home\ContactsController@index');
 
 });        
+=======
+// 后台comment
+Route::group(['prefix' => 'comment'], function(){
+    // 评论列表
+    Route::match(['get', 'post'],'/show', 'Admin\CommentController@show');
+    Route::post('/del', 'Admin\CommentController@del');
+    // // 图库添加
+    // Route::get('/add', 'Admin\GalleriesController@add');
+    
+});
+
+>>>>>>> fc438ae2e57495bd78e20e16712b120e86cbe2c6
