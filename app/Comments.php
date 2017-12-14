@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Config;
 class Comments extends Model
 {
-	protected $primaryKey='com_id';//表的主键 
+    protected $primaryKey='com_id';//表的主键 
+    
+     /**
+     * 可以被批量赋值的属性
+     *
+     * @var array
+     */
+    protected $fillable = ['nickname','email','content','post_id'];
+
     const PARENTID = 0;
     /**
      * 获取所有分类信息

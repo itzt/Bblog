@@ -9,15 +9,14 @@ class CommentsController extends Controller
     public function index(Request $request)
     {
         if($request->isMethod('post')){
-                    //默认前台用户是没有登录的
-                  $all = $request->all();
-                
-               
+                 //默认前台用户是没有登录的
+                  //表中admin_id字段没有修改
+                  $all = $request->all();                        
                   $all = $request->except('_token');
                   $all['ip']=$_SERVER['REDIS_HOST'];
-                  var_dump($all);die;
+                
                   // 数据入库
-                  $result = \App\Contacts::create($all);
+                  $result = \App\Comments::create($all);
                  
                   if($result)
                   {   
