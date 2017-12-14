@@ -89,7 +89,7 @@ Route::group(['prefix' => 'navigate'],function(){
     // 修改导航
     Route::match(['get', 'post'],'/update/{id}','Admin\NavigateController@update');
 });
-// 后台
+// 后台Contacts
 Route::group(['prefix' => 'Contacts'], function () {
 
     // 留言
@@ -116,3 +116,11 @@ Route::group(['prefix' => 'Login'], function () {
         //退出
         Route::get('/sign','Admin\AdminsController@sign');
 });
+
+// 前台Contacts
+Route::group(['prefix' => 'Contacts'], function () {
+    
+    // 留言
+    Route::get('/index ','Home\ContactsController@index');
+
+});        
