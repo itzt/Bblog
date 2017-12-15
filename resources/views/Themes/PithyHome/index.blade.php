@@ -274,7 +274,7 @@
 													<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
 													<a href="#" class="mute-text">DESIGN</a>
 												</div>
-												<h3><a href="#">{{$val->title}}</a></h3>
+												<h3><a href="/index/details/{{$val->post_id}}">{{$val->title}}</a></h3>
 												<p> {{mb_substr($val->html, 0, 120)}} <a href="#" class="more">[...]</a></p>
 											</div>
 											<div class="post-item-info clearfix">
@@ -518,16 +518,16 @@
 							<div class="input"><input type="text" class="form-control" placeholder="Search..."></div>
 							<button type="submit" class="btn btn-link"><i class="fa fa-search"></i></button>
 						</form>
-
+						<!-- category list begin -->
 						<ul class="laread-list">
 							<li class="title">CATEGORY</li>
-							<li><a href="#">Branding</a><i class="line"></i></li>
-							<li><a href="#">Design (48)</a><i class="line"></i></li>
-							<li><a href="#">Photography</a><i class="line"></i></li>
-							<li><a href="#">Inspiration</a><i class="line"></i></li>
-							<li><a href="#">Life</a><i class="line"></i></li>
-							<li><a href="#">City</a><i class="line"></i></li>
+							@if(!empty($catList) && isset($catList))
+							@foreach($catList as $val)
+							<li><a href="#">{{$val['cat_name']}}</a><i class="line"></i></li>
+							@endforeach
+							@endif
 						</ul>
+						<!-- category list end -->
 
 						<ul class="laread-list">
 							<li class="title">RECENT POSTS</li>

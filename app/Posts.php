@@ -58,7 +58,8 @@ class Posts extends Model
      * @return [type]        [description]
      */
     public function getOne($where){
-        return $this->select()->where($where)->first();
+        return $this->select('post_id','title','author','cat_id','read_num','like_num','updated_at','status', 'html')
+            ->where($where)->first();
     }
     /**
      * 获取对应的文章名称
