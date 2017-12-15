@@ -13,6 +13,8 @@
 
 // 前台首页
 Route::get('/','Home\IndexController@index');
+// 前台文章详情
+Route::get('/index/details/{id}', 'Home\IndexController@details');
 // 关于我们
 Route::get('/about','Home\AboutController@index');
 // 新闻

@@ -262,8 +262,11 @@
 							<div class="container-medium">
 								<div class="row post-items">
 									<div class="post-item-banner">
-										<img src="assets/img/img-16.png" alt="" />
+										<img src="/assets/img/img-16.png" alt="" />
 									</div>
+									<!-- article list begin -->
+									@if(!empty($artList) && isset($artList))
+									@foreach($artList as $key => $val)
 									<div class="col-md-12">
 										<div class="post-item">
 											<div class="post-item-paragraph">
@@ -271,12 +274,12 @@
 													<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
 													<a href="#" class="mute-text">DESIGN</a>
 												</div>
-												<h3><a href="#">Meet #59 Interface Designer John Doe</a></h3>
-												<p>Praesent mollis sodales est, eget fringilla libero sagittis eget. Nunc gravida varius risus ac luctus. Mauris ornare eros sed libero euismod ornare. Nulla id sem a mauris egestas pulvinar vitae non dui. Cras odio tortor, feugiat nec sagittis sed, laoreet ut mauris. In hac habitasse platea dictumst. Mauris non libero ligula, sed volutpat mauris. <a href="#" class="more">[...]</a></p>
+												<h3><a href="/index/details/{{$val->post_id}}">{{$val->title}}</a></h3>
+												<p> {{mb_substr($val->html, 0, 120)}} <a href="#" class="more">[...]</a></p>
 											</div>
 											<div class="post-item-info clearfix">
 												<div class="pull-left">
-													<span>28 June</span>   •   By <a href="#">Daniele Zedda</a>
+													<span>{{$val->updated_at}}</span>   •   By <a href="#">{{$val->author}}</a>
 												</div>
 												<div class="pull-right post-item-social">
 													<a href="#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
@@ -286,6 +289,9 @@
 											</div>
 										</div>
 									</div>
+									@endforeach
+									@endif
+									<!-- article list end -->
 								</div>
 							</div>
 						</div>
@@ -512,16 +518,16 @@
 							<div class="input"><input type="text" class="form-control" placeholder="Search..."></div>
 							<button type="submit" class="btn btn-link"><i class="fa fa-search"></i></button>
 						</form>
-
+						<!-- category list begin -->
 						<ul class="laread-list">
 							<li class="title">CATEGORY</li>
-							<li><a href="#">Branding</a><i class="line"></i></li>
-							<li><a href="#">Design (48)</a><i class="line"></i></li>
-							<li><a href="#">Photography</a><i class="line"></i></li>
-							<li><a href="#">Inspiration</a><i class="line"></i></li>
-							<li><a href="#">Life</a><i class="line"></i></li>
-							<li><a href="#">City</a><i class="line"></i></li>
+							@if(!empty($catList) && isset($catList))
+							@foreach($catList as $val)
+							<li><a href="#">{{$val['cat_name']}}</a><i class="line"></i></li>
+							@endforeach
+							@endif
 						</ul>
+						<!-- category list end -->
 
 						<ul class="laread-list">
 							<li class="title">RECENT POSTS</li>
