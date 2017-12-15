@@ -122,6 +122,7 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit({
 				'type'   : 'post',
+				'data'   : {'status': status},
 				'success': function (data) {
 					layer.msg(data.message, {icon:data.status});
 					parent.window.location.reload();
