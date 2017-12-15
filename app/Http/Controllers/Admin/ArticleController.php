@@ -28,7 +28,7 @@ class ArticleController extends CommonController
     public function show(Request $request)
     {
         $title   = $request->input('title', null);
-        $artList = Posts::getPublishList(Posts::STATUS_PUBLISH, $title);
+        $artList = Posts::getArticleList(Posts::STATUS_PUBLISH, $title);
         $catList = (new Categories)->levelCatList();
         return view('Admin/Article/show', ['artList' => $artList, 'catList' => $catList, 'title' => $title]);
     }
@@ -40,7 +40,7 @@ class ArticleController extends CommonController
     public function draft(Request $request)
     {
         $title   = $request->input('title', null);
-        $artList = Posts::getPublishList(Posts::STATUS_DRAFT, $title);
+        $artList = Posts::getArticleList(Posts::STATUS_DRAFT, $title);
         $catList = (new Categories)->levelCatList();
         return view('Admin/Article/draft', ['artList' => $artList, 'catList' => $catList, 'title' => $title]);
     }

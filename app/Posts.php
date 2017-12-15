@@ -20,19 +20,27 @@ class Posts extends Model
     protected $primaryKey = 'post_id';
     protected $fillable   = ['title','cat_id','author','status','is_allow','is_page','markdown','html'];
     /**
-     * get article list info
+     * get article list
      *
+     * @param [type] $type   is PUBLISH or DRAFT
+     * @param string $title  has the search where
+     * @param string $limit  has the limit
      * @return void
      */
-    static public function getPublishList($type, $title = '')
+    static public function getArticleList($type, $title = '', $limit = '')
     {
-        $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status')
+        $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
             ->where(['status' => $type]);
         if(!empty($title))
         {
            $query = $query->orWhere('title', 'like', "%$title%");
         }
-        return $query->orderBy('post_id', 'desc')->paginate(Config::get('constants.page_size'));
+        if(!empty($limit))
+        {
+            $query = $query->limit($limit);
+        }
+        $arr = $query->orderBy('post_id', 'desc')->paginate(Config::get('constants.page_size'));
+        return $arr;
     }
 
     /**
