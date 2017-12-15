@@ -13,10 +13,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('Admin.Common._header', function ($view) { 
-            $data['num']=DB::table('contacts')->where(['status'=>0])->count();
-            $view->with('data',$data);
-        });
+        $a=1;
+        if($a==1)
+        {
+            view()->composer('Admin.Common._header', function ($view) { 
+                $data['num']=DB::table('contacts')->where(['status'=>0])->count();
+                $view->with('data',$data);
+            });
+
+        }else{
+            view()->composer('Admin.Common._header', function ($view) { 
+                $data['num']=10000;
+                $view->with('data',$data);
+            });
+        }
+    
 
     }
 

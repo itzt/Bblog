@@ -7,6 +7,16 @@
 <textarea name="content" id="content" cols="30" rows="10"></textarea>
 <button type='submit'>提交</button>
 </form>
+@if(!empty($mentList))
+	@foreach($mentList as $k =>$v)
+			{{$v['content']}} <span class='reply' style='color:red;' id="{{$k}}">回复</span> <br> 
+		<div style="display:none;">
+		    <textarea name="" id="" cols="40" rows="3"></textarea>
+			<button>评论</button>
+		</div>
+	@endforeach
+@endif
+
 <script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
@@ -15,6 +25,13 @@
 <script src="/assets/js/jquery.form.js"></script>
 <script>
 $().ready(function() {
+	$('.reply').click(function(){
+		$(this).next().next().toggle();
+		var id=$(this).attr('id');
+		var url='/comments/index'
+
+	})
+
 	$('.btn-golden').click(function(){
 		$("#signupForm").submit();
 	})

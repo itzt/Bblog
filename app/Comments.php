@@ -13,7 +13,7 @@ class Comments extends Model
      *
      * @var array
      */
-    protected $fillable = ['nickname','email','content','post_id'];
+    protected $fillable = ['nickname','email','content','post_id','ip'];
 
     const PARENTID = 0;
     /**
@@ -109,7 +109,6 @@ class Comments extends Model
         	$arr[$val->com_id]['title']=$val->title;
         	$arr[$val->com_id]['level']=$val->level;            
         }
-
         return $arr;
     }
 }
