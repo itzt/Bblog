@@ -21,7 +21,7 @@ class ContactsController extends Controller
             
             // 数据入库
             $result = \App\Contacts::create($all);
-           
+         
             if($result)
             {   
                 return \App\Tools\ajax_success();
@@ -30,10 +30,6 @@ class ContactsController extends Controller
             {
                 return \App\Tools\ajax_error();
             }
-        }
-            $them=env('DEFAULT_THEM','Pithy');
-            return view('Themes/'.$them.'Home/contact');
-        
-    	
+        }	
     }
 }

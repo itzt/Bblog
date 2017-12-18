@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Posts;
 use App\Categories;
+use App\Comments;
 use App\Http\Controllers\Controller;
 use \Symfony\Component\HttpFoundation\Request;
 class IndexController extends HomeController
@@ -35,7 +36,8 @@ class IndexController extends HomeController
     {
         $pid = $request->id;
         $artFind = (new Posts)->getOne(['post_id' => $pid]);
-        return view('Themes/'.$this->theme.'Home/details', ['artFind' => $artFind]);
+        $data=(new Comments)->getPrinmaryCate($pid);
+        return view('Themes/'.$this->theme.'Home/details', ['artFind' => $artFind,'pid'=>$pid,'data'=>$data]);
     }
 
     /**

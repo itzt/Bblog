@@ -146,9 +146,9 @@ class Comments extends Model
     }
 
      //查询顶级分类
-     static function getPrinmaryCate(){
+     static function getPrinmaryCate($post_id){
         
-               $top= self::where(['post_id'=>2])->orderBy('updated_at','asc')->select()->get();   
+               $top= self::where(['post_id'=>$post_id])->where(['parent_id'=>0])->orderBy('updated_at','asc')->select()->get();   
                 if(empty($top)){
                     return [];
                 }
@@ -160,6 +160,7 @@ class Comments extends Model
                         'com_id'=>$com->com_id,
                         'nickname'=>$com->nickname,
                         'content'=>$com->content,
+                        'created_at'=>$com->created_at,
                         'children'=>self::getChild($com->com_id)
                     ];
                 }
@@ -174,16 +175,17 @@ class Comments extends Model
                 return [];
             }
             $children=[];
-            foreach ($data as $child){
-            
+            foreach ($data as $child){      
                $children[]=[
                    'com_id'=>$child->com_id,
                    'nickname'=>$child->nickname,
                    'content'=>$child->content,
+                   'created_at'=>$child->created_at,
                    'children'=>self::getChild($child->com_id)
                ];
+            
             }
-           
+            
             return $children;
         }
 }

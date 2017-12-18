@@ -12,7 +12,8 @@ class CommentsController extends Controller
         if($request->isMethod('post')){
                  //默认前台用户是没有登录的
                   //表中admin_id字段没有修改
-                  $all = $request->all();                        
+                  $all = $request->all();    
+                                
                   $all = $request->except('_token');
                   $all['ip']=$_SERVER['REDIS_HOST'];
                 
@@ -28,13 +29,6 @@ class CommentsController extends Controller
                       return \App\Tools\ajax_error();
                   }
               }
-        //默认文章的id为1
-      //  $commentsList = \App\Comments::where(['post_id'=>1])->orderBy('updated_at','asc')->select()->get();
    
-        $data=(new Comments)->getPrinmaryCate();
- 
-        $them=env('DEFAULT_THEM','Pithy');
-       
-        return view('Themes/'.$them.'Home/comments',['data'=>$data]);
     }
 }
