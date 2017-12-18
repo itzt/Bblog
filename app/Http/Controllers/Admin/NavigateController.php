@@ -87,7 +87,9 @@ class NavigateController extends CommonController
                 return \App\Tools\ajax_error();
             }
         }
-        return view('Admin/Navigate/create');
+        // 上级导航
+        $navTree = \App\Navigate::getNavigateTree();
+        return view('Admin/Navigate/create')->with(['navTree'=>$navTree]);
     }
     
     
@@ -109,11 +111,17 @@ class NavigateController extends CommonController
                 {
                     throw new HttpException(\Config::get('constants.http_status_no_accept'),trans('common.none_record'));
                 }
+                // 自己不能选择自己
+                if($request->parent_id == $nid)
+                {
+                    throw new HttpException(\Config::get('constants.http_status_no_accept'),trans('common.parent_myself'));
+                }
                 // 验证数据
                 $this->validate($request, [
                     'nav_name' => 'required|max:30',
                     'jump_url' => 'required',
                 ]);
+
                 $all = $request->except('_token');
                 $all['is_open'] = $request->has('is_open') ? 1 : 0;
                 // 数据入库
@@ -127,7 +135,9 @@ class NavigateController extends CommonController
                     return \App\Tools\ajax_error();
                 }
             }
-            return view('Admin/Navigate/update',['navigate'=>$navigate]);
+            // 上级导航
+            $navTree = \App\Navigate::getNavigateTree();            
+            return view('Admin/Navigate/update',['navigate'=>$navigate])->with(['navTree'=>$navTree]);
         }
         catch(\Exception $e)
         {

@@ -44,7 +44,7 @@
                 @foreach ($result as $nav)
 				<tr class="text-c">
 					<td><input type="checkbox" name="navid[]" value="{{$nav->nav_id}}"></td>
-					<td>{{$nav->nav_name}}</td>
+					<td class="text-l">{{$nav->nav_name}}</td>
 					<td>{{$nav->jump_url}}</td>
 					<td>{{$nav->sort}}</td>
 					<td>{{$nav->created_at}}</td>

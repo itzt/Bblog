@@ -22,11 +22,9 @@
 						<span class="select-box">
 						<select class="select" id="sel_Sub" name="parent_id" onchange="SetSubID(this);">
 							<option value="0">{{trans('navigate.top_nav')}}</option>
-							<option value="10">分类一级</option>
-							<option value="101">&nbsp;&nbsp;├ 分类二级</option>
-							<option value="102">&nbsp;&nbsp;├ 分类二级</option>
-							<option value="20">分类一级</option>
-							<option value="200">&nbsp;&nbsp;├ 分类二级</option>
+							@if(is_array($navTree)) @foreach($navTree as $nav)
+							<option value="{{$nav['nav_id']}}">{{str_repeat('|--',$nav['level']).$nav['nav_name']}}</option>
+							@endforeach @endif;
 						</select>
 						</span>
 					</div>

@@ -70,6 +70,7 @@ return [
     'paramer_exception' =>  '参数异常',
     'server_exception'  =>  '服务器异常',
     'none_record'       =>  '不存在的记录',
+    'parent_myself'     =>  '不能选择自己作为上级',
 
     /** 动作描述 */
     'do'                =>  '操作',
