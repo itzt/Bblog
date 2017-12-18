@@ -27,6 +27,22 @@ function p($data,$isBreak=true)
     if($isBreak) exit();
 }
 
+/** 记录管理员选择的语言 */
+function admin_language($value=null)
+{
+    if(isset($value))
+    {
+        // $request->session()->put('language',$lang);
+        return response('')->cookie('language',$value,365*30*24*60)->send();
+    }
+    else
+    {
+        $language = request()->cookie('language');
+        return empty($language) ? 'zh-CN' : $language;
+    }
+
+}
+
 /** Ajax 操作成功响应消息 */
 function ajax_success()
 {

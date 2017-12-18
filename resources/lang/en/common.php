@@ -11,13 +11,55 @@ return [
     */
 
     /** On the left side of the menu bar */
+
+    /** 项目介绍 */
+    'title'             => 'B-blog.admin',
+    'keywords'          => 'B-blog',
+    'description'       => 'B-blog v1.0 It is a lightweight flat blog 2.0 system developed by bing technology, which is free and open source and suitable for middle and small CMS background systems.',
+    'version'           => 'v1.0',
+
+    /** 顶部菜单栏 */
+    'information'       =>  'Personal information',
+    'logout'            =>  'Logout',
+    'change_language'   =>  'Language',
+    'change_skin'       =>  'Skin',
+    'default_black'     =>  'default(black)',
+    'skin_blue'         =>  'Blue',
+    'skin_green'        =>  'Green',
+    'skin_red'          =>  'Red',
+    'skin_yellow'       =>  'Yellow',
+    'skin_orange'       =>  'Orange',
+
+    /** 欢迎页 */
+    'desktop'           =>  'My desktop',
+    'close_current'     =>  'Close current',
+    'close_all'         =>  'Close all',
+    'issues'            =>  'issues',    
+    'feedback'          =>  'Warm tips:',
+    'welcome'           =>  'Welcome to the Bblog open source blogging system.',
+    'feedback_message'  =>  'If you have any questions during your use, welcome feedback.',
+    'recent_login'      =>  'Recent login information',
+    'stat'              =>  'Statistical information',
+    'data_source'       =>  'This web site',
+    'article'           =>  'Article',
+    'comment'           =>  'Comment',
+
+    /** 左侧菜单栏 */
     'home'              =>  'Home page',
-    'navigate_set'      =>  'Navigation Settings',
-    'system_set'        =>  'System management',
-    'message_list'      =>  'The message list',
-    'comment_list'      =>  'Comment on the list',
-    'refresh'           =>  'The refresh',
-    'com_of_mes'        =>  'comments',
+    'content_manager'   =>  'Content',
+    'post_list'         =>  'Post',
+    'draft_list'        =>  'Draft',
+    'category'          =>  'Category',
+
+    'com_of_mes'        =>  'Message',
+    'comment_list'      =>  'Comment',
+    'message_list'      =>  'Message',
+
+    'system_manager'    =>  'System',
+    'navigate_set'      =>  'Navigation',
+    'system_set'        =>  'System',
+    
+    'refresh'           =>  'Refresh',
 
      /** On the top side of the menu bar */
     'date_range'        =>   'Date Range',
@@ -58,5 +100,9 @@ return [
     'an'                =>  'a',
     'item'              =>  'article',
     'rmb'               =>  '￥',
+
+    /** Language */
+    'zh-CN'             => '简体中文',
+    'en'                => 'English',    
 
 ];

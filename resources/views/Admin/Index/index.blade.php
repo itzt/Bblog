@@ -1,8 +1,8 @@
 @include('Admin.Common._meta')
 
-<title>H-ui.admin v3.1</title>
-<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+<title>{{trans('common.title').trans('common.version')}}</title>
+<meta name="keywords" content="{{trans('common.keywords')}}">
+<meta name="description" content="{{trans('common.description')}}">
 </head>
 <body>
 @include('Admin.Common._header')
@@ -13,7 +13,7 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="我的桌面" data-href="welcome.html">我的桌面</span>
+					<span title="{{trans('common.desktop')}}" data-href="">{{trans('common.desktop')}}</span>
 					<em></em></li>
 		</ul>
 	</div>
@@ -29,8 +29,8 @@
 
 <div class="contextMenu" id="Huiadminmenu">
 	<ul>
-		<li id="closethis">关闭当前 </li>
-		<li id="closeall">关闭全部 </li>
+		<li id="closethis">{{trans('common.close_current')}} </li>
+		<li id="closeall">{{trans('common.close_all')}} </li>
 </ul>
 </div>
 <!--_footer 作为公共模版分离出去-->
@@ -55,6 +55,15 @@ $(function(){
 		}
 	});*/
 });
+
+/*语言选择*/
+function changeLang(lang)
+{
+	$.get('/admin/setlang',{'rand':Math.random(),'lang':lang},function(result){
+		window.location.reload();
+	});
+}
+
 /*个人信息*/
 function myselfinfo(){
 	layer.open({
