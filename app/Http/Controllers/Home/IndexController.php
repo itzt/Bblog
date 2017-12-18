@@ -33,8 +33,8 @@ class IndexController extends HomeController
      */
     public function details(Request $request)
     {
-        $pid = $request->id;
-        $artFind = (new Posts)->getOne(['post_id' => $pid]);
+        $title = $request->title;
+        $artFind = (new Posts)->getOne(['title' => $title]);
         return view('Themes/'.$this->theme.'Home/details', ['artFind' => $artFind]);
     }
 

@@ -30,7 +30,7 @@
 													<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
 													<a href="#" class="mute-text">DESIGN</a>
 												</div>
-												<h3><a href="/index/details/{{$val->post_id}}">{{$val->title}}</a></h3>
+												<h3><a href="/index/details/{{$val->title}}">{{$val->title}}</a></h3>
 												<p> {{mb_substr($val->html, 0, 120)}} <a href="#" class="more">[...]</a></p>
 											</div>
 											<div class="post-item-info clearfix">
