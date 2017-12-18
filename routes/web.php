@@ -105,6 +105,8 @@ Route::group(['prefix' => 'Contacts'], function () {
 Route::group(['prefix' => 'AdminUsers'],function(){
     // 个人中心
     Route::any('/information','Admin\AdminUsersController@user_information');
+    Route::post('/reset','Admin\AdminUsersController@reset');
+    Route::post('/images','Admin\AdminUsersController@images');
 
 });
 // 登陆
@@ -114,7 +116,11 @@ Route::group(['prefix' => 'Login'], function () {
         //注册
         Route::get('/register','Admin\AdminsController@register');
         //退出
-        Route::get('/sign','Admin\AdminsController@sign');
+        Route::get('/logout','Admin\AdminsController@logout');
+        //切换账户
+        Route::get('/toggle','Admin\AdminsController@logout');
+        Route::get('/reset','Admin\AdminsController@reset');
+        
 });
 
 // 后台comment
@@ -126,4 +132,12 @@ Route::group(['prefix' => 'comment'], function(){
     // Route::get('/add', 'Admin\GalleriesController@add');
     
 });
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/logout', 'Admin\AdminsController@logout');
+
 

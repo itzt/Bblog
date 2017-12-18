@@ -16,11 +16,12 @@
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
 					<li>超级管理员</li>
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">admin <i class="Hui-iconfont"></i></a>
+					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont"></i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="/admin/information">个人信息</a></li>
-							<li><a href="#">切换账户</a></li>
-							<li><a href="{{url('Login/sign')}}">退出</a></li>
+							<li><a href="/AdminUsers/information">个人信息</a></li>
+							<li><a href="/Login/toggle">切换账户</a></li>
+							<li><a href="/Login/reset">重置密码</a></li>
+							<li><a href="/Login/logout">退出</a></li>
 						</ul>
 					</li>
 					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">
