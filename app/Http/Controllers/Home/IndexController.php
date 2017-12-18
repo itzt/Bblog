@@ -34,10 +34,16 @@ class IndexController extends HomeController
      */
     public function details(Request $request)
     {
-        $pid = $request->id;
-        $artFind = (new Posts)->getOne(['post_id' => $pid]);
+        $title   = $request->title; // 获取title值
+        $artFind = (new Posts)->getOne(['title' => $title]); // 根据标题获取此信息
+        // echo '<pre>';
+        // print_r($artFind);die;
+        $where   = ['cat_id' => $artFind->cat_id, 'status' => Posts::STATUS_PUBLISH];
+        $prevNext= (new Posts)->getPrevAndNextInfo($where); // 获取详情页的同类信息 2条
+        // echo '<pre>';
+        // print_r($prevNext);die;
         $data=(new Comments)->getPrinmaryCate($pid);
-        return view('Themes/'.$this->theme.'Home/details', ['artFind' => $artFind,'pid'=>$pid,'data'=>$data]);
+        return view('Themes/'.$this->theme.'Home/details', ['artFind' => $artFind, 'prevNext' => $prevNext,'data'=>$data]);
     }
 
     /**

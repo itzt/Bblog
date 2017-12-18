@@ -53,7 +53,7 @@ return [
 
     'com_of_mes'        =>  'Message',
     'comment_list'      =>  'Comment',
-    'message_list'      =>  'Message',
+    'message_list'      =>  'Feedback',
 
     'system_manager'    =>  'System',
     'navigate_set'      =>  'Navigation',
@@ -105,4 +105,12 @@ return [
     'zh-CN'             => '简体中文',
     'en'                => 'English',    
 
+    /** Date */          
+    'year'              => 'Y',
+    'month'             => 'M',
+
+    /** copyright */
+    'thank'             => 'Thanks to the core members of Beijing bing science and technology team',
+    'copyright'         => 'Copyright &copy;2015-2017 Beijing bing technology co. LTD',
+    'replen'            => 'The background UI of this system is provided by the H-ui front-end frame',    
 ];

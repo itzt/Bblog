@@ -3,8 +3,8 @@
 
 		<div class="container">
 			<div class="head-text text-highlight">
-				<h1>SHORTCODE</h1>
-				<p class="lead-text">COLUMN   •   TABS   •   TOGGLE</p>
+				<h1>TYPOGRAPHY</h1>
+				<p class="lead-text">H1   •   HIGHTLIGH   •   DROPCAP</p>
 			</div>
 		</div>
 
@@ -37,9 +37,10 @@
 										<a href="#">art</a>
 									</p>
 									<div class="post-item-social">
-										<a href="#"><i class="fa fa-facebook"></i></a>
+										<!-- <a href="#"><i class="fa fa-facebook"></i></a>
 										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
+										<a href="#"><i class="fa fa-google-plus"></i></a> -->
+										<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share" data-original-title="" title=""><i class="fa fa-share-alt"></i> 12</a>
 										<a href="#"><i class="fa fa-heart"></i> {{$artFind->like_num}}</a>
 									</div>
 								</div>
@@ -47,18 +48,44 @@
 
 							<div class="next-prev-post clearfix">
 								<div class="post-direction">
-									<a href="#" class="post-prev">
+									@if(!empty($prevNext[0]) && isset($prevNext[0]))									
+									<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
 										<span class="post-way"><i class="fa fa-angle-left"></i> prev post</span>
-										<span class="title">Envato Stories: Isabel Castillo Guijarro (Isabelmdd)</span>
+										<span class="title">{{mb_substr($prevNext[0]->title, 0, 30)}}...</span>
 									</a>
-									<a href="#"><span class="author">by <span>Gannon Burget</span></span></a>
+									@else
+									<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
+										<span class="post-way"><i class="fa fa-angle-left"></i> prev post</span>
+										<span class="title">No more.</span>
+									</a>
+									@endif
+									@if(!empty($prevNext[0]) && isset($prevNext[0]))
+									<a href="javascript:void(0)">
+										<span class="author">by 
+											<span>{{$prevNext[0]->author}}</span>
+										</span>
+									</a>
+									@endif
 								</div>
 								<div class="post-direction">
-									<a href="#" class="post-next">
-										<span class="post-way">next post <i class="fa fa-angle-right"></i></span>
-										<span class="title">Rise of the Million Dollar Plugin Makers (Infographic)</span>
+									@if(!empty($prevNext[1]) && isset($prevNext[1]))
+									<a href="/index/details/{{$prevNext[1]->title}}" class="post-next">
+										<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
+										<span class="title">{{mb_substr($prevNext[1]->title, 0, 30)}}...</span>
 									</a>
-									<a href="#"><span class="author">by <span>Jared Erondu</span></span></a>
+									@else
+									<a href="javascript:void(0)" class="post-next">
+										<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
+										<span class="title">No more.</span>
+									</a>
+									@endif
+									@if(!empty($prevNext[1]) && isset($prevNext[1]))
+									<a href="javascript:void(0)">
+										<span class="author">by 
+											<span>{{$prevNext[1]->author}}</span>
+										</span>
+									</a>
+									@endif
 								</div>
 							</div>
 

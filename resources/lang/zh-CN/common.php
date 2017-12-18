@@ -107,5 +107,13 @@ return [
     'zh-CN'             => '简体中文',
     'en'                => 'English',
     
+    /** 时间 */          
+    'year'              => '年',
+    'month'             => '月',
+
+    /** 版权 */
+    'thank'             => '感谢 必应科技技术团队核心成员',
+    'copyright'         => 'Copyright &copy;2015-2017 北京必应科技有限公司',
+    'replen'            => '本系统后台UI由H-ui前端框架提供',
 
 ];
