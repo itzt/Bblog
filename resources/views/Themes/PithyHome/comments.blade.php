@@ -1,21 +1,36 @@
 @include('Themes.PithyHome.Common.header')
+<h1>文章哈哈哈哈 </h1>
 <form id='signupForm'>
 {{csrf_field()}} 
 昵称<input type="text" id='nickname' name='nickname'><br>
 邮箱<input type="text" id='email' name='email'><br>
 <input type="hidden" name='post_id' value='1'><br>
 <textarea name="content" id="content" cols="30" rows="10"></textarea>
-<button type='submit'>提交</button>
+<button type='submit'>评论</button>
 </form>
-@if(!empty($mentList))
-	@foreach($mentList as $k =>$v)
-			{{$v['content']}} <span class='reply' style='color:red;' id="{{$k}}">回复</span> <br> 
-		<div style="display:none;">
-		    <textarea name="" id="" cols="40" rows="3"></textarea>
-			<button>评论</button>
-		</div>
+
+@if(!empty($data))
+	@foreach($data as $k =>$v)
+	<div name='{{$v['nickname']}}'>
+			{{$v['nickname']}}评论了：{{$v['content']}} <span class='reply' style='color:red;' id="{{$v['com_id']}}" >回复</span> <br> 
+			<div style='display:none;'>
+				<textarea name="text" id="text" cols="40" rows="3"></textarea>
+			</div>
+	</div>		
+			@foreach($v['children'] as $val)
+	<div name='{{$val['nickname']}}'>
+			{{$val['nickname']}}<span>@</span>{{$v['nickname']}}：{{$val['content']}} <span class='reply' style='color:red;' id="{{$val['com_id']}}">回复</span> <br> 
+			<div style='display:none;'>
+				<textarea name="text" id="text" cols="40" rows="3"></textarea>
+				<button id='but'>回复</button>
+			</div>
+	</div>		
+	
+			@endforeach
 	@endforeach
 @endif
+
+
 
 <script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
@@ -26,9 +41,11 @@
 <script>
 $().ready(function() {
 	$('.reply').click(function(){
-		$(this).next().next().toggle();
-		var id=$(this).attr('id');
-		var url='/comments/index'
+	var id= $(this).attr('id');
+	var nickname="\@"+$(this).parent().attr('name')+":";
+	
+	$(this).next().next().toggle();
+	$(this).next().next().children('#text').html(nickname);
 
 	})
 

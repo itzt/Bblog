@@ -314,7 +314,7 @@
 									</div>
 								</div>
 							</div>
-
+							<!-- 评论回复 -->
 							<div class="comment-box">
 								<a class="btn btn-golden" href="#">Leave a comment</a>
 								<div class="comment-tab">
@@ -345,61 +345,6 @@
 											-->
 										</div>
 									</div>
-
-									<div class="comment-item">
-										<a class="comment-photo" href="#">
-											<img src="/assets/img/profil_photo-05.png" alt="" />
-										</a>
-										<div class="comment-body">
-											<h6 class="comment-heading">Lauren Bonk   •   <span class="comment-date">2 days ago</span></h6>
-											<p class="comment-text">I’m so glad you shared this. I always start with lots of paper as well, move into Photoshop to give the document a basic layout, then zoom right in to start tackling my favorite piece trying to get it just right.<br /><br />I’m not saying this is the right way—perhaps, like you, I should move from basic sketches to basic digital shapes to see if the design holds together when zoomed out.</p>
-											<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-											<!--
-											<div class="comment-item">
-												<a class="comment-photo" href="#">
-													<img src="/assets/img/profil_photo-05.png" alt="" />
-												</a>
-												<div class="comment-body">
-													<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">2 days ago</span></h6>
-													<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-													<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-												</div>
-											</div>
-											<div class="comment-item">
-												<a class="comment-photo" href="#">
-													<img src="/assets/img/profil_photo-05.png" alt="" />
-												</a>
-												<div class="comment-body">
-													<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">2 days ago</span></h6>
-													<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-													<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-												</div>
-											</div>
-											<div class="comment-item">
-												<a class="comment-photo" href="#">
-													<img src="/assets/img/profil_photo-05.png" alt="" />
-												</a>
-												<div class="comment-body">
-													<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">2 days ago</span></h6>
-													<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-													<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-												</div>
-											</div>
-											-->
-										</div>
-									</div>
-
-									<div class="comment-item">
-										<a class="comment-photo" href="#">
-											<img src="/assets/img/profil_photo-05.png" alt="" />
-										</a>
-										<div class="comment-body">
-											<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">4 days ago</span></h6>
-											<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-											<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-										</div>
-									</div>
-
 
 									<div class="comment-form main-comment-form">
 										<form>

@@ -29,12 +29,12 @@ class CommentsController extends Controller
                   }
               }
         //默认文章的id为1
-        $commentsList = \App\Comments::where(['post_id'=>1])->orderBy('updated_at','asc')->select()->get();
+      //  $commentsList = \App\Comments::where(['post_id'=>1])->orderBy('updated_at','asc')->select()->get();
    
-        $mentList=(new Comments)->getCommentList($commentsList);
-     
+        $data=(new Comments)->getPrinmaryCate();
+ 
         $them=env('DEFAULT_THEM','Pithy');
        
-        return view('Themes/'.$them.'Home/comments',['mentList'=>$mentList]);
+        return view('Themes/'.$them.'Home/comments',['data'=>$data]);
     }
 }
