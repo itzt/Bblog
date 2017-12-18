@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use \Symfony\Component\HttpKernel\Exception\HttpException;
 use zgldh\QiniuStorage;
 
-class AdminUsersController extends Controller
+class AdminUsersController extends CommonController
 {
     use ResetsPasswords;
     //个人信息

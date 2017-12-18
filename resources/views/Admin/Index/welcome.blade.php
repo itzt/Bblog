@@ -20,18 +20,18 @@
 <script type="text/javascript" src="/admin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-	<title>我的桌面</title>
+	<title>{{trans('common.desktop')}}</title>
 </head>
 
 <body>
 	<div class="page-container">
-		<h3>欢迎使用Bblog开源博客系统
-			<small>v1.0</small>
+		<h3>{{trans('common.welcome')}}
+			<small>{{trans('common.version')}}</small>
 		</h3>
 		<p>
-			<span class="label label-warning radius">温馨提示：</span>如果您使用过程中，有任何问题，欢迎反馈。
+			<span class="label label-warning radius">{{trans('common.feedback')}}</span>{{trans('common.feedback_message')}}
 			<span class="pipe">|</span>
-			<a class="c-warning" href="https://github.com/dbing/Bblog/issues" target="_blank" title="tyabing">反馈</a>
+			<a class="c-warning" href="https://github.com/dbing/Bblog/issues" target="_blank" title="tyabing">{{trans('common.issues')}}</a>
 		</p>
 
 		<div class="page-container">
@@ -46,12 +46,12 @@
 		<table class="table table-border table-bordered table-bg">
 			<thead>
 				<tr>
-					<th colspan="7" scope="col">最近登录信息</th>
+					<th colspan="7" scope="col">{{trans('common.recent_login')}}</th>
 				</tr>
 				<tr class="text-c">
-					<th>管理员</th>
-					<th>登录IP</th>
-					<th>登录时间</th>
+					<th>{{trans('admin.admin_name')}}</th>
+					<th>{{trans('admin.login_ip')}}</th>
+					<th>{{trans('admin.login_time')}}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -96,7 +96,7 @@
 	</div>
 	<footer class="footer mt-20">
 		<div class="container">
-			<p>感谢 必应科技技术团队核心成员
+			<p>{{trans('common.thank')}}
 				<a href="https://github.com/itzt" target="_blank" title="itzt">itzt</a>
 				<span class="pipe">|</span>
 				<a href="https://github.com/tyabing" target="_blank" title="tyabing">tyabing</a>
@@ -107,83 +107,89 @@
 				<span class="pipe">|</span>
 				<a href="https://github.com/dbing" target="_blank" title="dbing">dbing</a>
 
-				<br> Copyright &copy;2015-2017 北京必应科技有限公司
-				<br> 本系统后台UI由
-				<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供</p>
+				<br> {{trans('common.copyright')}}
+				<br> {{trans('common.replen')}}
+			</p>
 		</div>
 	</footer>
 	<script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/admin/static/h-ui/js/H-ui.min.js"></script>
-
 	<script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/highcharts.js"></script>
 	<script type="text/javascript" src="lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js"></script>
+	<script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
 	<script type="text/javascript">
+
 		$(function () {
-			$('#container').highcharts({
-				chart: {
-					type: 'column'
+			//加载层
+			var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+			$.ajax({
+				method:'get',
+				url:'/admin/welcome',
+				dataType:'JSON',
+				data:{'rand':Math.random()},
+				success:function(result){
+					drawingStatus(result);
+					layer.close(index);
 				},
-				title: {
-					text: '信息统计'
-				},
-				subtitle: {
-					text: '本站'
-				},
-				xAxis: {
-					categories: [
-						'一月',
-						'二月',
-						'三月',
-						'四月',
-						'五月',
-						'六月',
-						'七月',
-						'八月',
-						'九月',
-						'十月',
-						'十一月',
-						'十二月'
-					]
-				},
-				yAxis: {
-					min: 0,
+				error:function(data){
+                	var result = JSON.parse(data.responseText);
+                	// 非200请求，获取错误消息
+                	layer.msg(data.message,{icon:data.status});
+					layer.close(index);
+				}
+			})
+			
+
+			function drawingStatus(result)
+			{
+				console.log(result.data.series);
+				//return;
+				var data = result.data.series;
+				var month = result.data.month;
+					//return;
+				$('#container').highcharts({
+					chart: {
+						type: 'column'
+					},
 					title: {
-						text: 'Rainfall (mm)'
-					}
-				},
-				tooltip: {
-					headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-					pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-						'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-					footerFormat: '</table>',
-					shared: true,
-					useHTML: true
-				},
-				plotOptions: {
-					column: {
-						pointPadding: 0.2,
-						borderWidth: 0
-					}
-				},
-				series: [{
-					name: '文章',
-					data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+						text: '{{trans('common.stat')}}'
+					},
+					subtitle: {
+						text: '{{trans('common.data_source')}}'
+					},
+					xAxis: {
+						categories: month
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Rainfall (mm)'
+						}
+					},
+					tooltip: {
+						headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+						pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+							'<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+						footerFormat: '</table>',
+						shared: true,
+						useHTML: true
+					},
+					plotOptions: {
+						column: {
+							pointPadding: 0.2,
+							borderWidth: 0
+						}
+					},
+					series: data
+				});
+			}
 
-				}, {
-					name: '用户',
-					data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
 
-				}, {
-					name: '评论',
-					data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
 
-				}, {
-					name: '访客',
-					data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
-				}]
-			});
+			
 		});
+
+
 	</script>
 
 

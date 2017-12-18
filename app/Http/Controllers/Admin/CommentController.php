@@ -2,42 +2,97 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Config;
-use zgldh\QiniuStorage;
-use Illuminate\Contracts\Validation\Validator;
 use App\Comments;
 use App\Posts;
+use Illuminate\Http\Request;
 use \Symfony\Component\HttpKernel\Exception\HttpException;
-class CommentController extends Controller
+class CommentController extends CommonController
 {
 
     /**
-     * 验证失败返回格式自定义-暂未使用
+     * 评论列表展示
      *
-     * @param Validator $validator
+     * @param Request $request
      * @return void
      */
-    protected function formatValidationErrors(Validator $validator)
+    public function show(Request $request)
     {
-        return ['status'=>Config::get('constants.status_danger'),'message'=>implode("\n",$validator->errors()->all())];
+        if($request->isMethod('get'))
+        {
+            $result = $this->getFilter($request);
+        }
+        $comments = Comments::getList($result['map']);       
+        return view('Admin/Comment/show')->with('comments',$comments)->with('search',$result['search']);
     }
 
     /**
-     * Create a new controller instance.
+     * 处理评论搜索条件
      *
+     * @param object $request
      * @return void
      */
-    public function show(Request $req)
+    private function getFilter($request)
     {
-        
-        //查询评论
-        $ment=(new Comments)->getList();
-        //查找对应的文章
-        $mentData=(new Posts)->getPost($ment);
-        $mentList=(new Comments)->getCommentList($mentData); 
-        return view('Admin/Comment/show')->with('mentList',$mentList);
+        $map = [];          // DB使用
+        $search = [];       // 原搜索条件
+        $search['title'] = $request->input('title',null);
+        $search['start'] = $request->input('start',null);
+        $search['end'] = $request->input('end',null);
+        if(isset($search['title']) && !empty(trim($search['title'])))
+        {
+            $map[] = ['content','like',"%$search[title]%"];
+        }
+        if(isset($search['start']) && !empty($search['start']))
+        {
+            $map[] = ['created_at','>=',$search['start']];
+        }
+        if(isset($search['end']) && !empty($search['end']))
+        {
+            $map[] = ['created_at','<=',$search['end']];
+        }
+        return ['map'=>$map,'search'=>$search];
+    }
+
+    /**
+     * 回复评论
+     * @param  Request $req [description]
+     * @return [type]       [description]
+     */
+    public function replay(Request $req)
+    {
+        try
+        {            
+            if($req->ajax() && $req->isMethod('post'))
+            {
+                $all = $req->except('_token');
+                $all['created_at']=date("Y-m-d H:i:s",time());
+                $all['admin_id']=env('BLOGGER_ID','1');//ahmad
+                $all['nickname']=env('BLOGGER_NAME','ahmad');
+                $all['email']=env('BLOGGER_EMAIL','ahmad@sina.com');
+                if(empty($all))
+                {
+                    throw new HttpException(\Config::get('constants.http_status_no_accept'),trans('common.message_failure'));
+                }
+                //数据入库
+                $result = (new Comments)->insertGetId($all);
+                if($result)
+                {   
+                    return \App\Tools\ajax_success();
+                }
+                else
+                {
+                    return \App\Tools\ajax_error();
+                }
+            }
+            $com_id = $req->id;
+            $Comments = \App\Comments::find($com_id);
+            return view('Admin/Comment/replay',['Comments'=>$Comments]);        
+        }            
+        catch(\Exception $e)
+        {
+            return \App\Tools\ajax_exception($e->getStatusCode(), $e->getMessage());
+        }
     }
     /**
      * 删除
@@ -50,19 +105,29 @@ class CommentController extends Controller
         {
             if($req->ajax() && $req->isMethod('post'))
             {
-                $com_id = $req->input('com_id');
-                $level = $req->input('level');
+                if($req->has('com_id')){
+                    //单删
+                    $com_id[] = $req->input('com_id');
+                }
+
+                if($req->has('comids')){
+                    //批量删除
+                    $com_id = $req->input('comids');                    
+                }
+                if(!$com_id)
+                {
+                    throw new HttpException(\Config::get('constants.http_status_no_accept'),trans('common.message_failure'));
+                }
                 $del_ids=array();
-                if($level==0){
-                //删除该评论下的所有留言
-                    $ids=(new Comments)->getWhere($com_id);
+                $ids=(new Comments)->getWhere($com_id);
+                if($ids){
+                    $del_ids=$com_id;
                     foreach ($ids as $key => $value) {
                         $del_ids[]=$value['com_id'];
-                    }
-                    $del_ids[].=$com_id;
+                    }                    
                 }else{
-                     $del_ids[]=$com_id;
-                }
+                    $del_ids=$com_id;
+                }                
                 //删除评论
                 $result=(new Comments)->delWhere($del_ids);
                 if(!$result){

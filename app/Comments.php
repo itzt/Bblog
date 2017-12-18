@@ -3,19 +3,32 @@
 namespace App;
 use DB;
 use Illuminate\Database\Eloquent\Model;
-
+use Config;
 class Comments extends Model
 {
 	protected $primaryKey='com_id';//表的主键 
     const PARENTID = 0;
+
+
+    /**
+     * 获取评论对应的博客文章
+     */
+    public function post(){
+        return $this->belongsTo('App\Posts','post_id');
+    }    
+    
     /**
      * 获取所有分类信息
      *
      * @return void
      */
-    public function getList()
+    static public function getList($where=array())
     {
-        return $this->select()->get()->toArray();
+        // 只索引评论
+        $map = array_merge($where,['parent_id'=>self::PARENTID]);
+        $result = self::where($map)->orderBy('com_id','desc')->paginate(Config::get('constants.page_size'));
+
+        return $result;
     }
     /** 
      * 有条件查询
@@ -24,7 +37,7 @@ class Comments extends Model
      */
     public function getWhere($where)
     {
-    	return $this->select('com_id')->where(['parent_id'=>$where])->get()->toArray();
+    	return $this->select('com_id')->whereIn('parent_id',$where)->get()->toArray();
     }
     /** 
      * 有条件删除
@@ -68,11 +81,11 @@ class Comments extends Model
         foreach($data as $key => $val)
         {
             //判断当前父id是否和获取到的一致
-            if($val['parent_id'] == $parentId && $val['com_id'] != $exclude)
+            if($val->parent_id == $parentId && $val->com_id != $exclude)
             {
-                $val['level'] = $level;
+                $val->level = $level;
                 $arr[] = $val;
-                self::recursion($data, $exclude, $val['com_id'], $level+1);
+                self::recursion($data, $exclude, $val->com_id, $level+1);
             }
         }
         return $arr;
@@ -87,19 +100,21 @@ class Comments extends Model
     static public function getCommentList($data = [])
     {
         $arr = [];
-        $catList = self::recursion($data);
+        $catList = self::recursion($data,'',$data[0]->parent_id);
         foreach($catList as $key => $val)
         {
-        	$arr[$val['com_id']]['content'] =$val['nickname']."评论：".$val['content'];
-        	if($val['level']!=0){        		
-        		$arr[$val['com_id']]['content'] = str_repeat("　　$val[nickname]回复：", $val['level']).$val['content'];
+
+        	$arr[$val->com_id]['content'] =$val->nickname."评论：".$val->content;
+        	if($val->level!=0){        		
+        		$arr[$val->com_id]['content'] = str_repeat("　　".$val->nickname."回复：", $val->level).$val->content;
         	}
-        	$arr[$val['com_id']]['created_at']=$val['created_at'];
-        	$arr[$val['com_id']]['ip']=$val['ip'];
-        	$arr[$val['com_id']]['email']=$val['email'];
-        	$arr[$val['com_id']]['title']=$val['title'];
-        	$arr[$val['com_id']]['level']=$val['level'];            
+        	$arr[$val->com_id]['created_at']=$val->created_at;
+        	$arr[$val->com_id]['ip']=$val->ip;
+        	$arr[$val->com_id]['email']=$val->email;
+        	$arr[$val->com_id]['title']=$val->title;
+        	$arr[$val->com_id]['level']=$val->level;            
         }
+
         return $arr;
     }
 }

@@ -7,18 +7,9 @@ use App\SetsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SystemController extends Controller
+class SystemController extends CommonController
 {
 
-    /**
-     * 柱状图
-     *
-     * @return void
-     */
-    public function bar()
-    {
-        return view('Admin/System/bar');
-    }
     /**
      * 屏蔽词
      *

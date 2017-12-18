@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use App\Admins;
 
-class AdminsController extends Controller
+class AdminsController extends CommonController
 {
   use AuthenticatesUsers;
    
