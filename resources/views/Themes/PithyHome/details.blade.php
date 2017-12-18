@@ -3,8 +3,8 @@
 
 		<div class="container">
 			<div class="head-text text-highlight">
-				<h1>SHORTCODE</h1>
-				<p class="lead-text">COLUMN   •   TABS   •   TOGGLE</p>
+				<h1>TYPOGRAPHY</h1>
+				<p class="lead-text">H1   •   HIGHTLIGH   •   DROPCAP</p>
 			</div>
 		</div>
 
@@ -37,9 +37,10 @@
 										<a href="#">art</a>
 									</p>
 									<div class="post-item-social">
-										<a href="#"><i class="fa fa-facebook"></i></a>
+										<!-- <a href="#"><i class="fa fa-facebook"></i></a>
 										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
+										<a href="#"><i class="fa fa-google-plus"></i></a> -->
+										<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share" data-original-title="" title=""><i class="fa fa-share-alt"></i> 12</a>
 										<a href="#"><i class="fa fa-heart"></i> {{$artFind->like_num}}</a>
 									</div>
 								</div>
@@ -47,18 +48,44 @@
 
 							<div class="next-prev-post clearfix">
 								<div class="post-direction">
-									<a href="#" class="post-prev">
+									@if(!empty($prevNext[0]) && isset($prevNext[0]))									
+									<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
 										<span class="post-way"><i class="fa fa-angle-left"></i> prev post</span>
-										<span class="title">Envato Stories: Isabel Castillo Guijarro (Isabelmdd)</span>
+										<span class="title">{{mb_substr($prevNext[0]->title, 0, 30)}}...</span>
 									</a>
-									<a href="#"><span class="author">by <span>Gannon Burget</span></span></a>
+									@else
+									<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
+										<span class="post-way"><i class="fa fa-angle-left"></i> prev post</span>
+										<span class="title">No more.</span>
+									</a>
+									@endif
+									@if(!empty($prevNext[0]) && isset($prevNext[0]))
+									<a href="javascript:void(0)">
+										<span class="author">by 
+											<span>{{$prevNext[0]->author}}</span>
+										</span>
+									</a>
+									@endif
 								</div>
 								<div class="post-direction">
-									<a href="#" class="post-next">
-										<span class="post-way">next post <i class="fa fa-angle-right"></i></span>
-										<span class="title">Rise of the Million Dollar Plugin Makers (Infographic)</span>
+									@if(!empty($prevNext[1]) && isset($prevNext[1]))
+									<a href="/index/details/{{$prevNext[1]->title}}" class="post-next">
+										<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
+										<span class="title">{{mb_substr($prevNext[1]->title, 0, 30)}}...</span>
 									</a>
-									<a href="#"><span class="author">by <span>Jared Erondu</span></span></a>
+									@else
+									<a href="javascript:void(0)" class="post-next">
+										<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
+										<span class="title">No more.</span>
+									</a>
+									@endif
+									@if(!empty($prevNext[1]) && isset($prevNext[1]))
+									<a href="javascript:void(0)">
+										<span class="author">by 
+											<span>{{$prevNext[1]->author}}</span>
+										</span>
+									</a>
+									@endif
 								</div>
 							</div>
 
@@ -104,60 +131,6 @@
 												</form>
 											</div>
 											-->
-										</div>
-									</div>
-
-									<div class="comment-item">
-										<a class="comment-photo" href="#">
-											<img src="/assets/img/profil_photo-05.png" alt="" />
-										</a>
-										<div class="comment-body">
-											<h6 class="comment-heading">Lauren Bonk   •   <span class="comment-date">2 days ago</span></h6>
-											<p class="comment-text">I’m so glad you shared this. I always start with lots of paper as well, move into Photoshop to give the document a basic layout, then zoom right in to start tackling my favorite piece trying to get it just right.<br /><br />I’m not saying this is the right way—perhaps, like you, I should move from basic sketches to basic digital shapes to see if the design holds together when zoomed out.</p>
-											<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-											<!--
-											<div class="comment-item">
-												<a class="comment-photo" href="#">
-													<img src="/assets/img/profil_photo-05.png" alt="" />
-												</a>
-												<div class="comment-body">
-													<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">2 days ago</span></h6>
-													<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-													<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-												</div>
-											</div>
-											<div class="comment-item">
-												<a class="comment-photo" href="#">
-													<img src="/assets/img/profil_photo-05.png" alt="" />
-												</a>
-												<div class="comment-body">
-													<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">2 days ago</span></h6>
-													<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-													<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-												</div>
-											</div>
-											<div class="comment-item">
-												<a class="comment-photo" href="#">
-													<img src="/assets/img/profil_photo-05.png" alt="" />
-												</a>
-												<div class="comment-body">
-													<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">2 days ago</span></h6>
-													<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-													<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
-												</div>
-											</div>
-											-->
-										</div>
-									</div>
-
-									<div class="comment-item">
-										<a class="comment-photo" href="#">
-											<img src="/assets/img/profil_photo-05.png" alt="" />
-										</a>
-										<div class="comment-body">
-											<h6 class="comment-heading">Tony Bui   •   <span class="comment-date">4 days ago</span></h6>
-											<p class="comment-text">I used to wireframe in photoshop, but it's difficult for most clients to understand what they're signing off unless they can interact with it. </p>
-											<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>
 										</div>
 									</div>
 
