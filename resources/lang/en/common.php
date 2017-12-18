@@ -20,6 +20,8 @@ return [
 
     /** 顶部菜单栏 */
     'information'       =>  'Personal information',
+    'change_over'       =>  'Switching user',
+    'reset_pass'        =>  'Reset password',
     'logout'            =>  'Logout',
     'change_language'   =>  'Language',
     'change_skin'       =>  'Skin',

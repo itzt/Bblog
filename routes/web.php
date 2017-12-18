@@ -115,6 +115,7 @@ Route::group(['prefix' => 'AdminUsers'],function(){
     Route::post('/images','Admin\AdminUsersController@images');
 
 });
+
 // 登陆
 Route::group(['prefix' => 'Login'], function () {
         // 登陆
@@ -143,4 +144,4 @@ Route::group(['prefix' => 'comment'], function(){
 
 
 Auth::routes();
-
+Route::get('/home','HomeController@index');
