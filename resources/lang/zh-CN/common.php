@@ -18,6 +18,8 @@ return [
 
     /** 顶部菜单栏 */
     'information'       =>  '个人信息',
+    'change_over'       =>  '切换用户',
+    'reset_pass'        =>  '重置密码',
     'logout'            =>  '退出',
     'change_language'   =>  '选择语言',
     'change_skin'       =>  '换肤',
