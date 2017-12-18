@@ -17,7 +17,7 @@
 			<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;" name="start" value="@if(isset($search['start'])) {{$search['start']}}@endif">
 			-
 			<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;" name="end" value="@if(isset($search['end'])) {{$search['end']}}@endif">
-			<input type="text" name="title" id="" placeholder="{{trans('comment.posts_name')}}" style="width:250px" class="input-text" value="@if(isset($search['title'])) {{$search['title']}}@endif">
+			<input type="text" name="title" id="" placeholder="{{trans('comment.content')}}" style="width:250px" class="input-text" value="@if(isset($search['title'])) {{$search['title']}}@endif">
 			<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> {{trans('comment.find_comment')}}</button>
 		</form>
 	</div>
@@ -32,7 +32,7 @@
 			<thead>
 				<tr class="text-c">
 					<th width="5"><input type="checkbox" disabled></th>
-					<th width="25">{{trans('comment.comment_content')}}</th>
+					<th width="25">{{trans('comment.content')}}</th>
 					<th width="15">{{trans('comment.belong_post')}}</th>
 					<th width="15">IP</th>
 					<th width="15">email</th>
@@ -46,13 +46,13 @@
 				<tr class="text-c">
 					<td><input type="checkbox" name="com_id[]" value="{{$key}}"></td>
 					<td class="text-l">{{$obj['content']}}</td>
-					<td class="text-l">{{$obj['title']}}</td>
+					<td class="text-l">{{$obj->post->title}}</td>
 					<td class="text-l">{{$obj['ip']}}</td>
 					<td class="text-l">{{$obj['email']}}</td>
 					<td class="text-l">{{$obj['created_at']}}</td>
 					<td class="f-14">
 					@if($obj['level']==0)
-						<a title="{{trans('comment.replay')}}" href="javascript:void(0)"  onclick="comment_replay('{{trans('comment.replay')}}','/comment/replay', '{{$key}}','500','280')"  style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a title="{{trans('comment.replay')}}" href="javascript:void(0)"  onclick="comment_replay('{{trans('comment.replay')}}','/comment/replay', '{{$obj['com_id']}}','500','280')"  style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 					@endif
 						<a title="{{trans('common.do_delete')}}" href="javascript:void(0)"  onclick="comment_del(this, '{{$key}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
 					</td>
@@ -72,8 +72,7 @@
  <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
-<script type="text/javascript" src="/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<!--<script type="text/javascript" src="/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> -->
 <script type="text/javascript" src="/admin/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
 

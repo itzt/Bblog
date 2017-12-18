@@ -55,59 +55,6 @@ class CommentController extends CommonController
     }
 
     /**
-     * 待删除
-     * 
-     * @return void
-     */
-    public function show2(Request $req)
-    {
-        try
-        {
-            $where=array(); 
-            $find=['title'=>'','start'=>'','end'=>''];
-
-            //搜索条件
-            $title=$req->has('title')?$req->title:NULL;
-            if($title){
-                //查找post_id
-                $post_id=(new Posts)->getOne(['title'=>$title]);
-                $where[]=array('post_id','=',$post_id['post_id']);                    
-            }
-            $find['title']=$title;
-            //开始时间
-            $where[]=$req->has('start')?array('created_at','>',$req->start):NULL;
-            $find['start']=$req->has('start')?$req->start:NULL;
-            //结束时间           
-            $where[]=$req->has('end')?array('created_at','<',$req->end):NULL;
-            $find['end']=$req->has('end')?$req->end:NULL;
-            
-            $where=array_filter($where);
-            echo '<pre>';
-            print_r($where);die;
-            //查询评论
-            $ment=(new Comments)->getList($where);
-            
-            $mentList=array();
-            if($ment)
-            {
-                $ments=json_decode(json_encode($ment));
-                //查找对应的文章
-                $mentData=(new Posts)->getPost($ments->data);
-                $mentList=(new Comments)->getCommentList($mentData);               
-            }
-            
-            return view('Admin/Comment/show')->with('mentList',$mentList)
-                                             ->with('find',$find)
-                                             ->with('ment',$ment);
-        }
-        catch(\Exception $e)
-        {
-           echo $e->getMessage(); 
-        }
-        
-        
-    }
-    /**
      * 回复评论
      * @param  Request $req [description]
      * @return [type]       [description]

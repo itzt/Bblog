@@ -12,7 +12,7 @@ return [
     // Feed for comments
     'posts_name'        => 'The title for name',
     'find_comment'      => 'Find Comments',
-    'comment_content'   => 'Contents',
+    'comment'           => 'Contents',
     'belong_post'       => 'The title',
 
     //回复评论

@@ -12,7 +12,7 @@ return [
     // 评论列表
     'posts_name'        => '文章名称',
     'find_comment'      => '搜评论',
-    'comment_content'   => '评论内容',
+    'content'           => '评论内容',
     'belong_post'       => '所属文章',
 
     //回复评论
