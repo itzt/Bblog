@@ -17,6 +17,7 @@ class CommonController extends Controller
     {
         $locale = \App\Tools\admin_language();     
         \App::setLocale($locale);
+        $this->middleware('auth');
         
     }
 
