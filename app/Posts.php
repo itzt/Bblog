@@ -62,6 +62,18 @@ class Posts extends Model
             ->where($where)->first();
     }
     /**
+     * 获取文章详情页的上一条和下一条信息
+     *
+     * @return void
+     */
+    public function getPrevAndNextInfo($where){
+        return $this->select('title','author')
+            ->where($where)
+            ->orderBy('post_id', 'desc')
+            ->limit(2)
+            ->get();
+    }
+    /**
      * 获取对应的文章名称
      * @param  [type] $data [description]
      * @return [type]       [description]
