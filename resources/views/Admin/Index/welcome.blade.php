@@ -26,7 +26,7 @@
 <body>
 	<div class="page-container">
 		<h3>{{trans('common.welcome')}}
-			<small>v1.0</small>
+			<small>{{trans('common.version')}}</small>
 		</h3>
 		<p>
 			<span class="label label-warning radius">{{trans('common.feedback')}}</span>{{trans('common.feedback_message')}}
@@ -49,9 +49,9 @@
 					<th colspan="7" scope="col">{{trans('common.recent_login')}}</th>
 				</tr>
 				<tr class="text-c">
-					<th>管理员</th>
-					<th>登录IP</th>
-					<th>登录时间</th>
+					<th>{{trans('admin.admin_name')}}</th>
+					<th>{{trans('admin.login_ip')}}</th>
+					<th>{{trans('admin.login_time')}}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -96,7 +96,7 @@
 	</div>
 	<footer class="footer mt-20">
 		<div class="container">
-			<p>感谢 必应科技技术团队核心成员
+			<p>{{trans('common.thank')}}
 				<a href="https://github.com/itzt" target="_blank" title="itzt">itzt</a>
 				<span class="pipe">|</span>
 				<a href="https://github.com/tyabing" target="_blank" title="tyabing">tyabing</a>
@@ -107,9 +107,9 @@
 				<span class="pipe">|</span>
 				<a href="https://github.com/dbing" target="_blank" title="dbing">dbing</a>
 
-				<br> Copyright &copy;2015-2017 北京必应科技有限公司
-				<br> 本系统后台UI由
-				<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供</p>
+				<br> {{trans('common.copyright')}}
+				<br> {{trans('common.replen')}}
+			</p>
 		</div>
 	</footer>
 	<script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script>

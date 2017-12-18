@@ -20,23 +20,6 @@ class CommonController extends Controller
         
     }
 
-    // public function language(Request $request)
-    // {
-    //     $name = 'language';
-    //     if(isset($value))
-    //     {
-    //         // $request->session()->put('language',$lang);
-    //         $cookie = cookie($name,$value,time()+365*30*24*60);
-    //         return (new \Illuminate\Http\Response)->cookie($cookie);
-    //     }
-    //     else
-    //     {
-    //         $res = $request->cookie($name);
-    //         var_dump($res);
-
-    //     }
-    // }
-
     /**
      * 重写基类-自定义验证失败返回格式
      *

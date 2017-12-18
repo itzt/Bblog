@@ -37,8 +37,8 @@ class IndexController extends CommonController
         if($request->ajax()){
             $lang = (isset($request->lang)&&!empty($request->lang)) ? $request->lang : 'zh-CN';
             // 统一入口获取或设置选择的语言
-            $result = \App\Tools\admin_language($lang);
-            return $result->send();
+            \App\Tools\admin_language($lang);
+            
             // return $this->returnCode(200,'',$res);
         }
     }
@@ -134,7 +134,7 @@ class IndexController extends CommonController
             }
             
             $result[] = [
-                'show'  =>$nowYear.'年'.$nowMoth.'月',
+                'show'  =>$nowYear.trans('common.year').$nowMoth.trans('common.month'),
                 'date'  =>['begin'=>date("Y-m-d H:i:s",$beginMoth),'end'=>date("Y-m-d H:i:s",$endMoth)],
                 'stamp' =>['begin'=>$beginMoth,'end'=>$endMoth]
             ];
