@@ -23,7 +23,24 @@ class IndexController extends CommonController
      */
     public function index()
     {
+
         return view('Admin/Index/index');
+    }
+
+    /**
+     * 设置选择的语言
+     *
+     * @return void
+     */
+    public function setLanguage(Request $request)
+    {
+        if($request->ajax()){
+            $lang = (isset($request->lang)&&!empty($request->lang)) ? $request->lang : 'zh-CN';
+            // 统一入口获取或设置选择的语言
+            $result = \App\Tools\admin_language($lang);
+            return $result->send();
+            // return $this->returnCode(200,'',$res);
+        }
     }
 
     /**
@@ -54,12 +71,12 @@ class IndexController extends CommonController
 
                 $result = [
                     'message'=>'',
-                    'status'=>1,
+                    'status'=>\Config::get('constants.status_success'),
                     'data'  =>[
                         'month' =>array_column($month,'show'),
                         'series'=>[
-                            ['name'  =>'文章','data'  =>$postsCount],
-                            ['name'  =>'评论','data'  =>$commentsCount],
+                            ['name'  =>trans('common.article'),'data'  =>$postsCount],
+                            ['name'  =>trans('common.comment'),'data'  =>$commentsCount],
                             // ['name'  =>'访客','data'  =>[42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]],
                             // ['name'  =>'用户','data'  =>[42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]]
                         ]

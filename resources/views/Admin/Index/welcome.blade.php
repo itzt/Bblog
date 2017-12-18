@@ -20,18 +20,18 @@
 <script type="text/javascript" src="/admin/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-	<title>我的桌面</title>
+	<title>{{trans('common.desktop')}}</title>
 </head>
 
 <body>
 	<div class="page-container">
-		<h3>欢迎使用Bblog开源博客系统
+		<h3>{{trans('common.welcome')}}
 			<small>v1.0</small>
 		</h3>
 		<p>
-			<span class="label label-warning radius">温馨提示：</span>如果您使用过程中，有任何问题，欢迎反馈。
+			<span class="label label-warning radius">{{trans('common.feedback')}}</span>{{trans('common.feedback_message')}}
 			<span class="pipe">|</span>
-			<a class="c-warning" href="https://github.com/dbing/Bblog/issues" target="_blank" title="tyabing">反馈</a>
+			<a class="c-warning" href="https://github.com/dbing/Bblog/issues" target="_blank" title="tyabing">{{trans('common.issues')}}</a>
 		</p>
 
 		<div class="page-container">
@@ -46,7 +46,7 @@
 		<table class="table table-border table-bordered table-bg">
 			<thead>
 				<tr>
-					<th colspan="7" scope="col">最近登录信息</th>
+					<th colspan="7" scope="col">{{trans('common.recent_login')}}</th>
 				</tr>
 				<tr class="text-c">
 					<th>管理员</th>
@@ -152,10 +152,10 @@
 						type: 'column'
 					},
 					title: {
-						text: '信息统计'
+						text: '{{trans('common.stat')}}'
 					},
 					subtitle: {
-						text: '本站'
+						text: '{{trans('common.data_source')}}'
 					},
 					xAxis: {
 						categories: month

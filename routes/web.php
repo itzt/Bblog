@@ -28,8 +28,10 @@ Route::get('/authors','Home\AuthorsController@index');
 
 // 后台首页
 Route::get('/admin/index','Admin\IndexController@index');
-// 后台welcome
+// 后台欢迎页面
 Route::get('/admin/welcome','Admin\IndexController@welcome');
+// 后台语言切换
+Route::get('/admin/setlang','Admin\IndexController@setlanguage');
 
 // 后台article
 Route::group(['prefix' => 'article'], function () {
