@@ -15,6 +15,8 @@
 Route::get('/','Home\IndexController@index');
 // 前台文章详情
 Route::get('/index/details/{id}', 'Home\IndexController@details');
+// 所有文章页
+Route::get('/archive', 'Home\IndexController@archive');
 // 关于我们
 Route::get('/about','Home\AboutController@index');
 // 新闻

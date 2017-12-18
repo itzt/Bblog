@@ -16,6 +16,15 @@ class Comments extends Model
     protected $fillable = ['nickname','email','content','post_id','ip'];
 
     const PARENTID = 0;
+
+
+    /**
+     * 获取评论对应的博客文章
+     */
+    public function post(){
+        return $this->belongsTo('App\Posts','post_id');
+    }    
+    
     /**
      * 获取所有分类信息
      *
@@ -23,8 +32,10 @@ class Comments extends Model
      */
     static public function getList($where=array())
     {
-        $result = self::where($where)->orderBy('parent_id','asc')->paginate(Config::get('constants.page_size'));
-        
+        // 只索引评论
+        $map = array_merge($where,['parent_id'=>self::PARENTID]);
+        $result = self::where($map)->orderBy('com_id','desc')->paginate(Config::get('constants.page_size'));
+
         return $result;
     }
     /** 

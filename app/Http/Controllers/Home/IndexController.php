@@ -37,4 +37,14 @@ class IndexController extends HomeController
         $artFind = (new Posts)->getOne(['post_id' => $pid]);
         return view('Themes/'.$this->theme.'Home/details', ['artFind' => $artFind]);
     }
+
+    /**
+     * show article all list
+     *
+     * @return void
+     */
+    public function archive()
+    {
+        return view('Themes/'. $this->theme. 'Home/archive');
+    }
 }
