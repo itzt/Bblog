@@ -18,9 +18,11 @@
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
 					<li>
-						<!--<img src="" class="round" style="width: 40px;height: 40px; border-radius: 70px;" >-->
+						<a href="/AdminUsers/information">
+							<img src="{{Session::get('avatar')}}" class="round" style="width: 35px;height: 35px; border-radius: 70px;" >
+						</a>
 					</li>
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont"></i></a>
+					<li class="dropDown dropDown_hover"> <a href="/AdminUsers/information" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont"></i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="/AdminUsers/information">{{trans('common.information')}}</a></li>
 							<li><a href="/Login/toggle">{{trans('common.change_over')}}</a></li>
