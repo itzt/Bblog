@@ -154,4 +154,4 @@ Route::group(['prefix' => 'comment'], function(){
 });
 
 Auth::routes();
-Route::get('/home','HomeController@index');
+
