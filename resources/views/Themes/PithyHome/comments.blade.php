@@ -20,7 +20,7 @@
 			@foreach($v['children'] as $val)
 	<div name='{{$val['nickname']}}'>
 			{{$val['nickname']}}<span>@</span>{{$v['nickname']}}：{{$val['content']}} <span class='reply' style='color:red;' id="{{$val['com_id']}}">回复</span> <br> 
-			<div style='display:none;'>
+			<div>
 				<textarea name="text" id="text" cols="40" rows="3"></textarea>
 				<button id='but'>回复</button>
 			</div>
@@ -42,10 +42,7 @@
 $().ready(function() {
 	$('.reply').click(function(){
 	var id= $(this).attr('id');
-	var nickname="\@"+$(this).parent().attr('name')+":";
-	
-	$(this).next().next().toggle();
-	$(this).next().next().children('#text').html(nickname);
+
 
 	})
 

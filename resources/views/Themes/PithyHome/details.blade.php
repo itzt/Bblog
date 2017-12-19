@@ -106,7 +106,7 @@
 							<div class="comment-box">
 								<a class="btn btn-golden" href="#">Leave a comment</a>
 								<div class="comment-tab">
-									<a href="#" class="comment-info">Comments (28)</a>
+									<a href="#" class="comment-info">Comments ({{count($data)}})</a>
 									<i class="i">|</i>
 									<a href="#" class="comment-info"><i class="fa fa-comments"></i> Show all</a>
 								</div>
@@ -121,21 +121,49 @@
 										<div class="comment-body">
 											<h6 class="comment-heading">{{$v['nickname']}}  •   <span class="comment-date">{{$v['created_at']}}</span></h6>
 											<p class="comment-text">{{$v['content']}}</p>
-											<a href="javascript:void(0)" class="comment-reply active-comment reply" id="{{$v['com_id']}}"><i class="reply-icon"></i > Reply</a>
+											<a href="javascript:void(0)" class="comment-reply active-comment reply" name="{{$v['nickname']}}" id="{{$v['com_id']}}"><i class="reply-icon"></i > Reply</a>
 										</div>	
+									</div>
+									<div class="comment-form main-comment-form"  style='display:none;'>
+										<form id='signupForm'>
+										{{csrf_field()}} 
+										<textarea class="comment-textarea"  name="content" id='huifu'  placeholder="Leave a comment..."></textarea>
+										<div class="at-focus">
+											<input type="hidden" name='post_id' value='{{$pid}}'>
+											<input type="hidden" name='parent_id' value="{{$v['com_id']}}">
+											<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
+											<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
+										</div>
+										<button class="comment-submit btn-golden">Post Comment</button>
+
+										</form>
 									</div>
 										@if(!empty($data))
 										@foreach($v['children'] as $val)
-												<div class="comment-item">
+											<div class="comment-item">
 												<a class="comment-photo" href="#">
 													<img src="/assets/img/profil_photo-05.png" alt="" />
 												</a>
 												<div class="comment-body">
 													<h6 class="comment-heading">{{$val['nickname']}}  •   <span class="comment-date">{{$val['created_at']}}</span></h6>
 													<p class="comment-text">{{$val['content']}}</p>
-													<a href="javascript:void(0)" class="comment-reply active-comment reply" id="{{$val['com_id']}}"><i class="reply-icon"></i > Reply</a>
+													<a href="javascript:void(0)" class="comment-reply active-comment reply" name="{{$val['nickname']}}" id="{{$val['com_id']}}"><i class="reply-icon"></i > Reply</a>
 												</div>	
 											</div>
+											<div class="comment-form main-comment-form"  style='display:none;'>
+											<form id='signupForm'>
+											{{csrf_field()}} 
+											<textarea class="comment-textarea"  name="content" id='huifu'  placeholder="Leave a comment..."></textarea>
+											<div class="at-focus">
+												<input type="hidden" name='post_id' value='{{$pid}}'>
+												<input type="hidden" name='parent_id' value="{{$val['com_id']}}">
+												<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
+												<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
+											</div>
+											<button class="comment-submit btn-golden">Post Comment</button>
+	
+											</form>
+										</div>
 										@endforeach
 										@endif
 								   @endforeach
@@ -287,9 +315,7 @@
 <script>
 $().ready(function() {
 	$('.reply').click(function(){
-	var id= $(this).attr('id');
-	$(this).parent().next().toggle();
-
+	$(this).parents('.comment-item').next().toggle();
 	})
 
 	$('.btn-golden').click(function(){

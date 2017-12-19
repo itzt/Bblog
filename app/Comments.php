@@ -13,7 +13,7 @@ class Comments extends Model
      *
      * @var array
      */
-    protected $fillable = ['nickname','email','content','post_id','ip'];
+    protected $fillable = ['nickname','email','content','post_id','ip','parent_id'];
 
     const PARENTID = 0;
 

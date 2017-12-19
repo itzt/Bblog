@@ -13,13 +13,13 @@ class CommentsController extends Controller
                  //默认前台用户是没有登录的
                   //表中admin_id字段没有修改
                   $all = $request->all();    
-                                
+                        
                   $all = $request->except('_token');
                   $all['ip']=$_SERVER['REDIS_HOST'];
                 
                   // 数据入库
                   $result = \App\Comments::create($all);
-                 
+                 var_dump($result);die;
                   if($result)
                   {   
                       return \App\Tools\ajax_success();
