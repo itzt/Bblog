@@ -25,7 +25,7 @@
 					<li class="dropDown dropDown_hover"> <a href="/AdminUsers/information" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont"></i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="/AdminUsers/information">{{trans('common.information')}}</a></li>
-							<li><a href="/Login/toggle">{{trans('common.change_over')}}</a></li>
+							<!--<li><a href="/Login/toggle">{{trans('common.change_over')}}</a></li>-->
 							<li><a href="/Login/reset">{{trans('common.reset_pass')}}</a></li>
 							<li><a href="/Login/logout">{{trans('common.logout')}}</a></li>
 							<!--<li><a href="/admin/information">{{trans('common.information')}}</a></li>
