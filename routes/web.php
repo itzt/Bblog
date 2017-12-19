@@ -95,7 +95,7 @@ Route::group(['prefix' => 'navigate'],function(){
     // 修改导航
     Route::match(['get', 'post'],'/update/{id}','Admin\NavigateController@update');
 });
-// 后台
+// 后台Contacts
 Route::group(['prefix' => 'Contacts'], function () {
 
     // 留言
@@ -141,7 +141,17 @@ Route::group(['prefix' => 'comment'], function(){
     Route::match(['get', 'post'],'/replay/{id?}', 'Admin\CommentController@replay');    
 });
 
-
+// 前台Contacts
+Route::group(['prefix' => 'Homecontacts'], function(){
+      // 留言
+      Route::match(['get', 'post'],'/index', 'Home\ContactsController@index');
+    
+});
+// 前台comment
+Route::group(['prefix' => 'comment'], function(){
+    // 评论列表
+    Route::match(['get', 'post'],'/index', 'Home\CommentsController@index');  
+});
 
 Auth::routes();
 Route::get('/home','HomeController@index');

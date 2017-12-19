@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Config;
 class Comments extends Model
 {
-	protected $primaryKey='com_id';//表的主键 
+    protected $primaryKey='com_id';//表的主键 
+    
+     /**
+     * 可以被批量赋值的属性
+     *
+     * @var array
+     */
+    protected $fillable = ['nickname','email','content','post_id','ip','parent_id'];
+
     const PARENTID = 0;
 
 
@@ -114,7 +122,70 @@ class Comments extends Model
         	$arr[$val->com_id]['title']=$val->title;
         	$arr[$val->com_id]['level']=$val->level;            
         }
-
         return $arr;
     }
+
+    static public function getHomeCommentList($data = [])
+    {
+        $arr = [];
+        $catList = self::recursion($data,'',$data[0]->parent_id);
+        foreach($catList as $key => $val)
+        {
+
+        	$arr[$val->com_id]['content'] =$val->nickname."评论：".$val->content;
+        	if($val->level!=0){        		
+        		$arr[$val->com_id]['content'] = $val->nickname."回复：".$val->content;
+        	}
+        	$arr[$val->com_id]['created_at']=$val->created_at;
+        	$arr[$val->com_id]['ip']=$val->ip;
+        	$arr[$val->com_id]['email']=$val->email;
+        	$arr[$val->com_id]['title']=$val->title;
+        	$arr[$val->com_id]['level']=$val->level;            
+        }
+        return $arr;
+    }
+
+     //查询顶级分类
+     static function getPrinmaryCate($post_id){
+        
+               $top= self::where(['post_id'=>$post_id])->where(['parent_id'=>0])->orderBy('updated_at','asc')->select()->get();   
+                if(empty($top)){
+                    return [];
+                }
+            
+               $primary=[];
+                foreach ($top as $com){
+        
+                    $primary[]=[
+                        'com_id'=>$com->com_id,
+                        'nickname'=>$com->nickname,
+                        'content'=>$com->content,
+                        'created_at'=>$com->created_at,
+                        'children'=>self::getChild($com->com_id)
+                    ];
+                }
+            
+                return $primary;
+            }
+        //递归找孩子
+        static  function getChild($pid){
+            $data=self::where(['parent_id'=>$pid])->select()->get();
+        
+            if(empty($data)){
+                return [];
+            }
+            $children=[];
+            foreach ($data as $child){      
+               $children[]=[
+                   'com_id'=>$child->com_id,
+                   'nickname'=>$child->nickname,
+                   'content'=>$child->content,
+                   'created_at'=>$child->created_at,
+                   'children'=>self::getChild($child->com_id)
+               ];
+            
+            }
+            
+            return $children;
+        }
 }
