@@ -19,7 +19,7 @@ class CommentsController extends Controller
                 
                   // 数据入库
                   $result = \App\Comments::create($all);
-                 var_dump($result);die;
+               
                   if($result)
                   {   
                       return \App\Tools\ajax_success();
