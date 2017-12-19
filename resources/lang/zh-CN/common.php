@@ -18,6 +18,8 @@ return [
 
     /** 顶部菜单栏 */
     'information'       =>  '个人信息',
+    'change_over'       =>  '切换用户',
+    'reset_pass'        =>  '重置密码',
     'logout'            =>  '退出',
     'change_language'   =>  '选择语言',
     'change_skin'       =>  '换肤',
@@ -70,6 +72,7 @@ return [
     'paramer_exception' =>  '参数异常',
     'server_exception'  =>  '服务器异常',
     'none_record'       =>  '不存在的记录',
+    'parent_myself'     =>  '不能选择自己作为上级',
 
     /** 动作描述 */
     'do'                =>  '操作',

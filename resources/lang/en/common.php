@@ -20,6 +20,8 @@ return [
 
     /** 顶部菜单栏 */
     'information'       =>  'Personal information',
+    'change_over'       =>  'Switching user',
+    'reset_pass'        =>  'Reset password',
     'logout'            =>  'Logout',
     'change_language'   =>  'Language',
     'change_skin'       =>  'Skin',
@@ -65,33 +67,34 @@ return [
     'date_range'        =>   'Date Range',
 
     /** Operating hints */
-    'message_success'   => 'Operation is successful.',
-    'message_failure'   => 'Operation failure.',
+    'message_success'   =>  'Operation is successful.',
+    'message_failure'   =>  'Operation failure.',
     'paramer_exception' =>  'Parameters of the abnormal',
     'server_exception'  =>  'Server Exception',
     'none_record'       =>  'There is no record',
+    'parent_myself'     =>  'You can\'t choose myself as a superior',
 
     /** Action description */
-    'do'                =>  'operation',
+    'do'                =>  'Operation',
     'do_update'         =>  'Modify the',
     'do_delete'         =>  'delete',
     'batch_delete'      =>  'Batch delete',
 
     /** time description */
-    'created_at'         =>  'creation time',
-    'updated_at'         =>  'update time',
+    'created_at'         =>  'Creation time',
+    'updated_at'         =>  'Update time',
 
     /** Ask prompt */
-    'ask_delete'        =>  'are you sure you want to delete?', 
-    'ask_update'        =>  'are you sure you want to change?', 
-    'ask_create'        =>  'are you sure you want to add?', 
+    'ask_delete'        =>  'Are you sure you want to delete?', 
+    'ask_update'        =>  'Are you sure you want to change?', 
+    'ask_create'        =>  'Are you sure you want to add?', 
 
     /** General form */
-    'form_search'       =>  'search',
-    'form_submit'       =>  'submit',
-    'form_cancel'       =>  'cancel',
-    'form_reset'        =>  'reset',
-    'form_preservation' =>  'save',
+    'form_search'       =>  'Search',
+    'form_submit'       =>  'Submit',
+    'form_cancel'       =>  'Cancel',
+    'form_reset'        =>  'Reset',
+    'form_preservation' =>  'Save',
 
     /** Paging general */
     'total_count'       =>  'A total of data',

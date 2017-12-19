@@ -14,6 +14,8 @@ return [
     'find_comment'      => '搜评论',
     'content'           => '评论内容',
     'belong_post'       => '所属文章',
+    'email'             => '邮箱',
+    'ip'                => 'IP',
 
     //回复评论
     'replay'            => '回复',

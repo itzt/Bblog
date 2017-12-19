@@ -34,8 +34,8 @@
 					<th width="5"><input type="checkbox" disabled></th>
 					<th width="25">{{trans('comment.content')}}</th>
 					<th width="15">{{trans('comment.belong_post')}}</th>
-					<th width="15">IP</th>
-					<th width="15">email</th>
+					<th width="15">{{trans('comment.ip')}}</th>
+					<th width="15">{{trans('comment.email')}}</th>
 					<th width="15">{{trans('common.created_at')}}</th>
 					<th width="10">{{trans('common.do')}}</th>
 				</tr>
@@ -72,7 +72,7 @@
  <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<!--<script type="text/javascript" src="/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> -->
+<script type="text/javascript" src="/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
 <script type="text/javascript" src="/admin/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
 
