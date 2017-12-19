@@ -25,7 +25,13 @@ class Admins extends Model
         {
             // var_dump($data);die;
             $up=\App\Admins::where('id',$data['id'])->update($data);
-            return $up;
+            if($up == true)
+            {
+                return 1;
+            }else
+            {
+                return 2;
+            }
         }
         
     }
