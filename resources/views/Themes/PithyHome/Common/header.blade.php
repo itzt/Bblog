@@ -60,7 +60,7 @@
 							<a href="#">Five simple steps to designing grid systems preface</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 28</span>   •   
+							<span>June 28</span>   •   
 							<span>2 Comments</span>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 							<a href="#">Hemingway: A Text Editor That Cares About What You Write</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 26</span>   •   
+							<span>June 26</span>   •   
 							<span>2 Comments</span>
 						</div>
 					</div>
@@ -84,7 +84,7 @@
 							<a href="#">Mobile Design Inspiration and Creativity</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 25</span>   •   
+							<span>June 25</span>   •   
 							<span>4 Comments</span>
 						</div>
 					</div>
@@ -96,7 +96,7 @@
 							<a href="#">Envato Stories: Coming August 2014</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 24</span>   •   
+							<span>June 24</span>   •   
 							<span>3 Comments</span>
 						</div>
 					</div>
@@ -108,7 +108,7 @@
 							<a href="#">Meet #59 Interface Designer Kerem Suer</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 24</span>   •   
+							<span>June 24</span>   •   
 							<span>6 Comments</span>
 						</div>
 					</div>
@@ -120,7 +120,7 @@
 							<a href="#">Founders, Travel and Epic Beards: What Happens After Envato</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 22</span>   •   
+							<span>June 22</span>   •   
 							<span>12 Comments</span>
 						</div>
 					</div>
@@ -132,7 +132,7 @@
 							<a href="#">Why Designers Make Good Founders (and Cofounders)</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 21</span>   •   
+							<span>June 21</span>   •   
 							<span>9 Comments</span>
 						</div>
 					</div>
@@ -144,7 +144,7 @@
 							<a href="#">Getting Your Team Through the Storm A Good Product Designer...</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 20</span>   •   
+							<span>June 20</span>   •   
 							<span>16 Comments</span>
 						</div>
 					</div>
@@ -156,7 +156,7 @@
 							<a href="#">Introducing LaRead Chat Post</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 18</span>   •   
+							<span>June 18</span>   •   
 							<span>24 Comments</span>
 						</div>
 					</div>
@@ -168,7 +168,7 @@
 							<a href="#">The Future of WordPress</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 16</span>   •   
+							<span>June 16</span>   •   
 							<span>13 Comments</span>
 						</div>
 					</div>
@@ -180,7 +180,7 @@
 							<a href="#">Workshop: Brand Asset Management</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 16</span>   •   
+							<span>June 16</span>   •   
 							<span>8 Comments</span>
 						</div>
 					</div>
@@ -192,7 +192,7 @@
 							<a href="#">Long Live The Kings - Short Film</a>
 						</h5>
 						<div class="post-subinfo">
-							<span>June 12</span>   •   
+							<span>June 12</span>   •   
 							<span>26 Comments</span>
 						</div>
 					</div>

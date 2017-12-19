@@ -28,10 +28,14 @@ class AdminUsersController extends CommonController
             return view('Admin.User.information',['data'=>$data]);
          }else
          {
+            //  var_dump($data);die;
             $up = (new Admins())->admin_save($data);
-            if($up ==true)
+            if($up==1)
             {
-                echo "<script>alert('更改成功');location.href='/admin/index'</script>";
+                return \App\Tools\ajax_success();
+            }else if($up==2)
+            {
+                return \App\Tools\ajax_error();
             }
          }
     }

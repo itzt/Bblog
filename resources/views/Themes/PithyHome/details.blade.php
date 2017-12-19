@@ -102,46 +102,82 @@
 									</div>
 								</div>
 							</div>
-
+							<!-- 评论回复 -->
 							<div class="comment-box">
 								<a class="btn btn-golden" href="#">Leave a comment</a>
 								<div class="comment-tab">
-									<a href="#" class="comment-info">Comments (28)</a>
+									<a href="#" class="comment-info">Comments ({{count($data)}})</a>
 									<i class="i">|</i>
 									<a href="#" class="comment-info"><i class="fa fa-comments"></i> Show all</a>
 								</div>
 
 								<div class="comment-block">
-
+									@if(!empty($data))
+									@foreach($data as $v)
 									<div class="comment-item">
 										<a class="comment-photo" href="#">
 											<img src="/assets/img/profil_photo-05.png" alt="" />
 										</a>
 										<div class="comment-body">
-											<h6 class="comment-heading">Matthew L. Fisher   •   <span class="comment-date">2 days ago</span></h6>
-											<p class="comment-text">I am about like you. First: paper and after: photoshop (sometime).</p>
-											<a href="#" class="comment-reply active-comment"><i class="reply-icon"></i> Reply</a>
-											<!--
-											<div class="comment-form">
-												<form>
-													<textarea class="comment-textarea" placeholder="Reply to Lauren Bonk"></textarea>
-													<input class="comment-input" placeholder="Name" type="text" />
-													<input class="comment-input" placeholder="or Email" type="text" />
-													<button class="comment-submit">Post Comment</button>
-												</form>
-											</div>
-											-->
-										</div>
+											<h6 class="comment-heading">{{$v['nickname']}}  •   <span class="comment-date">{{$v['created_at']}}</span></h6>
+											<p class="comment-text">{{$v['content']}}</p>
+											<a href="javascript:void(0)" class="comment-reply active-comment reply" name="{{$v['nickname']}}" id="{{$v['com_id']}}"><i class="reply-icon"></i > Reply</a>
+										</div>	
 									</div>
+									<div class="comment-form main-comment-form"  style='display:none;'>
+										<form id='signupForm'>
+										{{csrf_field()}} 
+										<textarea class="comment-textarea"  name="content" id='huifu'  placeholder="Leave a comment..."></textarea>
+										<div class="at-focus">
+											<input type="hidden" name='post_id' value='{{$pid}}'>
+											<input type="hidden" name='parent_id' value="{{$v['com_id']}}">
+											<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
+											<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
+										</div>
+										<button class="comment-submit btn-golden">Post Comment</button>
 
-
-									<div class="comment-form main-comment-form">
-										<form>
-											<textarea class="comment-textarea" placeholder="Leave a comment..."></textarea>
+										</form>
+									</div>
+										@if(!empty($data))
+										@foreach($v['children'] as $val)
+											<div class="comment-item">
+												<a class="comment-photo" href="#">
+													<img src="/assets/img/profil_photo-05.png" alt="" />
+												</a>
+												<div class="comment-body">
+													<h6 class="comment-heading">{{$val['nickname']}}  •   <span class="comment-date">{{$val['created_at']}}</span></h6>
+													<p class="comment-text">{{$val['content']}}</p>
+													<a href="javascript:void(0)" class="comment-reply active-comment reply" name="{{$val['nickname']}}" id="{{$val['com_id']}}"><i class="reply-icon"></i > Reply</a>
+												</div>	
+											</div>
+											<div class="comment-form main-comment-form"  style='display:none;'>
+											<form id='signupForm'>
+											{{csrf_field()}} 
+											<textarea class="comment-textarea"  name="content" id='huifu'  placeholder="Leave a comment..."></textarea>
 											<div class="at-focus">
-												<input class="comment-input" placeholder="Name" type="text" />
-												<input class="comment-input" placeholder="or Email" type="text" />
-												<button class="comment-submit">Post Comment</button>
+												<input type="hidden" name='post_id' value='{{$pid}}'>
+												<input type="hidden" name='parent_id' value="{{$val['com_id']}}">
+												<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
+												<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
+											</div>
+											<button class="comment-submit btn-golden">Post Comment</button>
+	
+											</form>
+										</div>
+										@endforeach
+										@endif
+								   @endforeach
+								   @endif
+									<div class="comment-form main-comment-form">
+									<!-- 进行评论 -->
+										<form id='signupForm'>
+										{{csrf_field()}} 
+											<textarea class="comment-textarea"  name="content" id="content" placeholder="Leave a comment..."></textarea>
+											<div class="at-focus">
+												<input type="hidden" name='post_id' value='{{$pid}}'>
+												<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
+												<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
+												<button class="comment-submit btn-golden">Post Comment</button>
 											</div>
 										</form>
 									</div>
@@ -269,3 +305,51 @@
 @include('Themes.PithyHome.Common.footer');
 </body>
 </html>
+
+
+<script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="/assets/js/jquery.form.js"></script>
+<script>
+$().ready(function() {
+	$('.reply').click(function(){
+	$(this).parents('.comment-item').next().toggle();
+	})
+
+	$('.btn-golden').click(function(){
+		$("#signupForm").submit();
+	})
+// 在键盘按下并释放及提交后验证提交表单
+ 	$("#signupForm").validate({
+		rules: {
+        nickname:"required",
+		email:"required",
+		content:"required",
+	
+		},
+		messages: {
+			nickname: "	<span style='color:red;'>请输入您的昵称</span>",
+			email:"<span style='color:red;'>请输入您的邮箱</span>",
+			content:"<span style='color:red;'>请输入内容</span>", 
+		},
+	    onkeyup:false,
+        focusCleanup:true,
+        success:"valid",
+        submitHandler:function(form){
+            $(form).ajaxSubmit({
+                type:'post',
+                url:'/comment/index',
+				success:function ($data) {
+					layer.msg('添加成功',{icon:1,time:1000});
+					window.location.reload();
+                },
+				error:function ($data) {
+                    layer.msg('添加失败',{icon:0,time:1000});
+                }
+			});
+        }
+    })
+});
+</script>

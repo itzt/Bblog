@@ -13,7 +13,7 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="个人信息" data-href="welcome.html">个人信息</span>
+					<span title="{{trans('admin.information')}}" data-href="welcome.html">{{trans('admin.information')}}</span>
 					<em></em></li>
 		</ul>
 	</div>
@@ -22,37 +22,37 @@
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-             <form action="" method="post" class="form form-horizontal" id="demo2">
-							   <legend>重置密码</legend>
+             <form action="" method="post" class="form form-horizontal" id="demo2" style="width:85%;">
+							   
                                <input type="hidden" name="_token" value="{{csrf_token()}}">
                                <input type="hidden" name="id" value="{{$data->id}}">
 							<div class="row cl">
-                                <label class="form-label col-xs-4 col-sm-3">用户名：</label>
+                                <label class="form-label col-xs-4 col-sm-3">{{trans('admin.username')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
 									<input type="text" class="input-text"  placeholder="4~16个字符，字母/中文/数字/下划线" name="name" id="username" value="{{$data->name}}">
 								</div>
 							</div>
 							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">邮箱：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.email')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
 									<input type="email" email:true class="input-text" placeholder="@" name="email" id="email" value="{{$data->email}}">
 								</div>
 							</div>
 							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">密码：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.password')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
-									<input type="password" class="input-text" autocomplete="off" placeholder="密码" name="pass" id="password">
+									<input type="password" class="input-text" autocomplete="off" placeholder="{{trans('admin.password')}}" name="pass" id="password">
 								</div>
 							</div>
 							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">密码验证：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.Verify Password')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
-									<input type="password" class="input-text" autocomplete="off" placeholder="密码" name="password" id="password2">
+									<input type="password" class="input-text" autocomplete="off" placeholder="{{trans('admin.Verify Password')}}" name="password" id="password2">
 								</div>
 							</div>
 							<div class="row cl">
 								<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-									<input class="btn btn-primary" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+									<input class="btn btn-primary" type="submit" value="&nbsp;&nbsp;{{trans('admin.submit')}}&nbsp;&nbsp;">
 								</div>
 							</div>
 						</form>

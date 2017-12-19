@@ -17,13 +17,17 @@
 			-->
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
-					<li>超级管理员</li>
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont"></i></a>
+					<li>
+						<a href="/AdminUsers/information">
+							<img src="{{Session::get('avatar')}}" class="round" style="width: 35px;height: 35px; border-radius: 70px;" >
+						</a>
+					</li>
+					<li class="dropDown dropDown_hover"> <a href="/AdminUsers/information" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont"></i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="/AdminUsers/information">个人信息</a></li>
-							<li><a href="/Login/toggle">切换账户</a></li>
-							<li><a href="/Login/reset">重置密码</a></li>
-							<li><a href="/Login/logout">退出</a></li>
+							<li><a href="/AdminUsers/information">{{trans('common.information')}}</a></li>
+							<!--<li><a href="/Login/toggle">{{trans('common.change_over')}}</a></li>-->
+							<li><a href="/Login/reset">{{trans('common.reset_pass')}}</a></li>
+							<li><a href="/Login/logout">{{trans('common.logout')}}</a></li>
 							<!--<li><a href="/admin/information">{{trans('common.information')}}</a></li>
 							<li><a href="{{url('Login/sign')}}">{{trans('common.logout')}}</a></li>-->
 						</ul>
