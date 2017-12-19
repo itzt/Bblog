@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-class ContactsController extends Controller
+class ContactsController extends  HomeController
 {
 
 
@@ -30,6 +30,9 @@ class ContactsController extends Controller
             {
                 return \App\Tools\ajax_error();
             }
-        }	
+        }
+
+
+        return view('Themes/'. $this->theme. 'Home/contact');
     }
 }
