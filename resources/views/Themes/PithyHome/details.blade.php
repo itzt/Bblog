@@ -125,7 +125,7 @@
 										</div>	
 									</div>
 									<div class="comment-form main-comment-form"  style='display:none;'>
-										<form id='signupForm'>
+										<form id='huifu'>
 										{{csrf_field()}} 
 										<textarea class="comment-textarea"  name="content" placeholder="Leave a comment..."></textarea>
 										<div class="at-focus">
@@ -151,7 +151,7 @@
 												</div>	
 											</div>
 											<div class="comment-form main-comment-form"  style='display:none;'>
-											<form id='signupForm'>
+											<form id='huifu2'>
 											{{csrf_field()}} 
 											<textarea class="comment-textarea"  name="content" placeholder="Leave a comment..."></textarea>
 											    <div class="at-focus">
@@ -318,11 +318,70 @@ $().ready(function() {
 	$(this).parents('.comment-item').next().toggle();
 	})
 
-	$('.btn-golden').click(function(){
-		$("#signupForm").submit();
-	})
+
 // 在键盘按下并释放及提交后验证提交表单
  	$("#signupForm").validate({
+		rules: {
+        nickname:"required",
+		email:"required",
+		content:"required",
+	
+		},
+		messages: {
+			nickname: "	<span style='color:red;'>请输入您的昵称</span>",
+			email:"<span style='color:red;'>请输入您的邮箱</span>",
+			content:"<span style='color:red;'>请输入内容</span>", 
+		},
+	    onkeyup:false,
+        focusCleanup:true,
+        success:"valid",
+        submitHandler:function(form){
+            $(form).ajaxSubmit({
+                type:'post',
+                url:'/comment/index',
+				success:function ($data) {
+					layer.msg('添加成功',{icon:1,time:1000});
+					window.location.reload();
+                },
+				error:function ($data) {
+                    layer.msg('添加失败',{icon:0,time:1000});
+                }
+			});
+        }
+    })
+
+	// 在键盘按下并释放及提交后验证提交表单
+	$("#huifu").validate({
+		rules: {
+        nickname:"required",
+		email:"required",
+		content:"required",
+	
+		},
+		messages: {
+			nickname: "	<span style='color:red;'>请输入您的昵称</span>",
+			email:"<span style='color:red;'>请输入您的邮箱</span>",
+			content:"<span style='color:red;'>请输入内容</span>", 
+		},
+	    onkeyup:false,
+        focusCleanup:true,
+        success:"valid",
+        submitHandler:function(form){
+            $(form).ajaxSubmit({
+                type:'post',
+                url:'/comment/index',
+				success:function ($data) {
+					layer.msg('添加成功',{icon:1,time:1000});
+					window.location.reload();
+                },
+				error:function ($data) {
+                    layer.msg('添加失败',{icon:0,time:1000});
+                }
+			});
+        }
+    })
+		// 在键盘按下并释放及提交后验证提交表单
+		$("#huifu2").validate({
 		rules: {
         nickname:"required",
 		email:"required",
