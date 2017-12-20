@@ -14,7 +14,7 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="个人信息" data-href="welcome.html">个人信息</span>
+					<span title="{{trans('admin.information')}}" data-href="welcome.html">{{trans('admin.information')}}</span>
 					<em></em></li>
 		</ul>
 	</div>
@@ -23,72 +23,58 @@
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-             <form action="" method="post" class="form form-horizontal" id="demo2">
-							   <legend>个人信息</legend>
+             <form action="" method="post" class="form form-horizontal" id="demo2" style="width:85%">
+							   <!--<legend>{{trans('admin.information')}}</legend>-->
                                <input type="hidden" name="_token" id="token" value="{{csrf_token()}}">
                                <input type="hidden" name="id" id="a_id" value="{{$data->id}}">
 							<div class="row cl">
-                                <label class="form-label col-xs-4 col-sm-3">用户名：</label>
+                                <label class="form-label col-xs-4 col-sm-3">{{trans('admin.username')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
 									<input type="text" class="input-text"  placeholder="4~16个字符，字母/中文/数字/下划线" name="name" id="username" value="{{$data->name}}">
 								</div>
 							</div>
 							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">邮箱：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.email')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
 									<input type="email" email:true class="input-text" placeholder="@" name="email" id="email" value="{{$data->email}}">
 								</div>
 							</div>
-
-							<!--<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">密码：</label>
-								<div class="formControls col-xs-8 col-sm-9">
-									<input type="password" class="input-text" autocomplete="off" placeholder="密码" name="pass" id="password" value="{{$data->password}}">
-								</div>
-							</div>
 							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">密码验证：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.Occupation')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
-									<input type="password" class="input-text" autocomplete="off" placeholder="密码" name="password" id="password2" value="{{$data->password}}">
-								</div>
-							</div>-->
-							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">职业：</label>
-								<div class="formControls col-xs-8 col-sm-9">
-									<input type="text" class="input-text" autocomplete="off" placeholder="职业" name="profession" id="job" value="{{$data->profession}}">
+									<input type="text" class="input-text" autocomplete="off" placeholder="{{trans('admin.Occupation')}}" name="profession" id="job" value="{{$data->profession}}">
 								</div>
 							</div>
                             <div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">居住地：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.address')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
-									<input type="text" class="input-text" autocomplete="off" placeholder="居住地" name="address" id="address" value="{{$data->address}}">
+									<input type="text" class="input-text" autocomplete="off" placeholder="{{trans('admin.address')}}" name="address" id="address" value="{{$data->address}}">
 								</div>
 							</div>
 
 							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">上传头像：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.Head portrait')}}：</label>
 								
 								<div class="formControls col-xs-8 col-sm-9">
-								<div style="width:80px;height:80px;float:left;">
-									<img src="{{$data->avatar}}" alt="" class="ing" style="width:80px;height:80px;">
-								</div> 
-								<!--<input type="hidden" id="img" value="{{$data->avatar}}">-->
-								<!--<form action="javascript:void(0)" enctype="multipart/form-data" id="formes">-->
-										<input type="file" id="fil" >
-                            	<!--</form>-->
+									<div style="width:80px;height:80px;float:left;">
+										<img src="{{$data->avatar}}" alt="" class="ing" style="width:80px;height:80px;">
+										<span class="btn-upload" style="float:left;margin-left:80px;margin-top:-20px;"> <a href="javascript:void();" class="btn btn-primary radius upload=btn"><i class="Hui-iconfont">&#xe642;</i>{{trans('admin.Head portrait')}} </a>
+											<input type="file" multiple id="fil" class="input-file">
+										</span>
+									</div>
 							
 								</div>
 								
 							</div>
 							
 							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">网址：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.Website')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
 									<input type="text" class="input-text" placeholder="http://" name="website" id="url" value="{{$data->website}}">
 								</div>
 							</div>
 							<div class="row cl">
-								<label class="form-label col-xs-4 col-sm-3">个人简介：</label>
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.Personal profile')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
 									<textarea class="textarea"  placeholder="说点什么...最少输入10个字符" name="introduce" onKeyUp="member_jian(this,500)">{{$data->introduce}}</textarea>
 									<p class="textarea-numberbar"><em class="textarea-length">0</em>/500</p>
@@ -96,7 +82,7 @@
 							</div>
 							<div class="row cl">
 								<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-									<input class="btn btn-primary" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+									<input class="btn btn-primary" type="submit" value="&nbsp;&nbsp;{{trans('admin.submit')}}&nbsp;&nbsp;">
 								</div>
 							</div>
 				</form>
@@ -229,36 +215,30 @@ $("#demo2").validate({
 				minlength:4,
 				maxlength:16
 			},
-			// password:{
-			// 	required:true,
-			// },
-			// password2:{
-			// 	required:true,
-			// 	equalTo: "#password"
-			// },
 			url:{
 				url:true
 			},
 			
 		},
-	// 	onkeyup:false,
-	// 	focusCleanup:true,
-	// 	success:"valid",
-	// 	submitHandler:function(form){
-	// 		$(form).ajaxSubmit({
-	// 			'type'   : 'post',
-	// 			'url'    : "/AdminUsers/user_information",
-	// 			'data'   : {'status': status},
-	// 			'success': function (data) {
-	// 				layer.msg(data.message, {icon:data.status});
-	// 				parent.window.location.reload();
-	// 			},
-	// 			error: function (data) {
-	// 				var result = JSON.parse(data.responseText);
-	// 				layer.msg(result.message,{icon:result.status});
-	// 			}
-	// 		});
-	// 	}
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit({
+				'type'   : 'post',
+				'url'    : "/AdminUsers/information",
+				'success': function (data) {
+					// alert(data)
+					layer.msg(data.message, {icon:data.status});
+					parent.window.location.reload();
+					// window.location.href="/Login/logout";
+				},
+				error: function (data) {
+					var result = JSON.parse(data.responseText);
+					layer.msg(result.message,{icon:result.status});
+				}
+			});
+		}
 	});
 		
 
@@ -270,30 +250,9 @@ function member_jian(key,val)
     var num = val - nums;
     $('.textarea-length').html(num);
 }
-// $('#img').change(function(){
-// 		// var formdata =$("form").serialize();
-// 		// var forms = document.getElementById("demo2");
-// 		var forms = $("#formes");
-// 		// var formda = form.getFormData()
-// 		var formdata = new FormData(forms);
-// 		// formdata.append('type',"license");
-// 		var names = formdata.get("image");
-// 		console.log(names);
-// 		// var formdata = JSON.stringify(formdata);
-// 	// 	var token = $("#token").val();
-// 	// 	var img = $('#img').val();
-// 	// 	url="/AdminUsers/images";
-// 	// 	data ={'_token':token,'image':img};
-// 	// 	$.post(url,data,function(msg){
-// 	// 		alert(msg)
-// 	// })
-// });
 
-// function go(){}
+
 </script> 
 
-<!--此乃百度统计代码，请自行删除-->
-
-<!--/此乃百度统计代码，请自行删除-->
 </body>
 </html>
