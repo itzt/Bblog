@@ -4,8 +4,8 @@
 		<div class="container">
 
 			<div class="head-about">
-				<h1 class="about-h1">Hi, I'm Victoria Pham</h1>
-				<p class="basic-info">Illustrator / Graphic Designer<span><i class="fa fa-map-marker"></i> Popayán, Colombia</span></p>
+				<h1 class="about-h1">Hi, We Are The Developer</h1>
+				<p class="basic-info">Illustrator / Graphic Designer<span><i class="fa fa-map-marker"></i> China, Beijing</span></p>
 			</div>
 
 		</div>

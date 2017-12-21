@@ -100,66 +100,20 @@
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active" id="lastest" aria-labelledBy="lastest-tab">
 								<ul class="article-list">
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><span class="article-number hidden-xs">27</span></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Meet #59 Interface Designer Kerem Suer</a></h4>
-												<p>Duis nec volutpat leo. Nam mollis massa ut nibh blandit ac faucibus metus tincidunt. Cras sagittis facilisis dui, id posuere tortor aliquam in. Aenean rhoncus purus a tortor posuere at interdum mi venenatis.</p>
-												<div class="article-info"><span class="visible-xs-inline">21 June  •  </span><a href="#">Fashion</a>  •  <a href="#">21 comments</a></div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><span class="article-number hidden-xs">25</span></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Workshop: Brand Asset Management</a></h4>
-												<p>Nam arcu ante, sodales non cursus at, mattis vel libero. Fusce ullamcorper tincidunt nisi, eu consequat felis varius in. Proin venenatis rutrum metus ac ultricies.</p>
-												<div class="article-info"><span class="visible-xs-inline">18 June  •  </span><a href="#">Brand</a>  •  <a href="#">18 comments</a></div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><span class="article-number hidden-xs">24</span></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Getting Your Team Through the Storm A Good Product Designer</a></h4>
-												<p>Proin eget porta leo. Cras interdum ornare condimentum. Nam eu enim at magna tincidunt sodales vel non nunc. Cras imperdiet mollis purus, non tempus dui tincidunt at. Donec fringilla euismod purus.</p>
-												<div class="article-info"><span class="visible-xs-inline">16 June  •  </span><a href="#">Fashion</a>  •  <a href="#">16 comments</a></div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><span class="article-number hidden-xs">21</span></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Long Live The Kings - Short Film</a></h4>
-												<p>Aliquam lectus lacus, aliquam facilisis fermentum congue, rhoncus et quam. Cras molestie nunc vitae mauris vehicula rutrum. Integer accumsan risus mauris, sed placerat tellus.</p>
-												<div class="article-info"><span class="visible-xs-inline">12 June  •  </span><a href="#">Fashion</a>  •  <a href="#">12 comments</a></div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><a href="#" class="article-number hidden-xs">17</a></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Turkish Coffee Culture History</a></h4>
-												<p>Morbi pharetra fringilla purus, sit amet pellentesque urna lobortis ut. Aenean imperdiet urna a lectus imperdiet consequat. Fusce eu nibh metus.</p>
-												<div class="article-info"><span class="visible-xs-inline">18 June  •  </span><a href="#">Brand</a>  •  <a href="#">12 comments</a></div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><a href="#" class="article-number hidden-xs">14</a></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Sam Feldt - Show Me Love (Out Now)</a></h4>
-												<p>Sed vel magna leo, in pretium nunc. Ut ornare turpis vel ipsum vulputate lacinia. Pellentesque blandit sagittis tempor. Curabitur adipiscing est vitae quam bibendum at euismod ligula dignissim.</p>
-												<div class="article-info"><span class="visible-xs-inline">16 June  •  </span><a href="#">Fashion</a>  •  <a href="#">16 comments</a></div>
-											</div>
-										</div>
-									</li>
+@if(!empty($artList) && isset($artList))
+@foreach($artList as $val)
+	<li>
+		<div class="media clearfix">
+			<div class="media-right"><span class="article-number hidden-xs">{{$val->read_num}}</span></div>
+			<div class="media-body">
+				<h4 class="media-heading"><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h4>
+				<p>{{mb_substr($val->html, 0, 120) }}</p>
+				<div class="article-info"><span class="visible-xs-inline">21 June  •  </span><a href="#">{{$val->cat->cat_name}}</a>  •  <a href="#">21 comments</a></div>
+			</div>
+		</div>
+	</li>
+@endforeach
+@endif
 								</ul>
 							</div>
 						</div>
