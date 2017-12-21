@@ -18,7 +18,7 @@ class IndexController extends HomeController
      */
     public function index()
     {
-        $artList = Posts::getArticleList(Posts::STATUS_PUBLISH, '', 10);
+        $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, '', 10);
         $catList = (new Categories)->getList();
         return view('Themes/'.$this->theme.'Home/index', [
             'artList' => $artList,
@@ -56,6 +56,9 @@ class IndexController extends HomeController
      */
     public function archive()
     {
-        return view('Themes/'. $this->theme. 'Home/archive');
+        $title = '';
+        $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, $title, 6);
+
+        return view('Themes/'. $this->theme. 'Home/archive', ['artList' => $artList]);
     }
 }

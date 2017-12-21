@@ -44,6 +44,28 @@ class Posts extends Model
     }
 
     /**
+     * 获取前台文章信息
+     *
+     * @param [type] $type
+     * @param string $title
+     * @param string $limit
+     * @return void
+     */
+    static public function getArchiveList($type, $title = '', $limit = '')
+    {
+        $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
+            ->where(['status' => $type]);
+        if(!empty($title))
+        {
+           $query = $query->orWhere('title', 'like', "%$title%");
+        }
+        if(!empty($limit))
+        {
+            $query = $query->limit($limit);
+        }
+        return $query->orderBy('post_id', 'desc')->get();
+    }
+    /**
      * 分类的关联
      *
      * @return void
