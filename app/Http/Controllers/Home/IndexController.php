@@ -37,6 +37,10 @@ class IndexController extends HomeController
         $pid = $request->id;
      
         $title   = $request->title; // 获取title值
+        if(!empty($title))
+        {
+            Posts::where(['title' => $title])->increment('read_num', 1); // 每次点击当前文章阅读量自增1
+        }
         $artFind = (new Posts)->getOne(['title' => $title]); // 根据标题获取此信息
         $pid=$artFind->post_id;
         // echo '<pre>';
