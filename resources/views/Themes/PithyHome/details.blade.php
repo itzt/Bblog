@@ -121,13 +121,13 @@
 										<div class="comment-body">
 											<h6 class="comment-heading">{{$v['nickname']}}  •   <span class="comment-date">{{$v['created_at']}}</span></h6>
 											<p class="comment-text">{{$v['content']}}</p>
-											<a href="javascript:void(0)" class="comment-reply active-comment reply" name="{{$v['nickname']}}" id="{{$v['com_id']}}"><i class="reply-icon"></i > Reply</a>
+											<a href="javascript:void(0)" class="comment-reply active-comment reply"><i class="reply-icon"></i > Reply</a>
 										</div>	
 									</div>
 									<div class="comment-form main-comment-form"  style='display:none;'>
-										<form id='signupForm'>
+										<form id='huifu'>
 										{{csrf_field()}} 
-										<textarea class="comment-textarea"  name="content" id='huifu'  placeholder="Leave a comment..."></textarea>
+										<textarea class="comment-textarea"  name="content" placeholder="Leave a comment..."></textarea>
 										<div class="at-focus">
 											<input type="hidden" name='post_id' value='{{$pid}}'>
 											<input type="hidden" name='parent_id' value="{{$v['com_id']}}">
@@ -147,20 +147,20 @@
 												<div class="comment-body">
 													<h6 class="comment-heading">{{$val['nickname']}}  •   <span class="comment-date">{{$val['created_at']}}</span></h6>
 													<p class="comment-text">{{$val['content']}}</p>
-													<a href="javascript:void(0)" class="comment-reply active-comment reply" name="{{$val['nickname']}}" id="{{$val['com_id']}}"><i class="reply-icon"></i > Reply</a>
+													<a href="javascript:void(0)" class="comment-reply active-comment reply"><i class="reply-icon"></i > Reply</a>
 												</div>	
 											</div>
 											<div class="comment-form main-comment-form"  style='display:none;'>
-											<form id='signupForm'>
+											<form id='huifu2'>
 											{{csrf_field()}} 
-											<textarea class="comment-textarea"  name="content" id='huifu'  placeholder="Leave a comment..."></textarea>
-											<div class="at-focus">
+											<textarea class="comment-textarea"  name="content" placeholder="Leave a comment..."></textarea>
+											    <div class="at-focus">
 												<input type="hidden" name='post_id' value='{{$pid}}'>
 												<input type="hidden" name='parent_id' value="{{$val['com_id']}}">
 												<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
 												<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
-											</div>
-											<button class="comment-submit btn-golden">Post Comment</button>
+											   </div>
+											    <button class="comment-submit btn-golden">Post Comment</button>
 	
 											</form>
 										</div>
@@ -318,11 +318,70 @@ $().ready(function() {
 	$(this).parents('.comment-item').next().toggle();
 	})
 
-	$('.btn-golden').click(function(){
-		$("#signupForm").submit();
-	})
+
 // 在键盘按下并释放及提交后验证提交表单
  	$("#signupForm").validate({
+		rules: {
+        nickname:"required",
+		email:"required",
+		content:"required",
+	
+		},
+		messages: {
+			nickname: "	<span style='color:red;'>请输入您的昵称</span>",
+			email:"<span style='color:red;'>请输入您的邮箱</span>",
+			content:"<span style='color:red;'>请输入内容</span>", 
+		},
+	    onkeyup:false,
+        focusCleanup:true,
+        success:"valid",
+        submitHandler:function(form){
+            $(form).ajaxSubmit({
+                type:'post',
+                url:'/comment/index',
+				success:function ($data) {
+					layer.msg('添加成功',{icon:1,time:1000});
+					window.location.reload();
+                },
+				error:function ($data) {
+                    layer.msg('添加失败',{icon:0,time:1000});
+                }
+			});
+        }
+    })
+
+	// 在键盘按下并释放及提交后验证提交表单
+	$("#huifu").validate({
+		rules: {
+        nickname:"required",
+		email:"required",
+		content:"required",
+	
+		},
+		messages: {
+			nickname: "	<span style='color:red;'>请输入您的昵称</span>",
+			email:"<span style='color:red;'>请输入您的邮箱</span>",
+			content:"<span style='color:red;'>请输入内容</span>", 
+		},
+	    onkeyup:false,
+        focusCleanup:true,
+        success:"valid",
+        submitHandler:function(form){
+            $(form).ajaxSubmit({
+                type:'post',
+                url:'/comment/index',
+				success:function ($data) {
+					layer.msg('添加成功',{icon:1,time:1000});
+					window.location.reload();
+                },
+				error:function ($data) {
+                    layer.msg('添加失败',{icon:0,time:1000});
+                }
+			});
+        }
+    })
+		// 在键盘按下并释放及提交后验证提交表单
+		$("#huifu2").validate({
 		rules: {
         nickname:"required",
 		email:"required",
