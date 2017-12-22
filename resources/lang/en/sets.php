@@ -56,6 +56,12 @@
     'set_shield'           =>'Shielding set',
 
     'set_other'            =>'Other Settings',
+
+    'set_web_null'         =>'The name of the website can not be empty',
+    
+    'set_recordnum_null'   =>'Bottom copyright information can not be empty',
+    
+    'set_recordnum_null'   =>'The record number can not be empty',
         
 
 

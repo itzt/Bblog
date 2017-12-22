@@ -15,8 +15,6 @@
 
     'set_content'          =>'描述:',
 
-    ' set_path '           =>'css、js、images路径配置：',
-
     'set_footnews'         =>'底部版权信息：',
 
     'set_recordnum'        =>'备案号',
@@ -39,12 +37,6 @@
 
     'set_email_accept'     =>'收件邮箱地址：',
 
-    'set_appkey'           =>'阿里大鱼（appkey）：',
-
-    'set_secrekey'         =>'阿里大鱼（secrekey）：',
-
-    'set_after_time'       =>'短信过期时间：',
-
     'set_basic'            =>'基本设置',
 
     'set_security'         =>'安全设置',
@@ -56,7 +48,11 @@
     'set_shield'           =>'屏蔽设置',
 
     'set_other'            =>'其他设置',
-        
 
+    'set_web_null'         =>'网站名不能为空',
+
+    'set_recordnum_null'   =>'底部版权信息',
+
+    'set_recordnum_null'   =>'备案号不能为空',
 
  ]; 
