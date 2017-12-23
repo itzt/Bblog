@@ -3,7 +3,7 @@
  * @Author: DingBing 
  * @Date: 2017-12-14 19:49:06 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-14 19:57:20
+ * @Last Modified time: 2017-12-23 18:24:33
  */
 
 namespace App\Http\Controllers\Admin;
@@ -13,10 +13,18 @@ use Illuminate\Contracts\Validation\Validator;
 
 class CommonController extends Controller
 {
+    /**
+     * 后台数据缓存时间
+     * 
+     */
+    protected $out_cache_time = 1;  // 分钟
+
     public function __construct()
     {
-        $locale = \App\Tools\admin_language();     
-        \App::setLocale($locale);
+        // 获取管理员选择的语言
+        \App::setLocale(\App\Tools\admin_language());
+        
+        // 验证是否登录 
         $this->middleware('auth');
         
     }

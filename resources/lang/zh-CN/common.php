@@ -43,6 +43,7 @@ return [
     'data_source'       =>  '本站',
     'article'           =>  '文章',
     'comment'           =>  '评论',
+    'users'             =>  '用户',
 
 
     /** 左侧菜单栏 */

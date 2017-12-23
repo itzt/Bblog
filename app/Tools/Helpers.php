@@ -7,25 +7,9 @@ namespace App\Tools;
  * @Author: DingBing 
  * @Date: 2017-12-11 15:43:03 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-14 19:36:46
+ * @Last Modified time: 2017-12-23 17:38:23
  */
 
-
-
-/** 开发调试函数 */
-function p($data,$isBreak=true)
-{
-    if(is_array($data) || is_object($data))
-    {
-        echo '<pre>';
-        print_r($data);
-    }
-    else
-    {
-        var_dump($data);
-    }
-    if($isBreak) exit();
-}
 
 /** 记录管理员选择的语言 */
 function admin_language($value=null)
