@@ -148,44 +148,38 @@ class Comments extends Model
      //查询顶级分类
      static function getPrinmaryCate($post_id){
         
-               $top= self::where(['post_id'=>$post_id])->where(['parent_id'=>0])->orderBy('updated_at','asc')->select()->get();   
+               $top= self::where(['post_id'=>$post_id])->where(['parent_id'=>0])->orderBy('updated_at','asc')->select()->get()->toArray();   
                 if(empty($top)){
                     return [];
                 }
-            
                $primary=[];
                 foreach ($top as $com){
-        
                     $primary[]=[
-                        'com_id'=>$com->com_id,
-                        'nickname'=>$com->nickname,
-                        'content'=>$com->content,
-                        'created_at'=>$com->created_at,
-                        'children'=>self::getChild($com->com_id)
+                        'com_id'=>$com['com_id'],
+                        'nickname'=>$com['nickname'],
+                        'content'=>$com['content'],
+                        'created_at'=>$com['created_at'],
+                        'children'=>self::getChild($com['com_id'])
                     ];
                 }
-            
+        
                 return $primary;
             }
         //递归找孩子
         static  function getChild($pid){
-            $data=self::where(['parent_id'=>$pid])->select()->get();
-        
+            static $children;     
+            $data=self::where(['parent_id'=>$pid])->select()->get()->toArray();
+          
             if(empty($data)){
                 return [];
             }
-            $children=[];
-            foreach ($data as $child){      
-               $children[]=[
-                   'com_id'=>$child->com_id,
-                   'nickname'=>$child->nickname,
-                   'content'=>$child->content,
-                   'created_at'=>$child->created_at,
-                   'children'=>self::getChild($child->com_id)
-               ];
             
+          
+            foreach($data as $key => $val)
+            {
+              $children[]=$val;
+              self::getChild($val['com_id']);
             }
-            
             return $children;
         }
 }

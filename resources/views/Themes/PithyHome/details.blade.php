@@ -88,7 +88,7 @@
 									@endif
 								</div>
 							</div>
-
+				
 							<div class="author-box">
 								<div class="author">
 									<a class="author-photo" href="#"><img src="/assets/img/profil_photo-04.png" alt=""></a>
@@ -121,65 +121,46 @@
 										<div class="comment-body">
 											<h6 class="comment-heading">{{$v['nickname']}}  •   <span class="comment-date">{{$v['created_at']}}</span></h6>
 											<p class="comment-text">{{$v['content']}}</p>
-											<a href="javascript:void(0)" class="comment-reply active-comment reply"><i class="reply-icon"></i > Reply</a>
+											<a href="javascript:void(0)" class="comment-reply active-comment reply" nickname="{{$v['nickname']}} "><i class="reply-icon"></i > Reply</a>
+										
+													
+											@if(!empty($v['children']))
+												@foreach($v['children'] as $val)
+													<div class="comment-item">
+														<a class="comment-photo" href="#">
+															<img src="/assets/img/profil_photo-05.png" alt="" />
+														</a>
+														<div class="comment-body">
+															<h6 class="comment-heading">{{$val['nickname']}}  •   <span class="comment-date">{{$val['created_at']}}</span></h6>
+															<p class="comment-text">{{$val['content']}}</p>
+															<a href="javascript:void(0)" class="comment-reply active-comment reply" nickname="{{$val['nickname']}} "><i class="reply-icon"></i > Reply</a>
+														</div>	
+													</div>
+													<div class="comment-form main-comment-form" style="display:none;">
+													<textarea class="comment-textarea"  name="content" id="content" placeholder="Leave a comment..."></textarea>
+													<div class="at-focus">
+														<button class="comment-submit btn-golden" id='{{$val['com_id']}}'>Post Comment</button>
+													</div>
+													</div>
+											@endforeach
+											@endif
 										</div>	
 									</div>
-									<div class="comment-form main-comment-form"  style='display:none;'>
-										<form id='huifu'>
-										{{csrf_field()}} 
-										<textarea class="comment-textarea"  name="content" placeholder="Leave a comment..."></textarea>
-										<div class="at-focus">
-											<input type="hidden" name='post_id' value='{{$pid}}'>
-											<input type="hidden" name='parent_id' value="{{$v['com_id']}}">
-											<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
-											<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
-										</div>
-										<button class="comment-submit btn-golden">Post Comment</button>
-
-										</form>
+									<div class="comment-form main-comment-form" style="display:none;">
+									<textarea class="comment-textarea"  name="content" id="content" placeholder="Leave a comment..."></textarea>
+									<div class="at-focus">
+										<button class="comment-submit btn-golden" id='{{$val['com_id']}}'>Post Comment</button>
 									</div>
-										@if(!empty($data))
-										@foreach($v['children'] as $val)
-											<div class="comment-item">
-												<a class="comment-photo" href="#">
-													<img src="/assets/img/profil_photo-05.png" alt="" />
-												</a>
-												<div class="comment-body">
-													<h6 class="comment-heading">{{$val['nickname']}}  •   <span class="comment-date">{{$val['created_at']}}</span></h6>
-													<p class="comment-text">{{$val['content']}}</p>
-													<a href="javascript:void(0)" class="comment-reply active-comment reply"><i class="reply-icon"></i > Reply</a>
-												</div>	
-											</div>
-											<div class="comment-form main-comment-form"  style='display:none;'>
-											<form id='huifu2'>
-											{{csrf_field()}} 
-											<textarea class="comment-textarea"  name="content" placeholder="Leave a comment..."></textarea>
-											    <div class="at-focus">
-												<input type="hidden" name='post_id' value='{{$pid}}'>
-												<input type="hidden" name='parent_id' value="{{$val['com_id']}}">
-												<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
-												<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
-											   </div>
-											    <button class="comment-submit btn-golden">Post Comment</button>
-	
-											</form>
-										</div>
-										@endforeach
-										@endif
+							     	</div>
 								   @endforeach
 								   @endif
 									<div class="comment-form main-comment-form">
-									<!-- 进行评论 -->
-										<form id='signupForm'>
-										{{csrf_field()}} 
-											<textarea class="comment-textarea"  name="content" id="content" placeholder="Leave a comment..."></textarea>
+											<textarea class="comment-textarea" placeholder="Leave a comment..."></textarea>
 											<div class="at-focus">
-												<input type="hidden" name='post_id' value='{{$pid}}'>
-												<input class="comment-input"id='nickname' name='nickname' placeholder="Name" type="text" />
-												<input class="comment-input" id='email' name='email' placeholder="or Email" type="text" />
-												<button class="comment-submit btn-golden">Post Comment</button>
+												<input class="comment-input"  name='nickname' placeholder="Name" type="text" />
+												<input class="comment-input"  name='email' placeholder="or Email" type="text" />
+												<button class="comment-submit  btn-comment">Post Comment</button>
 											</div>
-										</form>
 									</div>
 
 								</div>
@@ -306,109 +287,57 @@
 </body>
 </html>
 
-
 <script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
-<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
-<script src="/assets/js/jquery.form.js"></script>
 <script>
 $().ready(function() {
-	$('.reply').click(function(){
-	$(this).parents('.comment-item').next().toggle();
+	//评论
+	$('.btn-comment').click(function(){
+		var email=$(this).prev().val();
+		var nickname=$(this).prev().prev().val();
+		var content=$(this).parent().prev().val();
+		$.get("/comment/add", {'content': content,'_token':"{{csrf_token()}}",'email':email,'nickname':nickname,'post_id':"{{$pid}}"},function(data){
+			
+			if(data.status==1){
+				layer.msg(data.message,{icon:1,time:1000});
+				window.location.reload();
+			}else{
+				layer.msg(data.message,{icon:0,time:1000});
+				window.location.reload();
+			}
+
+		},'json');
+
 	})
 
 
-// 在键盘按下并释放及提交后验证提交表单
- 	$("#signupForm").validate({
-		rules: {
-        nickname:"required",
-		email:"required",
-		content:"required",
+	//回复
+	$('.reply').click(function(){
+	var nickname='@'+$(this).attr('nickname');
+	$(this).parents('.comment-item').next().toggle();
+	$(this).parents('.comment-item').next().children('#content').html(nickname);
 	
-		},
-		messages: {
-			nickname: "	<span style='color:red;'>请输入您的昵称</span>",
-			email:"<span style='color:red;'>请输入您的邮箱</span>",
-			content:"<span style='color:red;'>请输入内容</span>", 
-		},
-	    onkeyup:false,
-        focusCleanup:true,
-        success:"valid",
-        submitHandler:function(form){
-            $(form).ajaxSubmit({
-                type:'post',
-                url:'/comment/index',
-				success:function ($data) {
-					layer.msg('添加成功',{icon:1,time:1000});
-					window.location.reload();
-                },
-				error:function ($data) {
-                    layer.msg('添加失败',{icon:0,time:1000});
-                }
-			});
-        }
-    })
+	});
+	$('.btn-golden').click(function(){
+		var content=$(this).parent('.at-focus').prev().val();
+		var id=$(this).prop('id');
+		
+		$.get("/comment/index", {'parent_id':id,'content': content,'_token':"{{csrf_token()}}",'post_id':"{{$pid}}"},function(data){
 
-	// 在键盘按下并释放及提交后验证提交表单
-	$("#huifu").validate({
-		rules: {
-        nickname:"required",
-		email:"required",
-		content:"required",
+
+			if(data.status==1){
+				layer.msg(data.message,{icon:1,time:1000});
+				window.location.reload();
+			}else{
+				layer.msg(data.message,{icon:0,time:1000});
+				window.location.reload();
+			}
+
+		},'json');
+	})
+
 	
-		},
-		messages: {
-			nickname: "	<span style='color:red;'>请输入您的昵称</span>",
-			email:"<span style='color:red;'>请输入您的邮箱</span>",
-			content:"<span style='color:red;'>请输入内容</span>", 
-		},
-	    onkeyup:false,
-        focusCleanup:true,
-        success:"valid",
-        submitHandler:function(form){
-            $(form).ajaxSubmit({
-                type:'post',
-                url:'/comment/index',
-				success:function ($data) {
-					layer.msg('添加成功',{icon:1,time:1000});
-					window.location.reload();
-                },
-				error:function ($data) {
-                    layer.msg('添加失败',{icon:0,time:1000});
-                }
-			});
-        }
-    })
-		// 在键盘按下并释放及提交后验证提交表单
-		$("#huifu2").validate({
-		rules: {
-        nickname:"required",
-		email:"required",
-		content:"required",
-	
-		},
-		messages: {
-			nickname: "	<span style='color:red;'>请输入您的昵称</span>",
-			email:"<span style='color:red;'>请输入您的邮箱</span>",
-			content:"<span style='color:red;'>请输入内容</span>", 
-		},
-	    onkeyup:false,
-        focusCleanup:true,
-        success:"valid",
-        submitHandler:function(form){
-            $(form).ajaxSubmit({
-                type:'post',
-                url:'/comment/index',
-				success:function ($data) {
-					layer.msg('添加成功',{icon:1,time:1000});
-					window.location.reload();
-                },
-				error:function ($data) {
-                    layer.msg('添加失败',{icon:0,time:1000});
-                }
-			});
-        }
-    })
-});
+
+
+})
+
 </script>
