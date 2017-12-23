@@ -27,12 +27,7 @@
 				</select>
 				</span> </div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>{{trans('article.add_author')}}：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="{{Illuminate\Support\Facades\Session::get('name')}}" placeholder="" id="author" name="author">
-			</div>
-		</div>
+		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">{{trans('article.add_is_allow')}}：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
@@ -102,9 +97,6 @@ $(function(){
 				required:true,
 			},
 			cat_id:{
-				required:true,
-			},
-			author:{
 				required:true,
 			},
 			markdown:{

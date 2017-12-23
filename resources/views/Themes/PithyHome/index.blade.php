@@ -11,15 +11,19 @@
 			<div class="container-fluid">
 				<div class="container">
 					<div class="row post-items">
-						<div class="post-item-banner">
+						<!-- <div class="post-item-banner">
 							<img src="/assets/img/img-01.png" alt="" />
-                        </div>
+                        </div> -->
+						<div class="form-group archive-search">
+							<input type="search" class="form-control" placeholder="In case you’re lost, just search...">
+							<button type="submit" class="btn btn-link"><i class="fa fa-search"></i></button>
+						</div>
                     @if(!empty($artList) && isset($artList))
                     @foreach($artList as $key => $val)
 						<div class="col-md-2">
 							<div class="post-item-short">
-								<!-- <span class="big-text">28</span> -->
-								<span class="small-text">{{$val->updated_at}}</span>
+								<span class="big-text">{{date('d', strtotime($val->updated_at))}}</span>
+								<span class="small-text">{{date('F', strtotime($val->updated_at))}} {{date('Y', strtotime($val->updated_at))}}</span>
 							</div>
 						</div>
 						<div class="col-md-10">
