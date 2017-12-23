@@ -14,6 +14,7 @@ use App\Categories;
 use zgldh\QiniuStorage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use \Symfony\Component\Console\Input\Input;
 use \Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -57,8 +58,10 @@ class ArticleController extends CommonController
         {
             // 验证标题的唯一性      
             $this->validate($request, ['title'  => 'required|unique:posts|max:120']);
-            $post = $request->all();
-            $post['html'] = $post['markdown'];
+            $post             = $request->all();
+            $post['author']   = Session::get('id'); // 管理员id
+            $post['language'] = \App\Tools\admin_language(); // 默认语言
+            $post['html']     = $post['markdown'];
             if($res = Posts::create($post))
             {
                 return \App\Tools\ajax_success();

@@ -18,7 +18,7 @@ class Posts extends Model
     const STATUS_PUBLISH  = 'PUBLISH'; // 已发布
     const STATUS_DRAFT    = 'DRAFT';   // 草稿
     protected $primaryKey = 'post_id';
-    protected $fillable   = ['title','cat_id','author','status','is_allow','is_page','markdown','html'];
+    protected $fillable   = ['title','cat_id','author','status','is_allow','is_page','markdown','html','language'];
     /**
      * get article list
      *
@@ -73,6 +73,15 @@ class Posts extends Model
     public function cat()
     {
         return $this->belongsTo('App\Categories', 'cat_id', 'cat_id');
+    }
+    /**
+     * 文章作者的管理  默认管理员
+     *
+     * @return void
+     */
+    public function admin()
+    {
+        return $this->belongsTo('App\Admins', 'author', 'id');
     }
     /**
      * 获取一条
