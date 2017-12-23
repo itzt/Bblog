@@ -156,6 +156,8 @@ Route::group(['prefix' => 'Homecontacts'], function(){
 Route::group(['prefix' => 'comment'], function(){
     // 评论列表
     Route::match(['get', 'post'],'/index', 'Home\CommentsController@index');  
+
+    Route::match(['get', 'post'],'/add', 'Home\CommentsController@add');  
 });
 
 Auth::routes();

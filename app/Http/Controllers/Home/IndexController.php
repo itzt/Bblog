@@ -50,6 +50,7 @@ class IndexController extends HomeController
         // echo '<pre>';
         // print_r($prevNext);die;
         $data=(new Comments)->getPrinmaryCate($pid);
+     
         return view('Themes/'.$this->theme.'Home/details', ['artFind' => $artFind,'prevNext' => $prevNext,'pid'=>$pid,'data'=>$data]);
     }
 
