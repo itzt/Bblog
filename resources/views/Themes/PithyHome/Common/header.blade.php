@@ -1,7 +1,8 @@
 <?php
 use App\Navigate;
-$navList = Navigate::getCatStructureList((new Navigate)->select('nav_id', 'nav_name','jump_url','is_open','parent_id')->get()->toArray());
-
+$navList = Navigate::getCatStructureList((new Navigate)->select('nav_id', 'nav_name','jump_url','is_open','parent_id')->orderBy('nav_id', 'asc')->get()->toArray());
+// echo '<pre>';
+//         print_r($navList);die;
 ?>
 
 <!DOCTYPE html>
@@ -229,13 +230,14 @@ $navList = Navigate::getCatStructureList((new Navigate)->select('nav_id', 'nav_n
 @if(!empty($navList))
 @foreach($navList as $key => $val)
 	<li>
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$val['nav_name']}}</a>
+		<!-- data-toggle="dropdown" -->
+		<a href="{{$val['jump_url']}}" class="dropdown-toggle"  role="button" aria-expanded="true">{{$val['nav_name']}}</a>
 		@if(!empty($val['child']))
-		@foreach($val['child'] as $v)
 			<ul class="dropdown-menu" role="menu">
+			@foreach($val['child'] as $v)
 				<li><a href="{{$v['jump_url']}}">{{$v['nav_name']}}</a></li>
+			@endforeach
 			</ul>
-		@endforeach
 		@endif
 	</li>
 @endforeach

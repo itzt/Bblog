@@ -17,8 +17,8 @@
 						</div>
 						<div class="col-md-2">
 							<div class="post-item-short">
-								<!-- <span class="big-text">{{$artFind->updated_at}}</span> -->
-								<span class="small-text">{{$artFind->updated_at}}</span>
+								<span class="big-text">{{date('d', strtotime($artFind->updated_at))}}</span>
+								<span class="small-text">{{date('F', strtotime($artFind->updated_at))}} {{date('Y', strtotime($artFind->updated_at))}}</span>
 							</div>
 						</div>
 						<div class="col-md-10 ">
@@ -37,9 +37,9 @@
 										<a href="#">art</a>
 									</p>
 									<div class="post-item-social">
-										<!-- <a href="#"><i class="fa fa-facebook"></i></a>
+										<a href="#"><i class="fa fa-facebook"></i></a>
 										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a> -->
+										<a href="#"><i class="fa fa-google-plus"></i></a>
 										<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share" data-original-title="" title=""><i class="fa fa-share-alt"></i> 12</a>
 										<a href="#"><i class="fa fa-heart"></i> {{$artFind->like_num}}</a>
 									</div>
@@ -62,7 +62,7 @@
 									@if(!empty($prevNext[0]) && isset($prevNext[0]))
 									<a href="javascript:void(0)">
 										<span class="author">by 
-											<span>{{$prevNext[0]->author}}</span>
+											<span>{{$prevNext[0]->admin->name}}</span>
 										</span>
 									</a>
 									@endif
@@ -71,7 +71,7 @@
 									@if(!empty($prevNext[1]) && isset($prevNext[1]))
 									<a href="/index/details/{{$prevNext[1]->title}}" class="post-next">
 										<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
-										<span class="title">{{mb_substr($prevNext[1]->title, 0, 30)}}...</span>
+										<span class="title">{{mb_substr($prevNext[1]->title, 0, 10)}}...</span>
 									</a>
 									@else
 									<a href="javascript:void(0)" class="post-next">
@@ -82,7 +82,7 @@
 									@if(!empty($prevNext[1]) && isset($prevNext[1]))
 									<a href="javascript:void(0)">
 										<span class="author">by 
-											<span>{{$prevNext[1]->author}}</span>
+											<span>{{$prevNext[1]->admin->name}}</span>
 										</span>
 									</a>
 									@endif
@@ -91,9 +91,9 @@
 
 							<div class="author-box">
 								<div class="author">
-									<a class="author-photo" href="#"><img src="/assets/img/profil_photo-04.png" alt=""></a>
+									<a class="author-photo" href="#"><img src="{{$artFind->admin->avatar}}" width="70px" height="70px" alt=""></a>
 									<div class="author-body">
-										<h4 class="author-name">Daniele Zedda</h4>
+										<h4 class="author-name">{{$artFind->admin->name}}</h4>
 										<a href="#">view all post</a>
 									</div>
 									<div class="author-connection">
