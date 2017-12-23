@@ -7,21 +7,22 @@ namespace App\Tools;
  * @Author: DingBing 
  * @Date: 2017-12-11 15:43:03 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-23 17:38:23
+ * @Last Modified time: 2017-12-23 19:18:38
  */
 
+use \Illuminate\Support\Facades\Cache;
 
 /** 记录管理员选择的语言 */
 function admin_language($value=null)
 {
     if(isset($value))
     {
-        // $request->session()->put('language',$lang);
-        return response('')->cookie('language',$value,365*30*24*60)->send();
+        return Cache::put('admin_language',$value,100);
     }
     else
     {
-        $language = request()->cookie('language');
+        
+        $language = Cache::get('admin_language');
         return empty($language) ? 'zh-CN' : $language;
     }
 

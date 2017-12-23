@@ -3,7 +3,7 @@
  * @Author: DingBing 
  * @Date: 2017-12-14 19:49:06 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-23 18:24:33
+ * @Last Modified time: 2017-12-23 19:19:03
  */
 
 namespace App\Http\Controllers\Admin;
@@ -23,7 +23,7 @@ class CommonController extends Controller
     {
         // 获取管理员选择的语言
         \App::setLocale(\App\Tools\admin_language());
-        
+
         // 验证是否登录 
         $this->middleware('auth');
         
