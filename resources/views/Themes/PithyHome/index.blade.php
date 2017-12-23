@@ -402,7 +402,7 @@
 			<div class="modal-content" id="login-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title"><i class="fa fa-unlock-alt"></i>LaRead Sign In</h4>
+					<h4 class="modal-title"><i class="fa fa-unlock-alt"></i>Sign In</h4>
 				</div>
 				<div class="modal-body">
 					<form>
@@ -421,13 +421,14 @@
 							<label><input type="checkbox"><span>Remember me</span><i class="fa"></i></label>
 							<button type="button" class="btn btn-golden btn-signin">SIGN IN</button>
 						</div>
-					</form>
+					</form>				
 				</div>
 				<div class="modal-footer">
 					<div class="provider">
-						<span>Sign In With</span>
-						<a href="#"><i class="fa fa-facebook"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>
+						<span>微信扫码登录</span>
+						<!--<a href="#"><i class="fa fa-facebook"></i></a>-->
+						<a href="#"><i class="fa fa-wexin"></i></a>
+						
 					</div>
 				</div>
 			</div>
@@ -468,4 +469,23 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 @include('Themes.PithyHome.Common.footer');
 </body>
+<script>
+$(function(){
+	$('.weixin-sign').click(function(){
+		var index = layer.load(1, {
+  			shade: [0.1,'#fff'] //0.1透明度的白色背景
+		});
+
+		layer.open({
+			type: 2,
+			title: '',
+			shadeClose: true,
+			shade: 0.8,
+			area: ['380px', '60%'],
+			content: '/auth/weixin' //iframe的url
+		}); 
+
+	})
+})
+</script>
 </html>
