@@ -1,13 +1,13 @@
 @include('Admin.Common._meta')
 
-<title>基本设置</title>
+<title>{{trans('sets.set_basic')}}</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> {{trans('common.home')}}
 	<span class="c-gray en">&gt;</span>
-	系统管理
+	{{trans('common.system_manager')}}
 	<span class="c-gray en">&gt;</span>
-	基本设置
+	{{trans('sets.set_basic')}}
 	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
 <div class="page-container">
@@ -20,7 +20,6 @@
 				<span>{{trans('sets.set_basic')}}</span>
 				<span>{{trans('sets.set_security')}}</span>
 				<span>{{trans('sets.set_email')}}</span>
-				<span>{{trans('sets.set_message')}}</span>
 				<span>{{trans('sets.set_shield')}}</span>
 				<span>{{trans('sets.set_other')}}</span>
 
@@ -51,23 +50,7 @@
 						<input type="text" id="website-description" placeholder="空制在80个汉字，160个字符以内" value="<?= isset($array['Content'])?$array['Content']:'';?>" class="input-text" name="Content">
 					</div>
 				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">
-						<span class="c-red">*</span>
-						{{trans('sets.set_path')}}</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" id="website-static" placeholder="默认为空，为相对路径" value="<?= isset($array['Path'])?$array['Path']:'';?>" class="input-text" name="Path">
-
-					</div>
-				</div>
-				{{--<div class="row cl">--}}
-					{{--<label class="form-label col-xs-4 col-sm-2">--}}
-						{{--<span class="c-red">*</span>--}}
-						{{--上传目录配置：</label>--}}
-					{{--<div class="formControls col-xs-8 col-sm-9">--}}
-						{{--<input type="text" id="website-uploadfile" placeholder="默认为uploadfile" value="" class="input-text">--}}
-					{{--</div>--}}
-				{{--</div>--}}
+			
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">
 						<span class="c-red">*</span>
@@ -77,14 +60,7 @@
 
 					</div>
 				</div>
-				{{--<div class="row cl">--}}
-					{{--<label class="form-label col-xs-4 col-sm-2">--}}
-						{{--<span class="c-red">*</span>--}}
-						{{--上传目录配置：</label>--}}
-					{{--<div class="formControls col-xs-8 col-sm-9">--}}
-						{{--<input type="text" id="website-uploadfile" placeholder="默认为uploadfile" value="" class="input-text">--}}
-					{{--</div>--}}
-				{{--</div>--}}
+
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.set_recordnum')}}</label>
 					<div class="formControls col-xs-8 col-sm-9">
@@ -169,59 +145,6 @@
 				</div>
 			</div>
 			<div class="tabCon">
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.set_appkey')}}</label>
-					<div class="formControls col-xs-8 col-sm-9">
-
-						<input type="text"  class="input-text" value="<?= isset($array['Appkey'])?$array['Appkey']:'';?>" id="" name="Appkey">
-
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.set_secrekey')}}</label>
-					<div class="formControls col-xs-8 col-sm-9">
-
-						<input type="text" id="" value="<?= isset($array['Secrekey'])?$array['Secrekey']:'';?>" class="input-text" name="Secrekey">
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.set_after_time')}}</label>
-					<div class="formControls col-xs-8 col-sm-3">
-						<input type="text" id="" value="<?= isset($array['AfterTime'])?$array['AfterTime']:'';?>" class="input-text" name="AfterTime">
-
-
-					</div>
-				</div>
-			</div>
-
-			<div class="tabCon">
-				<div>
-					<textarea class="textarea" style="width:98%; height:300px; resize:none" name="Shielding"><?= isset($array['Shielding'])?$array['Shielding']:'';?></textarea>
-				</div>
-			</div>
-			<div class="tabCon">
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">阿里大鱼（appkey）：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text"  class="input-text" value="<?= isset($array['Appkey'])?$array['Appkey']:'';?>" id="" name="Appkey">
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">阿里大鱼（secrekey）：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" id="" value="<?= isset($array['Secrekey'])?$array['Secrekey']:'';?>" class="input-text" name="Secrekey">
-					</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">短信过期时间：</label>
-					<div class="formControls col-xs-8 col-sm-3">
-						<input type="text" id="" value="<?= isset($array['AfterTime'])?$array['AfterTime']:'';?>" class="input-text" name="AfterTime">
-
-					</div>
-				</div>
-			</div>
-
-			<div class="tabCon">
 				<div>
 					<textarea class="textarea" style="width:98%; height:300px; resize:none" name="Shielding"><?= isset($array['Shielding'])?$array['Shielding']:'';?></textarea>
 				</div>
@@ -268,9 +191,9 @@ $(function(){
             RecordNum:{required:true}
         },
         messages:{
-            WebSiteName:"网站名不能为空",
-            FootNews:"底部版权信息：",
-            RecordNum:"备案号不能为空"
+            WebSiteName:"{{trans('sets.set_web_null')}}",
+            FootNews:"{{trans('sets.set_recordnum_null')}}",
+            RecordNum:"{{trans('sets.set_recordnum_null')}}"
             },
         onkeyup:false,
         focusCleanup:true,
@@ -279,11 +202,11 @@ $(function(){
             $(form).ajaxSubmit({
                 type:'post',
                 url:'/system/setadd',
-				success:function ($data) {
-					layer.msg('修改成功',{icon:1,time:1000});
+				success:function (data) {	
+					layer.msg(data.message, {icon:data.status});
                 },
-				error:function ($data) {
-                    layer.msg('修改失败',{icon:0,time:1000});
+				error:function (data) {
+                    layer.msg(data.message, {icon:data.status});
                 }
 			})
         }
