@@ -3,7 +3,7 @@
  * @Author: DingBing 
  * @Date: 2017-12-11 15:49:44 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-14 19:56:56
+ * @Last Modified time: 2017-12-23 19:19:10
  */
 namespace App\Http\Controllers\Admin;
 use Config;
@@ -22,7 +22,7 @@ class NavigateController extends CommonController
     public function show(Request $request)
     {
         $navName = $request->input('nav_name',null);
-        $result = \App\Navigate::where('nav_name','like',"%$navName%")->orderBy('nav_id','desc')->paginate(Config::get('constants.page_size'));
+        $result = \App\Navigate::where('nav_name','like',"%$navName%")->where(['language'=>\App\Tools\admin_language()])->orderBy('nav_id','desc')->paginate(Config::get('constants.page_size'));
         return view('Admin/Navigate/show',['result'=>$result,'navName'=>$navName]);
     }
     /**
@@ -76,6 +76,7 @@ class NavigateController extends CommonController
             ]);
             $all = $request->all();
             $all['is_open'] = $request->has('is_open') ? 1 : 0;
+            $all['language'] = \App\Tools\admin_language();
             // 数据入库
             $result = \App\Navigate::create($all);
             if($result)

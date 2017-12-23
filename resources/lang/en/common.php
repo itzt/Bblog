@@ -45,6 +45,7 @@ return [
     'data_source'       =>  'This web site',
     'article'           =>  'Article',
     'comment'           =>  'Comment',
+    'users'             =>  'User',
 
     /** 左侧菜单栏 */
     'home'              =>  'Home page',

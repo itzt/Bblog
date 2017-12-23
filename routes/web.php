@@ -24,6 +24,11 @@ Route::get('/news','Home\NewsController@index');
 // 作者
 Route::get('/authors','Home\AuthorsController@index');
 
+// 微信登录
+Route::get('/auth/weixin', 'Auth\AuthController@oauth');
+Route::get('/auth/weixin/callback', 'Auth\AuthController@callback');
+
+
 
 
 // 后台首页
@@ -151,6 +156,8 @@ Route::group(['prefix' => 'Homecontacts'], function(){
 Route::group(['prefix' => 'comment'], function(){
     // 评论列表
     Route::match(['get', 'post'],'/index', 'Home\CommentsController@index');  
+
+    Route::match(['get', 'post'],'/add', 'Home\CommentsController@add');  
 });
 
 Auth::routes();

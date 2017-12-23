@@ -218,9 +218,16 @@ $navList = Navigate::getCatStructureList((new Navigate)->select('nav_id', 'nav_n
 							<i class="fa fa-bars"></i>
 						</button>
 					</div>
-					<a href="#" data-toggle="modal" data-target="#login-form" class="modal-form">
+					@if(!empty(session('users.nickname')))
+						<button class="modal-form">
+						{{session('users.nickname')}}						
+						</button>
+					@else
+					<a href="javascript:void(0);" class="modal-form weixin-sign">
 						<i class="fa fa-user"></i>
 					</a>
+					@endif
+
 					<button type="button" class="navbar-toggle collapsed menu-collapse" data-toggle="collapse" data-target="#main-nav">
 						<span class="sr-only">Toggle navigation</span>
 						<i class="fa fa-plus"></i>

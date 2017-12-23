@@ -2,8 +2,8 @@
 /*
  * @Author: DingBing 
  * @Date: 2017-12-11 15:50:57 
- * @Last Modified by:   DingBing 
- * @Last Modified time: 2017-12-11 15:50:57 
+ * @Last Modified by: DingBing
+ * @Last Modified time: 2017-12-23 18:54:41
  */
 
 namespace App;
@@ -22,7 +22,7 @@ class Navigate extends Model
      *
      * @var array
      */
-    protected $fillable = ['nav_name','jump_url','is_open','parent_id'];
+    protected $fillable = ['nav_name','jump_url','is_open','parent_id','language'];
 
     /**
      * 获取导航树

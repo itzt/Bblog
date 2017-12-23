@@ -15,4 +15,5 @@
 	<script src="/assets/js/calendar.js"></script>
 	<script src="/assets/js/jquery.touchSwipe.min.js"></script>
 	<script src="/assets/js/script.js"></script>
+	<script src="/assets/layer/layer.js"></script>
 	

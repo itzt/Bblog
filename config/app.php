@@ -180,6 +180,12 @@ return [
         zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
         //laravel-debugbar
         Barryvdh\Debugbar\ServiceProvider::class,
+
+
+        // Weixin
+        // Laravel\Socialite\SocialiteServiceProvider::class,
+        \SocialiteProviders\Manager\ServiceProvider::class,
+
     ],
 
     /*
@@ -231,6 +237,9 @@ return [
         'MarkdownEditor' => Chenhua\MarkdownEditor\Facades\MarkdownEditor::class,
          //laravel-debugbar
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        // weixin
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

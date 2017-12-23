@@ -7,37 +7,22 @@ namespace App\Tools;
  * @Author: DingBing 
  * @Date: 2017-12-11 15:43:03 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-14 19:36:46
+ * @Last Modified time: 2017-12-23 19:18:38
  */
 
-
-
-/** 开发调试函数 */
-function p($data,$isBreak=true)
-{
-    if(is_array($data) || is_object($data))
-    {
-        echo '<pre>';
-        print_r($data);
-    }
-    else
-    {
-        var_dump($data);
-    }
-    if($isBreak) exit();
-}
+use \Illuminate\Support\Facades\Cache;
 
 /** 记录管理员选择的语言 */
 function admin_language($value=null)
 {
     if(isset($value))
     {
-        // $request->session()->put('language',$lang);
-        return response('')->cookie('language',$value,365*30*24*60)->send();
+        return Cache::put('admin_language',$value,100);
     }
     else
     {
-        $language = request()->cookie('language');
+        
+        $language = Cache::get('admin_language');
         return empty($language) ? 'zh-CN' : $language;
     }
 
