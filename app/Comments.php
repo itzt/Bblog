@@ -158,11 +158,11 @@ class Comments extends Model
                         'com_id'=>$com['com_id'],
                         'nickname'=>$com['nickname'],
                         'content'=>$com['content'],
-                        'created_at'=>$com['created_at'],
+                        'created_at'=>self::saveTime($com['created_at']),
                         'children'=>self::getChild($com['com_id'])
                     ];
                 }
-        
+               
                 return $primary;
             }
         //递归找孩子
@@ -177,9 +177,37 @@ class Comments extends Model
           
             foreach($data as $key => $val)
             {
+              $val['created_at']=self::saveTime($val['created_at']);
               $children[]=$val;
               self::getChild($val['com_id']);
             }
             return $children;
         }
+        //修改时间的状态
+        static function saveTime($needSaveTime){
+           $time= time();
+           $needSaveTime=strtotime($needSaveTime);
+              
+           
+           for($i=1;$i<=30;$i++){
+           
+            if(($time-$needSaveTime)<3600*$i*24){
+             
+                return "$i day age";
+               }
+           }
+           for($i=1;$i<=12;$i++){
+            
+            if(($time-$needSaveTime)<3600*30*$i*24){
+                return "$i month age";
+               }
+           }
+           for($i=1;$i<=30;$i++){
+            if(($time-$needSaveTime)<3600*30*12*$i*24){
+                return "$i year age";
+               }
+           }
+          
+        }
+
 }
