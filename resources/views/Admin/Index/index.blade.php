@@ -56,13 +56,6 @@ $(function(){
 	});*/
 });
 
-/*语言选择*/
-function changeLang(lang)
-{
-	$.get('/admin/setlang',{'rand':Math.random(),'lang':lang},function(result){
-		window.location.reload();
-	});
-}
 
 /*个人信息*/
 function myselfinfo(){
@@ -112,8 +105,5 @@ function member_add(title,url,w,h){
 
 </script> 
 
-<!--此乃百度统计代码，请自行删除-->
-
-<!--/此乃百度统计代码，请自行删除-->
 </body>
 </html>
