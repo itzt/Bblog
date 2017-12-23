@@ -141,7 +141,7 @@
 				<div class="container">
 					<div class="row post-items">
 						<div class="post-item-banner embed-responsive embed-responsive-16by9">
-							<iframe src="https://player.vimeo.com/video/49445992" class="embed-responsive-item" allowfullscreen></iframe>
+							<!--<iframe src="https://player.vimeo.com/video/49445992" class="embed-responsive-item" allowfullscreen></iframe>-->
 						</div>
 						<div class="col-md-2">
 							<div class="post-item-short">
@@ -175,7 +175,7 @@
 				<div class="container">
 					<div class="row post-items">
 						<div class="post-item-banner embed-responsive embed-responsive-16by9">
-							<iframe  class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/186983384&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+							<!--<iframe  class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/186983384&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>-->
 						</div>
 						<div class="col-md-2">
 							<div class="post-item-short">
