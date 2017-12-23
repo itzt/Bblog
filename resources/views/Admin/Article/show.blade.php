@@ -51,7 +51,7 @@
 							<td><input type="checkbox" value="" name=""></td>
 							<td class="text-l">{{$val->title}}</td>
 							<td>{{$val->cat->cat_name}}</td>
-							<td>{{$val->author}}</td>
+							<td>{{$val->admin->name}}</td>
 							<td>{{$val->updated_at}}</td>
 							<td>{{$val->read_num}}</td>
 							<td class="td-status">

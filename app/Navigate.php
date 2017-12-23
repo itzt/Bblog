@@ -47,4 +47,26 @@ class Navigate extends Model
         return $result;
     }
 
+
+    /**
+     * 获取前台需要展示的导航
+     * @param $array
+     */
+    static public function getCatStructureList($array)
+    {
+        $arr = [];
+        $data = array_combine(array_column($array, 'nav_id'), $array); //把主键变成数组的key
+        foreach($data as $key => $val)
+        {
+            if(isset($data[$val['parent_id']])) //如果检测到
+            {
+                $data[$val['parent_id']]['child'][] = &$data[$val['nav_id']];
+            }
+            else
+            {
+                $arr[] = &$data[$val['nav_id']];
+            }
+        }
+        return $arr;
+    }
 }
