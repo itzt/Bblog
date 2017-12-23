@@ -54,6 +54,7 @@ class LoginController extends Controller
             $data=$request->input();
             Session::put('email',$data['email']);
             $array = DB::table('admins')->where('email',$data['email'])->first();
+            Session::put('id',$array->id);
             Session::put('name',$array->name);
             Session::put('avatar',$array->avatar);
             return $this->sendLoginResponse($request);

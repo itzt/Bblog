@@ -8,15 +8,20 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Navigate;
 use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
-
     public function __construct(){
         
         // 载入皮肤
         $this->theme = env('DEFAULT_THEM','Pithy');
         
+    }
+
+    public function navigate()
+    {
+
     }
 
 
