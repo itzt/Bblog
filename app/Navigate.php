@@ -25,7 +25,7 @@ class Navigate extends Model
     protected $fillable = ['nav_name','jump_url','is_open','parent_id','language'];
 
     /**
-     * 获取导航树
+     * 获取导航树-后台下拉框使用
      *
      * @param integer $pid
      * @param integer $level
@@ -45,6 +45,25 @@ class Navigate extends Model
             }
         }
         return $result;
+    }
+
+    /**
+     * 获取前台二级导航
+     *
+     * @param integer $pid
+     * @return void
+     */
+    public static function getHeaderNavigate($pid=self::ROOT)
+    {
+        $list = self::where(['parent_id'=>$pid])->orderby('sort','ASC')->get()->toArray(); 
+        if(is_array($list))
+        {
+            foreach($list as $key=>$value)
+            {
+                $list[$key]['son'] = self::getNavigateTree($value['nav_id']);
+            }
+        }
+        return $list;        
     }
 
 }
