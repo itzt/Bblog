@@ -233,9 +233,8 @@
 				<aside class="col-md-4">
 
 					<div class="laread-right">
-
-						<form class="laread-form search-form">
-							<div class="input"><input type="text" class="form-control" placeholder="Search..."></div>
+						<form class="laread-form search-form" action="/" method="get">
+							<div class="input"><input type="text" name="title" value="{{$title}}" class="form-control" placeholder="Search..."></div>
 							<button type="submit" class="btn btn-link"><i class="fa fa-search"></i></button>
 						</form>
 

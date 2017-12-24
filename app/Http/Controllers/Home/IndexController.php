@@ -18,7 +18,8 @@ class IndexController extends HomeController
      */
     public function index(Request $request)
     {
-        $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, '', 10);
+        $title   = $request->title;
+        $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, $title, 10);
         $catList = Categories::getSearchCat();
         $tagList = Tags::getSearchTagList();
         $recList = Posts::getRecentList();
@@ -27,7 +28,8 @@ class IndexController extends HomeController
             'artList' => $artList,
             'catList' => $catList,
             'tagList' => $tagList,
-            'recList' => $recList
+            'recList' => $recList,
+            'title'   => $title
         ]);
     }
 

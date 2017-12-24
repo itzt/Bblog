@@ -3,7 +3,7 @@
  * @Author: zhangtao 
  * @Date: 2017-12-04 15:55:48 
  * @Last Modified by: zhangtao
- * @Last Modified time: 2017-12-24 21:20:32
+ * @Last Modified time: 2017-12-24 21:42:08
  */
 namespace App;
 
@@ -33,7 +33,7 @@ class Posts extends Model
             ->where(['status' => $type]);
         if(!empty($title))
         {
-           $query = $query->orWhere('title', 'like', "%$title%");
+           $query = $query->where('title', 'like', "%$title%");
         }
         if(!empty($limit))
         {
@@ -70,7 +70,7 @@ class Posts extends Model
             ->where(['status' => $type]);
         if(!empty($title))
         {
-           $query = $query->orWhere('title', 'like', "%$title%");
+           $query = $query->where('title', 'like', "$title%");
         }
         if(!empty($limit))
         {

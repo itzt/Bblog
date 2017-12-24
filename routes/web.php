@@ -12,7 +12,7 @@
 */
 
 // 前台首页
-Route::get('/','Home\IndexController@index');
+Route::get('/{title?}','Home\IndexController@index');
 // 前台文章详情
 Route::get('/index/details/{title}', 'Home\IndexController@details');
 // 所有文章页
