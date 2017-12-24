@@ -70,11 +70,11 @@ class IndexController extends HomeController
         {
             Posts::where(['title' => $title])->increment('read_num', 1); // 每次点击当前文章阅读量自增1
         }
-        $artFind = (new Posts)->getOne(['title' => $title]); // 根据标题获取此信息
+        $artFind = (new Posts)->getOne(['title' => $title, 'language' => \App\Tools\admin_language()]); // 根据标题获取此信息
         $pid=$artFind->post_id;
         // echo '<pre>';
         // print_r($artFind);die;
-        $where   = ['cat_id' => $artFind->cat_id, 'status' => Posts::STATUS_PUBLISH];
+        $where   = ['cat_id' => $artFind->cat_id, 'status' => Posts::STATUS_PUBLISH, 'language' => \App\Tools\admin_language()];
         $prevNext= (new Posts)->getPrevAndNextInfo($where); // 获取详情页的同类信息 2条
         // echo '<pre>';
         // print_r($prevNext);die;
