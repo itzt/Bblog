@@ -24,6 +24,15 @@ class Categories extends Model
     }  
 
     /**
+     * 获取前台首页需要的分类列表
+     *
+     * @return void
+     */
+    static public function getSearchCat()
+    {
+        return self::select('cat_id', 'cat_name')->where(['parent_id' => self::PARENTID])->limit(6)->get();
+    }
+    /**
      * 获取所有分类信息
      *
      * @return void

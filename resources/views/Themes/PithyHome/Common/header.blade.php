@@ -205,7 +205,7 @@
 			<nav class="navbar navbar-fixed-top nav-down navbar-laread">
 				<div class="container">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="medium-image-v1-2.html"><img height="64" src="assets/img/logo-light.png" alt=""></a>
+						<a class="navbar-brand" href="/"><img height="64" src="/assets/img/logo-light.png" alt=""></a>
 					</div>
 					<div class="get-post-titles">
 						<button type="button" class="navbar-toggle push-navbar" data-navbar-type="default">

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-
 use App\Tags;
 use App\Posts;
 use App\Categories;
@@ -17,7 +16,8 @@ class ListController extends HomeController
      * @return void
      */
     public function index(Request $request)
-    {             
+    {
+        $catList = Categories::getSearchCat();
         try
         {
             $param = $request->param;

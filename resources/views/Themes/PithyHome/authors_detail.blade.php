@@ -10,11 +10,11 @@
 					<div class="author-subdetail">
 						<h2>{{$authorList[0]->admin->name}}</h2>
 						<p class="info-small">{{$authorList[0]->admin->profession}}</p>
-						<p class="author-bio">{{$authorList[0]->admin->introduce}}<a href="#">full bio</a></p>
+						<p class="author-bio">{{$authorList[0]->admin->introduce}}</p>
 						<p class="info-small">
 							<span><i class="fa fa-map-marker"></i> {{$authorList[0]->admin->address}}</span>
 							<span><i class="fa fa-paper-plane"></i> {{$authorList->count()}} Posts</span>
-							<a href="#"><i class="fa fa-twitter"></i> {{$authorList[0]->admin->email}}</a>
+							<a href="#"><i class="fa fa-envelope"></i> {{$authorList[0]->admin->email}}</a>
 						</p>
 						<button type="button" class="btn btn-golden btn-golden-hover btn-rounded">Following</button>
 					</div>
