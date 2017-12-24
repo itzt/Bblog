@@ -2,13 +2,8 @@
 /*
  * @Author: zhangtao 
  * @Date: 2017-12-04 15:55:48 
-<<<<<<< HEAD
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-24 21:43:07
-=======
- * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-24 21:45:59
->>>>>>> 74a82d5192e275601405a9586fcbe74997c7cc0c
+ * @Last Modified time: 2017-12-24 21:52:51
  */
 namespace App;
 
