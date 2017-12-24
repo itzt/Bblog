@@ -1,20 +1,14 @@
-<?php
-use App\Navigate;
-$navList = Navigate::getCatStructureList((new Navigate)->select('nav_id', 'nav_name','jump_url','is_open','parent_id')->orderBy('nav_id', 'asc')->get()->toArray());
-// echo '<pre>';
-//         print_r($navList);die;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
+<meta name="keywords" content="{{$sets['KeyWord']}}">
+<meta name="description" content="{{$sets['Content']}}">
 <meta name="author" content="">
 <link rel="icon" href="/assets/img/favicon.ico">
-<title>LaRead - Author Detail</title>
+<title>{{$sets['WebSiteName']}}</title>
 <!-- Bootstrap core CSS -->
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- Font Awesome CSS -->
@@ -234,21 +228,19 @@ $navList = Navigate::getCatStructureList((new Navigate)->select('nav_id', 'nav_n
 					</button>
 					<div class="collapse navbar-collapse" id="main-nav">
 						<ul class="nav navbar-nav">
-@if(!empty($navList))
-@foreach($navList as $key => $val)
-	<li>
-		<!-- data-toggle="dropdown" -->
-		<a href="{{$val['jump_url']}}" class="dropdown-toggle"  role="button" aria-expanded="true">{{$val['nav_name']}}</a>
-		@if(!empty($val['child']))
-			<ul class="dropdown-menu" role="menu">
-			@foreach($val['child'] as $v)
-				<li><a href="{{$v['jump_url']}}">{{$v['nav_name']}}</a></li>
-			@endforeach
-			</ul>
-		@endif
-	</li>
-@endforeach
-@endif
+							@if($navList) @foreach($navList as $nav)
+							<li>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$nav['nav_name']}}</a>
+								@if(!empty($nav['son']))
+								<ul class="dropdown-menu" role="menu">
+									@foreach($nav['son'] as $val)
+									<li><a href="{{$val['jump_url']}}">{{$val['nav_name']}}</a></li>
+						            @endforeach 
+								</ul>
+								@endif
+							</li>
+							@endforeach @endif
+
 						</ul>
 					</div><!--/.nav-collapse -->
 				</div>

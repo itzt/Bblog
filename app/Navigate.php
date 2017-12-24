@@ -25,7 +25,7 @@ class Navigate extends Model
     protected $fillable = ['nav_name','jump_url','is_open','parent_id','language'];
 
     /**
-     * 获取导航树
+     * 获取导航树-后台下拉框使用
      *
      * @param integer $pid
      * @param integer $level
@@ -47,26 +47,23 @@ class Navigate extends Model
         return $result;
     }
 
-
     /**
-     * 获取前台需要展示的导航
-     * @param $array
+     * 获取前台二级导航
+     *
+     * @param integer $pid
+     * @return void
      */
-    static public function getCatStructureList($array)
+    public static function getHeaderNavigate($pid=self::ROOT)
     {
-        $arr = [];
-        $data = array_combine(array_column($array, 'nav_id'), $array); //把主键变成数组的key
-        foreach($data as $key => $val)
+        $list = self::where(['parent_id'=>$pid])->orderby('sort','ASC')->get()->toArray(); 
+        if(is_array($list))
         {
-            if(isset($data[$val['parent_id']])) //如果检测到
+            foreach($list as $key=>$value)
             {
-                $data[$val['parent_id']]['child'][] = &$data[$val['nav_id']];
-            }
-            else
-            {
-                $arr[] = &$data[$val['nav_id']];
+                $list[$key]['son'] = self::getNavigateTree($value['nav_id']);
             }
         }
-        return $arr;
+        return $list;        
     }
+
 }

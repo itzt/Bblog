@@ -18,8 +18,6 @@ class IndexController extends HomeController
      */
     public function index(Request $request)
     {
-        $title = $request->title;
-        echo $title;
         $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, '', 10);
         $catList = (new Categories)->getList();
         return view('Themes/'.$this->theme.'Home/index', [
