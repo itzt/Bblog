@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-
+use App\Tags;
 use App\Posts;
 use App\Categories;
 use App\Comments;
@@ -19,10 +19,12 @@ class IndexController extends HomeController
     public function index(Request $request)
     {
         $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, '', 10);
-        $catList = (new Categories)->getList();
+        $catList = Categories::getSearchCat();
+        $tagList = Tags::getSearchTagList();
         return view('Themes/'.$this->theme.'Home/index', [
             'artList' => $artList,
-            'catList' => $catList
+            'catList' => $catList,
+            'tagList' => $tagList
         ]);
     }
 

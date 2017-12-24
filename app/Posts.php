@@ -2,8 +2,8 @@
 /*
  * @Author: zhangtao 
  * @Date: 2017-12-04 15:55:48 
- * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-14 10:26:26
+ * @Last Modified by: zhangtao
+ * @Last Modified time: 2017-12-24 21:00:03
  */
 namespace App;
 
@@ -110,6 +110,15 @@ class Posts extends Model
         return $this->belongsTo('App\Comments', 'post_id', 'post_id');
     }
     /**
+     * 文章标签 多对多关系
+     *
+     * @return void
+     */
+    public function postsTags()
+    {
+        return $this->belongsToMany('App\Tags', 'posts_tags', 'post_id', 'tag_id');
+    }
+    /**
      * 获取一条
      * @param  [type] $where [description]
      * @return [type]        [description]
@@ -159,6 +168,7 @@ class Posts extends Model
             ->limit($limit)
             ->orderBy('post_id', 'desc')
             ->get();
+            
     }    
 
    

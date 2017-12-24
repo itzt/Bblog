@@ -36,12 +36,11 @@
 						<div id="category-sub" class="tab-sub-content collapse">
 							<div class="row">
 								<ul class="category-sub">
-									<li><a href="#">Branding<span>16</span></a></li>
-									<li><a href="#">Design<span>14</span></a></li>
-									<li><a href="#">Photography<span>42</span></a></li>
-									<li><a href="#">Inspiration<span>37</span></a></li>
-									<li><a href="#">Life<span>60</span></a></li>
-									<li><a href="#">City<span>28</span></a></li>
+									@if(!empty($catList))
+									@foreach($catList as $val)
+										<li><a href="/list/category-{{$val->cat_name}}">{{$val->cat_name}}</a></li>
+									@endforeach
+									@endif
 								</ul>
 							</div>
 						</div>
@@ -108,7 +107,7 @@
 			<div class="media-body">
 				<h4 class="media-heading"><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h4>
 				<p>{{mb_substr($val->html, 0, 120) }}</p>
-				<div class="article-info"><span class="visible-xs-inline">21 June  •  </span><a href="#">{{$val->cat->cat_name}}</a>  •  <a href="#">21 comments</a></div>
+				<div class="article-info"><span class="visible-xs-inline">21 June  •  </span><a href="#">{{$val->cat->cat_name}}</a>  •  <a href="#">{{count($val->comments)}} comments</a></div>
 			</div>
 		</div>
 	</li>
