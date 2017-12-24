@@ -29,7 +29,7 @@
 					</div>
 					<div class="post-item-info clearfix">
 						<div class="pull-left">
-							By　<a href="#">{{$val->admin->name}}</a>   •   <a href="#">{{$val->cat->cat_name}}</a>
+							By　<a href="/author/index/{{$val->admin->id}}">{{$val->admin->name}}</a>   •   {{$val->cat->cat_name}}
 						</div>
 						<div class="pull-right post-item-social">
 							<a href="#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>

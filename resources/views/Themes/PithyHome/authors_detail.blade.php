@@ -5,16 +5,16 @@
 			<div class="container-fluid">
 				<div class="row laread-author-detail">
 					<div class="author-picture">
-						<img src="assets/img/img-49.png" alt="" />
+						<img src="{{$authorList[0]->admin->avatar}}" alt="" />
 					</div>
 					<div class="author-subdetail">
-						<h2>Angelique Calmon</h2>
-						<p class="info-small">Art Director</p>
-						<p class="author-bio">Hi everybody. I'm Angélique, a freelance Interactive Art Director in Montréal, Canada. I create iOS and Android app design and also responsive webdesign. <a href="#">full bio</a></p>
+						<h2>{{$authorList[0]->admin->name}}</h2>
+						<p class="info-small">{{$authorList[0]->admin->profession}}</p>
+						<p class="author-bio">{{$authorList[0]->admin->introduce}}<a href="#">full bio</a></p>
 						<p class="info-small">
-							<span><i class="fa fa-map-marker"></i> Montreal, Canada</span>
-							<span><i class="fa fa-paper-plane"></i> 66 Posts</span>
-							<a href="#"><i class="fa fa-twitter"></i> @angelcm</a>
+							<span><i class="fa fa-map-marker"></i> {{$authorList[0]->admin->address}}</span>
+							<span><i class="fa fa-paper-plane"></i> {{$authorList->count()}} Posts</span>
+							<a href="#"><i class="fa fa-twitter"></i> {{$authorList[0]->admin->email}}</a>
 						</p>
 						<button type="button" class="btn btn-golden btn-golden-hover btn-rounded">Following</button>
 					</div>
@@ -22,7 +22,7 @@
 
 				<div class="row author-article-list">
 					<div class="article-list-box">
-						<div class="article-type clearfix" role="tablist">
+						<!-- <div class="article-type clearfix" role="tablist">
 							<ul>
 								<li role="presentation" class="active">
 									<a href="#lastest" id="lastest-tab" role="tab" data-toggle="tab" aria-controls="lastest" aria-expanded="true">LATEST</a>
@@ -31,50 +31,24 @@
 									<a href="#popular" role="tab" id="popular-tab" data-toggle="tab" aria-controls="popular">POPULAR</a>
 								</li>
 							</ul>
-						</div>
+						</div> -->
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active" id="lastest" aria-labelledBy="lastest-tab">
 								<ul class="article-list">
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><a href="#" class="article-number hidden-xs">28</a></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Marmorin Catalogue - Product Visualisations</a></h4>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec mauris pulvinar leo dignissim sollicitudin eleifend eget velit.</p>
-												<div class="article-info"><span class="visible-xs-inline">21 June  •  </span><a href="#">Fashion</a>  •  <a href="#">21 comments</a></div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><a href="#" class="article-number hidden-xs">27</a></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Meet #59 Interface Designer Kerem Suer</a></h4>
-												<p>Mauris fermentum fringilla lorem, in rutrum massa sodales et. Praesent mollis sodales est, eget fringilla libero sagittis eget. Nunc gravida varius risus ac luctus.</p>
-												<div class="article-info"><span class="visible-xs-inline">18 June  •  </span><a href="#">Culture</a>  •  <a href="#">18 comments</a></div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><a href="#" class="article-number hidden-xs">24</a></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Workshop: Brand Asset Management</a></h4>
-												<p>Nulla id sem a mauris egestas pulvinar vitae non dui. Cras odio tortor, feugiat nec sagittis sed, laoreet ut mauris. In hac habitasse platea dictumst.</p>
-												<div class="article-info"><span class="visible-xs-inline">16 June  •  </span><a href="#">Art</a>  •  <a href="#">13 comments</a></div>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="media clearfix">
-											<div class="media-right"><a href="#" class="article-number hidden-xs">21</a></div>
-											<div class="media-body">
-												<h4 class="media-heading"><a href="#">Turkish Coffee Culture History</a></h4>
-												<p>Mauris non libero ligula, sed volutpat mauris. Duis facilisis elementum nisl, non aliquam enim tincidunt vitae. Donec laoreet est vitae erat auctor porttitor.</p>
-												<div class="article-info"><span class="visible-xs-inline">12 June  •  </span><a href="#">Culture</a>  •  <a href="#">24 comments</a></div>
-											</div>
-										</div>
-									</li>
+@if(!empty($authorList))
+@foreach($authorList as $val)
+	<li>
+		<div class="media clearfix">
+			<div class="media-right"><a href="#" class="article-number hidden-xs">{{$val->read_num}}</a></div>
+			<div class="media-body">
+				<h4 class="media-heading"><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}</a></h4>
+				<p>{{mb_substr($val->html, 0, 120)}}...</p>
+				<div class="article-info"><span class="visible-xs-inline">21 June  •  </span><a href="#">{{$val->cat->cat_name}}</a>  •  <a href="#">{{count($val->comments)}} comments</a></div>
+			</div>
+		</div>
+	</li>
+@endforeach
+@endif
 								</ul>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="popular" aria-labelledBy="popular-tab">

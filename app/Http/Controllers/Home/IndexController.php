@@ -78,4 +78,6 @@ class IndexController extends HomeController
     {
         return view('Themes/'. $this->theme. 'Home/404');
     }
+
+
 }
