@@ -25,8 +25,15 @@ class HomeController extends Controller
         // 记录本次URL
         session()->flash('goback', $request->url());
         
-        // 读取后台配置
-
+        // 读取后台配置-视图间共享数据
+        $sets = Cache::get('sets');
+        if(is_null($sets))
+        {
+            $sets = (new \App\SetsModel)->setlist();
+            Cache::put('sets',$sets,$this->cacheTime);
+        }
+        view()->share('sets',$sets);
+        
         // 查询公共导航-视图间共享数据
         $navList = Cache::get('navList');
         if(is_null($navList))
@@ -40,7 +47,6 @@ class HomeController extends Controller
         $this->theme = env('DEFAULT_THEM','Pithy');
         
     }
-
 
 
 }
