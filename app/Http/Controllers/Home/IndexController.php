@@ -16,8 +16,10 @@ class IndexController extends HomeController
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
+        $title = $request->title;
+        echo $title;
         $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, '', 10);
         $catList = (new Categories)->getList();
         return view('Themes/'.$this->theme.'Home/index', [
@@ -76,4 +78,6 @@ class IndexController extends HomeController
     {
         return view('Themes/'. $this->theme. 'Home/404');
     }
+
+
 }

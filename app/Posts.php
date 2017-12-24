@@ -66,6 +66,23 @@ class Posts extends Model
         return $query->orderBy('post_id', 'desc')->get();
     }
     /**
+     * 根据作者 获取相对应的文章信息
+     *
+     * @param [type] $author
+     * @param string $limit
+     * @return void
+     */
+    static public function getAuthorList($author, $limit = '')
+    {
+        $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
+            ->where(['author' => $author]);
+        if(!empty($limit))
+        {
+            $query = $query->limit($limit);
+        }
+        return $query->orderBy('read_num', 'desc')->get();
+    }
+    /**
      * 分类的关联
      *
      * @return void
@@ -75,13 +92,22 @@ class Posts extends Model
         return $this->belongsTo('App\Categories', 'cat_id', 'cat_id');
     }
     /**
-     * 文章作者的管理  默认管理员
+     * 文章作者的关联  默认管理员
      *
      * @return void
      */
     public function admin()
     {
         return $this->belongsTo('App\Admins', 'author', 'id');
+    }
+    /**
+     * 文章评论的关联
+     *
+     * @return void
+     */
+    public function comments()
+    {
+        return $this->belongsTo('App\Comments', 'post_id', 'post_id');
     }
     /**
      * 获取一条

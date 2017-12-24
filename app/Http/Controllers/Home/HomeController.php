@@ -20,13 +20,8 @@ class HomeController extends Controller
         
         // 载入皮肤
         $this->theme = env('DEFAULT_THEM','Pithy');
+
         
     }
-
-    public function navigate()
-    {
-
-    }
-
 
 }
