@@ -16,21 +16,43 @@ class IndexController extends HomeController
      *
      * @return void
      */
-    public function index(Request $request)
+    public function index()
     {
-        $title   = $request->title;
-        $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, $title, 10);
-        $catList = Categories::getSearchCat();
-        $tagList = Tags::getSearchTagList();
-        $recList = Posts::getRecentList();
-        
+        $data = $this->indexCommon();
         return view('Themes/'.$this->theme.'Home/index', [
-            'artList' => $artList,
-            'catList' => $catList,
-            'tagList' => $tagList,
-            'recList' => $recList,
-            'title'   => $title
+            'artList' => $data['artList'],
+            'catList' => $data['catList'],
+            'tagList' => $data['tagList'],
+            'recList' => $data['recList'],
+            'title'   => $data['title']
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        $data    = $this->indexCommon();
+        $title   = $request->title;
+        return view('Themes/'.$this->theme.'Home/index', [
+            'artList' => $data['artList'],
+            'catList' => $data['catList'],
+            'tagList' => $data['tagList'],
+            'recList' => $data['recList'],
+            'title'   => $data['title']
+        ]);
+    }
+    /**
+     * 首页信息展示 和 搜索公共方法
+     *
+     * @return void
+     */
+    private function indexCommon()
+    {
+        $data['title']   = '';
+        $data['artList'] = Posts::getArchiveList(Posts::STATUS_PUBLISH, $data['title'], 10);
+        $data['catList'] = Categories::getSearchCat();
+        $data['tagList'] = Tags::getSearchTagList();
+        $data['recList'] = Posts::getRecentList();
+        return $data;
     }
 
     /**

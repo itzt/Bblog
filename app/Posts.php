@@ -30,7 +30,7 @@ class Posts extends Model
     static public function getArticleList($type, $title = '', $limit = '')
     {
         $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['status' => $type]);
+            ->where(['status' => $type, 'language' => \App\Tools\admin_language()]);
         if(!empty($title))
         {
            $query = $query->where('title', 'like', "%$title%");
@@ -51,7 +51,7 @@ class Posts extends Model
     static public function getRecentList()
     {
         return self::select('post_id', 'title', 'updated_at')
-                    ->where(['status' => self::STATUS_PUBLISH])
+                    ->where(['status' => self::STATUS_PUBLISH, 'language' => \App\Tools\admin_language()])
                     ->orderBy('post_id', 'desc')
                     ->limit(6)
                     ->get();
@@ -67,7 +67,7 @@ class Posts extends Model
     static public function getArchiveList($type, $title = '', $limit = '')
     {
         $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['status' => $type]);
+            ->where(['status' => $type, 'language' => \App\Tools\admin_language()]);
         if(!empty($title))
         {
            $query = $query->where('title', 'like', "$title%");
@@ -88,7 +88,7 @@ class Posts extends Model
     static public function getAuthorList($author, $limit = '')
     {
         $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['author' => $author]);
+            ->where(['author' => $author, 'language' => \App\Tools\admin_language()]);
         if(!empty($limit))
         {
             $query = $query->limit($limit);
@@ -176,7 +176,7 @@ class Posts extends Model
     static public function getPostList($catId, $limit = 10)
     {
         return self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['status' => self::STATUS_PUBLISH])
+            ->where(['status' => self::STATUS_PUBLISH, 'language' => \App\Tools\admin_language()])
             ->where(['cat_id'=>$catId])
             ->limit($limit)
             ->orderBy('post_id', 'desc')

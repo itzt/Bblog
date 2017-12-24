@@ -32,7 +32,7 @@
 							By　<a href="/author/index/{{$val->admin->id}}">{{$val->admin->name}}</a>   •   {{$val->cat->cat_name}}
 						</div>
 						<div class="pull-right post-item-social">
-							<a href="#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
+							<a href="#{{$val->title}}" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
 							<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
 							<a href="#" class="post-like"><i class="fa fa-heart"></i><span>{{$val->like_num}}</span></a>
 						</div>
@@ -233,7 +233,7 @@
 				<aside class="col-md-4">
 
 					<div class="laread-right">
-						<form class="laread-form search-form" action="/" method="get">
+						<form class="laread-form search-form" action="/search" method="get">
 							<div class="input"><input type="text" name="title" value="{{$title}}" class="form-control" placeholder="Search..."></div>
 							<button type="submit" class="btn btn-link"><i class="fa fa-search"></i></button>
 						</form>
