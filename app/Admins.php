@@ -8,6 +8,19 @@ use Illuminate\Support\Facades\Hash;
 
 class Admins extends Model
 {
+    const START_STATUS = 1; // 正常状态
+    const END_STATUS   = 0; // 禁用状态
+    /**
+     * 获取所有作者信息
+     *
+     * @return void
+     */
+    static public function getAuthorInfo()
+    {
+        return self::select('id', 'avatar', 'name', 'profession', 'address', 'introduce')
+                    ->where(['status' => self::START_STATUS])
+                    ->get();
+    }
     //读取用户数据
     public function admin_select()
     {

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-
+use App\Tags;
 use App\Posts;
 use App\Categories;
 use Illuminate\Http\Request;
@@ -16,7 +16,8 @@ class ListController extends HomeController
      * @return void
      */
     public function index(Request $request)
-    {             
+    {
+        $catList = Categories::getSearchCat();
         try
         {
             $param = $request->param;
@@ -28,21 +29,22 @@ class ListController extends HomeController
             if(preg_match('/tag/',$param))
             {
                 $paramArr = explode('-',$param);
-                $tag = $paramArr[1];
+                $tagInfo  = Tags::getInfo($paramArr[1]);
                 // 按标签查找-待开发
+                
             }
 
             if(preg_match('/category/',$param))
             {
                 $paramArr = explode('-',$param);
-                $catInfo = Categories::getInfo($paramArr[1]);
+                $catInfo  = Categories::getInfo($paramArr[1]);
                 
                 // 按分类查找
-                $list = Posts::getPostList($catInfo->cat_id);
+                $list     = Posts::getPostList($catInfo->cat_id);
             
             }            
 
-            return view('Themes/'.$this->theme.'Home/list',['artList' => $list]);
+            return view('Themes/'.$this->theme.'Home/list',['artList' => $list, 'catList' => $catList]);
 
         }
         catch(\Exception $e)

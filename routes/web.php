@@ -15,16 +15,20 @@
 Route::get('/','Home\IndexController@index');
 // 前台文章详情
 Route::get('/index/details/{title}', 'Home\IndexController@details');
-// 点击文章作者进入作者文章页
-Route::get('/author/index/{aid}', 'Home\AuthorsController@index');
 // 所有文章页
 Route::get('/archive', 'Home\IndexController@archive');
+
+// 作者列表
+Route::get('/author/info','Home\AuthorsController@info');
+// 点击文章作者进入作者文章页
+Route::get('/author/index/{aid}', 'Home\AuthorsController@index');
+
 // 关于我们
 Route::get('/about','Home\AboutController@index');
+
 // 新闻
 Route::get('/news','Home\NewsController@index');
-// // 作者
-// Route::get('/authors','Home\AuthorsController@index');
+
 // 404
 Route::get('/error','Home\IndexController@error');
 // 【标签、分类】列表

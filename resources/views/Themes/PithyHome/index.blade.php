@@ -100,7 +100,7 @@
 							<div class="container-medium">
 								<div class="row post-items">
 									<div class="post-item-banner embed-responsive embed-responsive-16by9">
-										<iframe src="https://player.vimeo.com/video/49445992" class="embed-responsive-item" allowfullscreen></iframe>
+										<!-- <iframe src="https://player.vimeo.com/video/49445992" class="embed-responsive-item" allowfullscreen></iframe> -->
 									</div>
 									<div class="col-md-12">
 										<div class="post-item">
@@ -132,7 +132,7 @@
 							<div class="container-medium">
 								<div class="row post-items">
 									<div class="post-item-banner embed-responsive embed-responsive-16by9">
-										<iframe  class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/186983384&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+										<!-- <iframe  class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/186983384&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe> -->
 									</div>
 									<div class="col-md-12">
 										<div class="post-item">
@@ -241,40 +241,30 @@
 
 						<ul class="laread-list">
 							<li class="title">CATEGORY</li>
-							<li><a href="#">Branding</a><i class="line"></i></li>
-							<li><a href="#">Design (48)</a><i class="line"></i></li>
-							<li><a href="#">Photography</a><i class="line"></i></li>
-							<li><a href="#">Inspiration</a><i class="line"></i></li>
-							<li><a href="#">Life</a><i class="line"></i></li>
-							<li><a href="#">City</a><i class="line"></i></li>
+							@if(!empty($catList))
+							@foreach($catList as $val)
+								<li><a href="/list/category-{{$val->cat_name}}">{{$val->cat_name}}</a><i class="line"></i></li>
+							@endforeach
+							@endif
 						</ul>
 
 						<ul class="laread-list">
 							<li class="title">RECENT POSTS</li>
-							<li><a href="#">The Nature of My Inspiration</a><i class="date">28 June</i></li>
-							<li><a href="#">Sam Feldt - Show Me Love</a><i class="date">27 June</i></li>
-							<li><a href="#">Do You Love Coffee?</a><i class="date">25 June</i></li>
-							<li><a href="#">The Game Before The Game</a><i class="date">23 June</i></li>
-							<li><a href="#">Long Live The Kings</a><i class="date">22 June</i></li>
+							@if(!empty($recList))
+							@foreach($recList as $val)
+								<li><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 15)}}...</a><i class="date">{{date('d F', strtotime($val->updated_at))}}</i></li>
+							@endforeach
+							@endif
 						</ul>
 
 						<ul class="laread-list">
 							<li class="title">TAGS</li>
 							<li class="bar-tags">
-								<a href="#">fashion</a>
-								<a href="#">culture</a>
-								<a href="#">art</a>
-								<a href="#">concept</a>
-								<a href="#">style</a>
-								<a href="#">advert</a>
-								<a href="#">movie</a>
-								<a href="#">color</a>
-								<a href="#">branding</a>
-								<a href="#">technology</a>
-								<a href="#">fashion</a>
-								<a href="#">culture</a>
-								<a href="#">art</a>
-								<a href="#">concept</a>
+								@if(!empty($tagList))
+								@foreach($tagList as $val)
+									<a href="/list/tag-{{$val->tag_name}}">{{$val->tag_name}}</a>
+								@endforeach
+								@endif
 							</li>
 						</ul>
 
