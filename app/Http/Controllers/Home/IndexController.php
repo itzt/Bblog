@@ -66,4 +66,14 @@ class IndexController extends HomeController
 
         return view('Themes/'. $this->theme. 'Home/archive', ['artList' => $artList]);
     }
+
+    /**
+     * 404页面
+     *
+     * @return void
+     */
+    public function error()
+    {
+        return view('Themes/'. $this->theme. 'Home/404');
+    }
 }
