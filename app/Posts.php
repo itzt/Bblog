@@ -3,7 +3,7 @@
  * @Author: zhangtao 
  * @Date: 2017-12-04 15:55:48 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-14 10:26:26
+ * @Last Modified time: 2017-12-24 21:43:07
  */
 namespace App;
 
@@ -143,23 +143,7 @@ class Posts extends Model
         }
         return $data;        
     }
-
-    /**
-     * 获取根据分类获取文章列表
-     *
-     * @param string  $catId
-     * @param integer $limit
-     * @return void
-     */
-    static public function getPostList($catId, $limit = 10)
-    {
-        return self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['status' => self::STATUS_PUBLISH])
-            ->where(['cat_id'=>$catId])
-            ->limit($limit)
-            ->orderBy('post_id', 'desc')
-            ->get();
-    }    
+ 
 
    
 

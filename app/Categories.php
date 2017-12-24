@@ -3,7 +3,7 @@
  * @Author: zhangtao 
  * @Date: 2017-12-04 15:23:26 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-14 10:25:17
+ * @Last Modified time: 2017-12-24 21:31:02
  */
 
 namespace App;
@@ -14,6 +14,15 @@ class Categories extends Model
 {
     const PARENTID = 0;
     protected $primaryKey = 'cat_id';
+
+    /**
+     * 获取分类下的所有文章。
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Posts','cat_id','cat_id');
+    }  
+
     /**
      * 获取所有分类信息
      *
