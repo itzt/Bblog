@@ -250,11 +250,11 @@
 
 						<ul class="laread-list">
 							<li class="title">RECENT POSTS</li>
-							<li><a href="#">The Nature of My Inspiration</a><i class="date">28 June</i></li>
-							<li><a href="#">Sam Feldt - Show Me Love</a><i class="date">27 June</i></li>
-							<li><a href="#">Do You Love Coffee?</a><i class="date">25 June</i></li>
-							<li><a href="#">The Game Before The Game</a><i class="date">23 June</i></li>
-							<li><a href="#">Long Live The Kings</a><i class="date">22 June</i></li>
+							@if(!empty($recList))
+							@foreach($recList as $val)
+								<li><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 15)}}...</a><i class="date">{{date('d F', strtotime($val->updated_at))}}</i></li>
+							@endforeach
+							@endif
 						</ul>
 
 						<ul class="laread-list">

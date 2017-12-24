@@ -21,10 +21,13 @@ class IndexController extends HomeController
         $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, '', 10);
         $catList = Categories::getSearchCat();
         $tagList = Tags::getSearchTagList();
+        $recList = Posts::getRecentList();
+        
         return view('Themes/'.$this->theme.'Home/index', [
             'artList' => $artList,
             'catList' => $catList,
-            'tagList' => $tagList
+            'tagList' => $tagList,
+            'recList' => $recList
         ]);
     }
 
