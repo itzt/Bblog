@@ -23,6 +23,10 @@ Route::get('/about','Home\AboutController@index');
 Route::get('/news','Home\NewsController@index');
 // 作者
 Route::get('/authors','Home\AuthorsController@index');
+// 404
+Route::get('/error','Home\IndexController@error');
+// 【标签、分类】列表
+Route::get('/list/{param?}','Home\ListController@index');
 
 // 微信登录
 Route::get('/auth/weixin', 'Auth\AuthController@oauth');

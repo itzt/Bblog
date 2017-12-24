@@ -83,4 +83,15 @@ class Categories extends Model
         }
         return $arr;
     }
+
+    /**
+     * 根据分类名称查询分类对象
+     *
+     * @param string $catName
+     * @return void
+     */
+    static public function getInfo($catName)
+    {
+        return self::where(['cat_name'=>$catName])->first();
+    }
 }
