@@ -48,59 +48,33 @@
 								</div>
 							</div>
 
-<div class="next-prev-post clearfix">
-	<div class="post-direction">
-		@if(!empty($prevNext[0]) && isset($prevNext[0]))									
-		<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
-			<span class="post-way"><i class="fa fa-angle-left"></i>prev post</span>
-			<span class="title">{{mb_substr($prevNext[0]->title, 0, 20)}}...</span>
-		</a>
-		@else
-		<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
-			<span class="post-way"><i class="fa fa-angle-left"></i>prev post</span>
-			<span class="title">No more.</span>
-		</a>
-		@endif
-		@if(!empty($prevNext[0]) && isset($prevNext[0]))
-		<a href="javascript:void(0)">
-			<span class="author">by 
-				<span>{{$prevNext[0]->admin->name}}</span>
-			</span>
-		</a>
-		@endif
-	</div>
-	<div class="post-direction">
-		@if(!empty($prevNext[1]) && isset($prevNext[1]))
-		<a href="/index/details/{{$prevNext[1]->title}}" class="post-next">
-			<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
-			<span class="title">{{mb_substr($prevNext[1]->title, 0, 20)}}...</span>
-		</a>
-		@else
-		<a href="javascript:void(0)" class="post-next">
-			<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
-			<span class="title">No more.</span>
-		</a>
-		@endif
-		@if(!empty($prevNext[1]) && isset($prevNext[1]))
-		<a href="javascript:void(0)">
-			<span class="author">by 
-				<span>{{$prevNext[1]->admin->name}}</span>
-			</span>
-		</a>
-		@endif
-	</div>
-</div>
+							<div class="related-post">
+								<h6>RELATED POST</h6>
+								<ul>
+									@if(!$recommendPosts->isEmpty()) @foreach($recommendPosts as $post)
+									<li>
+										<a href="/details/{{$post->title}}">
+											<span class="title">{{$post->title}}</span>
+										</a>
+										<a href="/author/index/{{$post->author}}">
+											<span class="info">by <span class="name">{{$post->admin->name}}</span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;{{App\Tools\beautify_date($post->created_at)}}</span>
+										</a>
+									</li>
+									@endforeach @endif
+
+								</ul>
+							</div>
 				
 							<div class="author-box">
 								<div class="author">
-									<a class="author-photo" href="#"><img src="{{$artFind->admin->avatar}}" width="70px" height="70px" alt=""></a>
+									<a class="author-photo" href="/author/index/{{$artFind->author}}"><img class="round" style="border-radius: 70px;" src="{{$artFind->admin->avatar}}" width="70px" height="70px" alt=""></a>
 									<div class="author-body">
 										<h4 class="author-name">{{$artFind->admin->name}}</h4>
-										<a href="author/index/{{$artFind->author}}">view all post</a>
+										<a href="/author/index/{{$artFind->author}}">view all post</a>
 									</div>
 									<div class="author-connection">
 										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-envelope"></i></a>
+										<a href="/contacts" target="_blank"><i class="fa fa-envelope"></i></a>
 									</div>
 								</div>
 							</div>
@@ -114,26 +88,25 @@
 								</div>
 
 								<div class="comment-block">
-									@if(!empty($data))
-									@foreach($data as $v)
+									<!-- comment start -->
+									@if(!empty($data)) @foreach($data as $v)
 									<div class="comment-item">
 										<a class="comment-photo" href="#">
-											<img src="/assets/img/profil_photo-05.png" alt="" />
+											<img class="round" style="border-radius: 70px;" width="70px" height="70px" src="@if(is_object($v->user)&&!empty($v->user->avatar)) {{$v->user->avatar}} @else /assets/img/profil_photo-05.png @endif" title="" alt="" />
 										</a>
 										<div class="comment-body">
-											<h6 class="comment-heading">{{$v['nickname']}}  •   <span class="comment-date">{{$v['created_at']}}</span></h6>
+											<h6 class="comment-heading">{{$v['nickname']}}  •   <span class="comment-date">{{App\Tools\beautify_date($v['created_at'])}}</span></h6>
 											<p class="comment-text">{{$v['content']}}</p>
 											<a href="javascript:void(0)" class="comment-reply active-comment reply" nickname="{{$v['nickname']}} "><i class="reply-icon"></i > Reply</a>
 										
-													
-											@if(!empty($v['children'])&&is_array($v['children']))
-												@foreach($v['children'] as $val)
+											<!-- replay start -->
+											@if(isset($v['children'])&&is_array($v['children'])) @foreach($v['children'] as $val)
 													<div class="comment-item">
 														<a class="comment-photo" href="#">
 															<img src="/assets/img/profil_photo-05.png" alt="" />
 														</a>
 														<div class="comment-body">
-															<h6 class="comment-heading">{{$val['nickname']}}  •   <span class="comment-date">{{$val['created_at']}}</span></h6>
+															<h6 class="comment-heading">{{$val['nickname']}}  •   <span class="comment-date">{{App\Tools\beautify_date($val['created_at'])}}</span></h6>
 															<p class="comment-text">{{$val['content']}}</p>
 															<a href="javascript:void(0)" class="comment-reply active-comment reply" nickname="{{$val['nickname']}} "><i class="reply-icon"></i > Reply</a>
 														</div>	
@@ -144,18 +117,19 @@
 														<button class="comment-submit btn-golden" id='{{$val['com_id']}}'>Post Comment</button>
 													</div>
 													</div>
-											@endforeach
-											@endif
+											@endforeach @endif
+											<!-- replay end -->
 										</div>	
 									</div>
 									<div class="comment-form main-comment-form" style="display:none;">
 									<textarea class="comment-textarea"  name="content" id="content" placeholder="Leave a comment..."></textarea>
 									<div class="at-focus">
-										<button class="comment-submit btn-golden" id='{{$val['com_id']}}'>Post Comment</button>
+										<button class="comment-submit btn-golden" id='{{$v['com_id']}}'>Post Comment</button>
 									</div>
 							     	</div>
-								   @endforeach
-								   @endif
+								   @endforeach @endif
+								   <!-- comment end -->
+								   
 									<div class="comment-form main-comment-form">
 											<textarea class="comment-textarea" placeholder="Leave a comment..."></textarea>
 											<div class="at-focus">
@@ -253,6 +227,7 @@
 $().ready(function() {
 	//评论
 	$('.btn-comment').click(function(){
+		var _this = $(this);
 		var email=$(this).prev().val();
 		var nickname=$(this).prev().prev().val();
 		var content=$(this).parent().prev().val();
@@ -263,14 +238,23 @@ $().ready(function() {
 				'data':{'content': content,'_token':"{{csrf_token()}}",'email':email,'nickname':nickname,'post_id':"{{$artFind->post_id}}"},
                 'success':function(data)
                 {
+					var html = '<div class="comment-item">';
+						html += '<a class="comment-photo" href="/author/index/'+data.data.user_id+'"><img class="round" style="border-radius: 70px;" width="70px" height="70px" src="'+data.data.avatar+'" alt="" /></a>';
+						html += '<div class="comment-body">';
+						html += '<h6 class="comment-heading">'+data.data.nickname+'   •   <span class="comment-date">1 seconds ago</span></h6>';
+						html += '<p class="comment-text">'+content+'</p>';
+						html += '<a href="#" class="comment-reply"><i class="reply-icon"></i> Reply</a>';
+						html += '</div></div>';
+					_this.parents('.comment-form').before(html);
+
                     // 200 请求，获取服务器消息与状态
-                    layer.msg(data.message,{icon:data.status});
+                    layer.msg(data.message);
 
                 },
                 'error':function(data)
                 {                
 					var result = JSON.parse(data.responseText);
-					if(data.status == 301)
+					if(data.status == 401)
 					{
 						layer.msg(result.message);
 						layer.open({

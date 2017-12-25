@@ -33,38 +33,46 @@ class CommentsController extends Controller
               }
    
     }
+
+    /**
+     * 文章评论
+     *
+     * @param Request $request
+     * @return void
+     */
     public function add(Request $request)
     {
         try
         {
             if($request->ajax())
             {
+                $usersData = session('users');
                 // 检测是否登录-后面待加上可根据配置要求-暂且必须登录方可评论
                 if(true)
                 {
-                    $users = session('users');
-                    if(!isset($users))
+                    if(!isset($usersData))
                     {
                         // 未登录-弹出登录二维码
-                        throw new HttpException('301','请先登录.');
+                        throw new HttpException('401','请先登录.');
                     }
                 }
                 //表中admin_id字段没有修改
                 $all = $request->all();    
 
                 $all = $request->except('_token');
-                $all['ip']=$_SERVER['REMOTE_ADDR'];
+                $all['ip'] = $request->getClientIp();
+                $all['nickname'] = $usersData['nickname'];
+                $all['email'] = $usersData['email'];
+                $all['user_id'] = $usersData['user_id'];
 
-                // 数据入库
-                $result = \App\Comments::create($all);
-
-                if($result)
+                // 评论数据入库
+                if(\App\Comments::create($all))
                 {   
-                    return \App\Tools\ajax_success();
+                    return \App\Tools\ajax_success('评论成功',$usersData);
                 }
                 else
                 {
-                    return \App\Tools\ajax_error();
+                    return \App\Tools\ajax_error('评论失败',$usersData);
                 }
             }
         }
@@ -73,6 +81,5 @@ class CommentsController extends Controller
             return \App\Tools\ajax_exception($e->getStatusCode(),$e->getMessage());
         }
 
-   
     }
 }

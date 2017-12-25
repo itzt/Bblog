@@ -19,6 +19,44 @@ class Posts extends Model
     const STATUS_DRAFT    = 'DRAFT';   // 草稿
     protected $primaryKey = 'post_id';
     protected $fillable   = ['title','cat_id','author','status','is_allow','is_page','markdown','html','language'];
+    
+    /**
+     * 分类的关联
+     *
+     * @return void
+     */
+    public function cat()
+    {
+        return $this->belongsTo('App\Categories', 'cat_id', 'cat_id');
+    } 
+    /**
+     * 文章作者（管理员）的关联
+     *
+     * @return void
+     */
+    public function admin()
+    {
+        return $this->belongsTo('App\Admins', 'author', 'id');
+    }
+    /**
+     * 文章评论的关联
+     *
+     * @return void
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comments', 'post_id', 'post_id');
+    }
+    /**
+     * 文章标签 多对多关系
+     *
+     * @return void
+     */
+    public function postsTags()
+    {
+        return $this->belongsToMany('App\Tags', 'posts_tags', 'post_id', 'tag_id');
+    }
+    
     /**
      * get article list
      *
@@ -95,42 +133,7 @@ class Posts extends Model
         }
         return $query->orderBy('read_num', 'desc')->get();
     }
-    /**
-     * 分类的关联
-     *
-     * @return void
-     */
-    public function cat()
-    {
-        return $this->belongsTo('App\Categories', 'cat_id', 'cat_id');
-    }
-    /**
-     * 文章作者的关联  默认管理员
-     *
-     * @return void
-     */
-    public function admin()
-    {
-        return $this->belongsTo('App\Admins', 'author', 'id');
-    }
-    /**
-     * 文章评论的关联
-     *
-     * @return void
-     */
-    public function comments()
-    {
-        return $this->belongsTo('App\Comments', 'post_id', 'post_id');
-    }
-    /**
-     * 文章标签 多对多关系
-     *
-     * @return void
-     */
-    public function postsTags()
-    {
-        return $this->belongsToMany('App\Tags', 'posts_tags', 'post_id', 'tag_id');
-    }
+
     /**
      * 获取一条
      * @param  [type] $where [description]
@@ -141,17 +144,50 @@ class Posts extends Model
             ->where($where)->first();
     }
     /**
-     * 获取文章详情页的上一条和下一条信息
-     *
+     * 获取推荐的三篇文章
+     * 
+     * @param  object  $post     当前文章实例 
+     * @param  integer $size     推荐几条
      * @return void
      */
-    public function getPrevAndNextInfo($where){
-        return $this->select('title','author')
+    static public function getRecommendPosts($post, $size=3){
+
+        // 先从当前分类下查找
+        $where   = ['cat_id' => $post->cat_id, 'status' => self::STATUS_PUBLISH, 'language' => \App\Tools\home_language()];
+        return self::select('title','author','created_at')
             ->where($where)
+            ->where('post_id', '<>', $post->post_id)
             ->orderBy('post_id', 'desc')
-            ->limit(2)
+            ->limit($size)
             ->get();
+        
+        // 不够从同标签下查找- 暂时不使用
+        /*
+        if($article->isEmpty())
+        {
+            $tags = $post->postsTags;
+            if(!$tags->isEmpty())
+            {
+                foreach($tags as $tag)
+                {
+                    $tempArticle = $tag->posts;
+                    if(!$tempArticle->isEmpty())
+                    {
+                        foreach($tempArticle as $temp)
+                        {
+                            $article[] = $temp;
+                            if (count($tempArticle) >= 3) break ;
+                        }
+                    }
+
+                }
+            }
+        }
+        */
+
     }
+
+
     /**
      * 获取对应的文章名称
      * @param  [type] $data [description]

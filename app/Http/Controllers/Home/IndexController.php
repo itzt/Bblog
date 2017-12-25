@@ -71,23 +71,29 @@ class IndexController extends HomeController
             {
                 throw new \Exception('error');
             }
-            Posts::where(['title' => $title])->increment('read_num', 1); // 每次点击当前文章阅读量自增1
+            // 文章阅读量自增1
+            Posts::where(['title' => $title])->increment('read_num', 1); 
+            // 根据标题获取此文章信息
+            $artFind = (new Posts)->getOne(['title' => $title]); 
+            // 推荐文章
+            $recommendPosts = Posts::getRecommendPosts($artFind);
             
-            $artFind = (new Posts)->getOne(['title' => $title]); // 根据标题获取此信息
-            
-            $where   = ['cat_id' => $artFind->cat_id, 'status' => Posts::STATUS_PUBLISH, 'language' => \App\Tools\home_language()];
-            $prevNext= (new Posts)->getPrevAndNextInfo($where); // 获取详情页的同类信息 2条
-            $data = [];
-            
-            // 文章关联标签
+            // 文章关联的标签
             $tags = $artFind->postsTags;
-            
-            //$data=(new Comments)->getPrinmaryCate($artFind->post_id);
+
+            // 文章关联的评论
+            $data = $artFind->comments;
             // dd($data);
-            return view('Themes/'.$this->theme.'Home/details', ['artFind'=>$artFind, 'prevNext'=>$prevNext, 'data'=>$data, 'tags'=>$tags]);
+            // foreach($data as $val)
+            // {
+            //     var_dump($val->user);
+            // }
+            // die;
+            return view('Themes/'.$this->theme.'Home/details', ['artFind'=>$artFind, 'recommendPosts'=>$recommendPosts, 'data'=>$data, 'tags'=>$tags]);
         }
         catch(\Exception $e)
         {
+            dd($e);
             return redirect('/error');
         }
 
