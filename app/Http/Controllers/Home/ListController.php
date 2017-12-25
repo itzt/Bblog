@@ -25,26 +25,25 @@ class ListController extends HomeController
             {
                 throw new \Exception('error-404');
             }
-            // 根据参数查询分类或标签文章 tag-xxx  category-xxx
+
+            $paramArr = explode('-',$param);
+
+            // 根据参数查询标签文章 tag-xxx
             if(preg_match('/tag/',$param))
             {
-                $paramArr = explode('-',$param);
-                $tagInfo  = Tags::getInfo($paramArr[1]);
                 // 按标签查找-待开发
-                
+                $tag = Tags::getInfo($paramArr[1]);
+                $list = $tag->posts;
             }
-
+            // 根据参数查询分类文章 category-xxx
             if(preg_match('/category/',$param))
             {
-                $paramArr = explode('-',$param);
-                $catInfo  = Categories::getInfo($paramArr[1]);
-                
+                $category = Categories::getInfo($paramArr[1]);   
                 // 按分类查找
-                $list     = Posts::getPostList($catInfo->cat_id);
+                $list = $category->posts;
             
             }            
-
-            return view('Themes/'.$this->theme.'Home/list',['artList' => $list, 'catList' => $catList]);
+            return view('Themes/'.$this->theme.'Home/list',['artList' => $list]);
 
         }
         catch(\Exception $e)
