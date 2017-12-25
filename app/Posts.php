@@ -3,7 +3,7 @@
  * @Author: zhangtao 
  * @Date: 2017-12-04 15:55:48 
  * @Last Modified by: zhangtao
- * @Last Modified time: 2017-12-24 21:42:08
+ * @Last Modified time: 2017-12-25 22:00:18
  */
 namespace App;
 
@@ -182,8 +182,28 @@ class Posts extends Model
             ->orderBy('post_id', 'desc')
             ->get();
             
-    }    
-
+    }
+    /**
+     * 右上角选项根据标签获取对应的文章
+     *
+     * @param [type] $ids
+     * @return void
+     */
+    static public function getAllPostsList($ids)
+    {
+        $query =  self::select('post_id', 'title', 'updated_at', 'author')
+                     ->whereIn('post_id', $ids)
+                     ->get();
+        $data = [];
+        foreach($query as $key => $val)
+        {
+            $data[$key]['title']        = $val->title;
+            $data[$key]['post_id']      = $val->post_id;
+            $data[$key]['author']       = $val->admin->name;
+            $data[$key]['time']         = date('F d', strtotime($val->updated_at));
+        }
+        return $data;
+    }
    
 
 }

@@ -19,6 +19,8 @@ Route::get('/search/{title?}','Home\IndexController@search');
 Route::get('/details/{title}', 'Home\IndexController@details');
 // 所有文章页
 Route::get('/archive', 'Home\IndexController@archive');
+// 右上角选项根据标签搜索
+Route::get('/searchtag', 'Home\HomeController@searchtags');
 
 // 作者列表
 Route::get('/author/info','Home\AuthorsController@info');

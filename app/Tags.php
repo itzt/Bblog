@@ -2,8 +2,8 @@
 /*
  * @Author: zhangtao 
  * @Date: 2017-12-24 20:09:45 
- * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-24 21:48:53
+ * @Last Modified by: zhangtao
+ * @Last Modified time: 2017-12-25 17:11:34
  */
 
 
@@ -45,6 +45,18 @@ class Tags extends Model
     static public function getInfo($tagName)
     {
         return self::where(['tag_name'=>$tagName])->first();
+    }
+    /**
+     * 获取最后三条标签
+     *
+     * @return void
+     */
+    static public function getHotTags()
+    {
+        return self::select('tag_id', 'tag_name')
+                     ->orderBy('tag_id', 'desc')
+                     ->limit(3)
+                     ->get();
     }
 
 }
