@@ -31,12 +31,18 @@ class AuthController extends Controller
         if(is_null($user))
         {
             // 首次来-注册用户
-            $result = \App\User::create(array_merge($data,['open_id'=>$opendId]));
+            $data['user_id'] = \App\User::insertGetId(array_merge($data,['open_id'=>$opendId]));
         }
         else
         {
             // 注册过-更新头像、昵称  
-            $result = \App\User::where('open_id', $opendId)->update($data);
+            $user = \App\User::where('open_id', $opendId)->first();
+            foreach($data as $key=>$name)
+            {
+                $user->$key = $name;
+            }
+            $user->save();
+            $data['user_id'] = $user->id;
         }
         // 记录Session
         $request->session()->put('users', $data);

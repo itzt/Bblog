@@ -44,16 +44,98 @@ function admin_language($value=null)
 
 }
 
-/** Ajax 操作成功响应消息 */
-function ajax_success()
+/**
+ * 格式化显示时间
+ *
+ * @param string  $datetime  日期如：2017-12-25 17:34:11
+ * @return void
+ */
+function beautify_date($datetime)
 {
-    return ['status'=>\Config::get('constants.status_success'),'message'=>trans('common.message_success')];                    
+    $difference = time() - strtotime($datetime);
+    if($difference > 7*24*3600)
+    {
+        return '7 days ago';
+    }
+    else if($difference > 6*24*3600)
+    {
+        return '6 days ago';
+    }
+    else if($difference > 5*24*3600)
+    {
+        return '5 days ago';
+    }
+    else if($difference > 4*24*3600)
+    {
+        return '4 days ago';
+    }
+    else if($difference > 3*24*3600)
+    {
+        return '3 days ago';
+    }
+    else if($difference > 2*24*3600)
+    {
+        return '2 days ago';
+    }
+    else if($difference > 1*24*3600)
+    {
+        return '1 days ago';
+    }
+    else if($difference > 3600)
+    {
+        return '1 hour ago';
+    }
+    else if($difference > 1800)
+    {
+        return '30 minutes ago';
+    }
+    else if($difference > 1200)
+    {
+        return '20 minutes ago';
+    }
+    else if($difference > 600)
+    {
+        return '10 minutes ago';
+    }
+    else if($difference > 300)
+    {
+        return '5 minutes ago';
+    }
+    else if($difference > 240)
+    {
+        return '4 minutes ago';
+    }
+    else if($difference > 180)
+    {
+        return '3 minutes ago';
+    }
+    else if($difference > 120)
+    {
+        return '2 minutes ago';
+    }
+    else if($difference > 60)
+    {
+        return '1 minutes ago';
+    }
+    else if($difference > 1)
+    {
+        return 'Just a moment';
+    }                                                      
+
+}
+
+/** Ajax 操作成功响应消息 */
+function ajax_success($message='',$data=[])
+{
+    $message = empty($message) ? trans('common.message_success') : $message;
+    return ['status'=>\Config::get('constants.status_success'),'message'=>$message,'data'=>$data];  
 }
 
 /** Ajax 操作失败响应消息 */
-function ajax_error()
+function ajax_error($message='',$data=[])
 {
-    return ['status'=>\Config::get('constants.status_error'),'message'=>trans('common.message_failure')];
+    $message = empty($message) ? trans('common.message_failure') : $message;
+    return ['status'=>\Config::get('constants.status_error'),'message'=>$message];
 }
 
 /** Ajax 操作异常响应消息 */
