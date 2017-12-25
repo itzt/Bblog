@@ -25,6 +25,17 @@ Route::get('/author/info','Home\AuthorsController@info');
 // 点击文章作者进入作者文章页
 Route::get('/author/index/{aid}', 'Home\AuthorsController@index');
 
+// 前台留言
+Route::match(['get', 'post'],'/contacts', 'Home\ContactsController@index');
+
+// 前台评论与恢复
+Route::group(['prefix' => 'comment'], function(){
+    // 评论列表
+    Route::match(['get', 'post'],'/index', 'Home\CommentsController@index');  
+
+    Route::match(['get', 'post'],'/add', 'Home\CommentsController@add');  
+});
+
 // 关于我们
 Route::get('/about','Home\AboutController@index');
 
@@ -158,19 +169,7 @@ Route::group(['prefix' => 'comment'], function(){
     Route::match(['get', 'post'],'/replay/{id?}', 'Admin\CommentController@replay');    
 });
 
-// 前台Contacts
-Route::group(['prefix' => 'Homecontacts'], function(){
-      // 留言
-      Route::match(['get', 'post'],'/index', 'Home\ContactsController@index');
-    
-});
-// 前台comment
-Route::group(['prefix' => 'comment'], function(){
-    // 评论列表
-    Route::match(['get', 'post'],'/index', 'Home\CommentsController@index');  
 
-    Route::match(['get', 'post'],'/add', 'Home\CommentsController@add');  
-});
 
 Auth::routes();
 
