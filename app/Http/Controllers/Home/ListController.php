@@ -11,7 +11,7 @@ class ListController extends HomeController
 
 
     /**
-     * 列表展示页
+     * 分类、标签列表展示页
      *
      * @return void
      */
@@ -50,5 +50,10 @@ class ListController extends HomeController
         {
             return redirect('/error');
         }
+    }
+
+    public function getMore()
+    {
+        
     }
 }

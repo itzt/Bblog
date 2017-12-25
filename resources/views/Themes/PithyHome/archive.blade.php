@@ -100,20 +100,20 @@
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active" id="lastest" aria-labelledBy="lastest-tab">
 								<ul class="article-list">
-@if(!empty($artList) && isset($artList))
-@foreach($artList as $val)
-	<li>
-		<div class="media clearfix">
-			<div class="media-right"><span class="article-number hidden-xs">{{$val->read_num}}</span></div>
-			<div class="media-body">
-				<h4 class="media-heading"><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h4>
-				<p>{{mb_substr($val->html, 0, 120) }}</p>
-				<div class="article-info"><span class="visible-xs-inline">21 June  •  </span><a href="#">{{$val->cat->cat_name}}</a>  •  <a href="#">21 comments</a></div>
-			</div>
-		</div>
-	</li>
-@endforeach
-@endif
+								@if(!empty($artList) && isset($artList))
+								@foreach($artList as $val)
+									<li>
+										<div class="media clearfix">
+											<div class="media-right"><span class="article-number hidden-xs">{{$val->read_num}}</span></div>
+											<div class="media-body">
+												<h4 class="media-heading"><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h4>
+												<p>{{mb_substr($val->html, 0, 120) }}</p>
+												<div class="article-info"><span class="visible-xs-inline">21 June  •  </span><a href="#">{{$val->cat->cat_name}}</a>  •  <a href="#">21 comments</a></div>
+											</div>
+										</div>
+									</li>
+								@endforeach
+								@endif
 								</ul>
 							</div>
 						</div>
