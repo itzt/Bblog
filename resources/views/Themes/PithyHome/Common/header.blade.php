@@ -212,10 +212,11 @@
 							<i class="fa fa-bars"></i>
 						</button>
 					</div>
+
 					@if(!empty(session('users.nickname')))
-						<button class="modal-form">
-						{{session('users.nickname')}}						
-						</button>
+						<a href="javascript:void(0);" title="{{session('users.nickname')}}" class="modal-form">
+							<img src="@if(!empty(session('users.avatar'))) {{session('users.avatar')}} @else /avatar.jpg @endif" class="round" style="width: 35px;height: 35px; border-radius: 70px;" title="{{session('users.nickname')}}" alt="{{session('users.nickname')}}">					
+						</a>	
 					@else
 					<a href="javascript:void(0);" class="modal-form weixin-sign">
 						<i class="fa fa-user"></i>
