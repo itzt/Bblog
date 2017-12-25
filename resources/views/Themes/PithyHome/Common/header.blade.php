@@ -230,7 +230,11 @@
 						<ul class="nav navbar-nav">
 							@if($navList) @foreach($navList as $nav)
 							<li>
+								@if(!empty($nav['son']))
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$nav['nav_name']}}</a>
+								@else
+								<a href="{{$nav['jump_url']}}" >{{$nav['nav_name']}}</a>
+								@endif
 								@if(!empty($nav['son']))
 								<ul class="dropdown-menu" role="menu">
 									@foreach($nav['son'] as $val)
