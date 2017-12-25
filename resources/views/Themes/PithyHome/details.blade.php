@@ -46,48 +46,48 @@
 								</div>
 							</div>
 
-							<div class="next-prev-post clearfix">
-								<div class="post-direction">
-									@if(!empty($prevNext[0]) && isset($prevNext[0]))									
-									<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
-										<span class="post-way"><i class="fa fa-angle-left"></i> prev post</span>
-										<span class="title">{{mb_substr($prevNext[0]->title, 0, 30)}}...</span>
-									</a>
-									@else
-									<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
-										<span class="post-way"><i class="fa fa-angle-left"></i> prev post</span>
-										<span class="title">No more.</span>
-									</a>
-									@endif
-									@if(!empty($prevNext[0]) && isset($prevNext[0]))
-									<a href="javascript:void(0)">
-										<span class="author">by 
-											<span>{{$prevNext[0]->admin->name}}</span>
-										</span>
-									</a>
-									@endif
-								</div>
-								<div class="post-direction">
-									@if(!empty($prevNext[1]) && isset($prevNext[1]))
-									<a href="/index/details/{{$prevNext[1]->title}}" class="post-next">
-										<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
-										<span class="title">{{mb_substr($prevNext[1]->title, 0, 10)}}...</span>
-									</a>
-									@else
-									<a href="javascript:void(0)" class="post-next">
-										<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
-										<span class="title">No more.</span>
-									</a>
-									@endif
-									@if(!empty($prevNext[1]) && isset($prevNext[1]))
-									<a href="javascript:void(0)">
-										<span class="author">by 
-											<span>{{$prevNext[1]->admin->name}}</span>
-										</span>
-									</a>
-									@endif
-								</div>
-							</div>
+<div class="next-prev-post clearfix">
+	<div class="post-direction">
+		@if(!empty($prevNext[0]) && isset($prevNext[0]))									
+		<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
+			<span class="post-way"><i class="fa fa-angle-left"></i>prev post</span>
+			<span class="title">{{mb_substr($prevNext[0]->title, 0, 20)}}...</span>
+		</a>
+		@else
+		<a href="/index/details/{{$prevNext[0]->title}}" class="post-prev">
+			<span class="post-way"><i class="fa fa-angle-left"></i>prev post</span>
+			<span class="title">No more.</span>
+		</a>
+		@endif
+		@if(!empty($prevNext[0]) && isset($prevNext[0]))
+		<a href="javascript:void(0)">
+			<span class="author">by 
+				<span>{{$prevNext[0]->admin->name}}</span>
+			</span>
+		</a>
+		@endif
+	</div>
+	<div class="post-direction">
+		@if(!empty($prevNext[1]) && isset($prevNext[1]))
+		<a href="/index/details/{{$prevNext[1]->title}}" class="post-next">
+			<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
+			<span class="title">{{mb_substr($prevNext[1]->title, 0, 20)}}...</span>
+		</a>
+		@else
+		<a href="javascript:void(0)" class="post-next">
+			<span class="post-way">next post<i class="fa fa-angle-right"></i></span>
+			<span class="title">No more.</span>
+		</a>
+		@endif
+		@if(!empty($prevNext[1]) && isset($prevNext[1]))
+		<a href="javascript:void(0)">
+			<span class="author">by 
+				<span>{{$prevNext[1]->admin->name}}</span>
+			</span>
+		</a>
+		@endif
+	</div>
+</div>
 				
 							<div class="author-box">
 								<div class="author">

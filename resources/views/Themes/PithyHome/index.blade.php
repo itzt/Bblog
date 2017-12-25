@@ -14,9 +14,9 @@
       
 <div class="container-fluid post-single">
 	<div class="container-medium">
+		<div class="row post-items">
 		@if(!empty($artList) && isset($artList))
 		@foreach($artList as $key => $val)
-		<div class="row post-items">
 			<div class="col-md-12">
 				<div class="post-item">
 					<div class="post-item-paragraph">
@@ -32,193 +32,18 @@
 							By　<a href="/author/index/{{$val->admin->id}}">{{$val->admin->name}}</a>   •   {{$val->cat->cat_name}}
 						</div>
 						<div class="pull-right post-item-social">
-							<a href="#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
+							<a href="#{{$val->title}}" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
 							<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
 							<a href="#" class="post-like"><i class="fa fa-heart"></i><span>{{$val->like_num}}</span></a>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 		@endforeach
 		@endif
+		</div>
 	</div>
 </div>
-
-						<div class="container-fluid post-banner">
-							<div class="container-medium">
-								<div class="row post-items">
-									<div class="post-item-banner lg-banner">
-										<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-											<ol class="carousel-indicators">
-												<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-												<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-												<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-											</ol>
-											<div class="carousel-inner">
-												<div class="item active">
-													<img src="assets/img/img-16.png" alt="" />
-												</div>
-												<div class="item">
-													<img src="assets/img/img-16.png" alt="" />
-												</div>
-												<div class="item">
-													<img src="assets/img/img-16.png" alt="" />
-												</div>
-											</div>
-											<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-											<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="post-item">
-											<div class="post-item-paragraph">
-												<div>
-													<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
-													<a href="#" class="mute-text">FUN</a>
-												</div>
-												<h3><a href="#">Harbiye Open Air Concerts</a></h3>
-												<p class="ellipsis-fade-five">Vodafone Smart 6 Harbiye Open Air Concerts will be at Harbiye Cemil Topuzlu Open Air Stage. Vivamus nec mauris pulvinar leo dignissim sollicitudin eleifend eget velit. Nunc sed dolor enim, vitae sodales diam. Mauris fermentum fringilla lorem, in rutrum massa sodales et. Praesent mollis sodales est, lorem eget fringilla libero sagittis animous ledra sitemah eget. Vivamus nec mauris pulvinar leo dignissim sollicitudin eleifend eget velit. Nunc sed dolor enim, vitae sodales diam. <a href="#" class="more"></a></p>
-											</div>
-											<div class="post-item-info clearfix">
-												<div class="pull-left">
-													<span>25 June</span>   •   By <a href="#">Gannon Burget</a>   •   <a href="#">#concert</a>
-												</div>
-												<div class="pull-right post-item-social">
-													<a href="#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
-													<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
-													<a href="#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="container-fluid post-video">
-							<div class="container-medium">
-								<div class="row post-items">
-									<div class="post-item-banner embed-responsive embed-responsive-16by9">
-										<!-- <iframe src="https://player.vimeo.com/video/49445992" class="embed-responsive-item" allowfullscreen></iframe> -->
-									</div>
-									<div class="col-md-12">
-										<div class="post-item">
-											<div class="post-item-paragraph">
-												<div>
-													<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
-													<a href="#" class="mute-text">Vimeo</a>
-												</div>
-												<h3><a href="#">Long Live The Kings - Short Film</a></h3>
-												<p>Sed vel magna leo, in pretium nunc. Ut ornare turpis vel ipsum vulputate lacinia. Pellentesque blandit sagittis tempor. Vivamus nec mauris pulvinar leo dignissim sollicitudin eleifend eget velit. Nunc sed dolor enim, vitae sodales diam. Mauris fermentum fringilla lorem, in rutrum massa. Nunc sed dolor enim, vitae sodales diam. Mauris fermentum fringilla lorem, in rutrum massa sodales et. Praesent mollis sodales est, eget fringilla libero sagittis eget. <a href="#" class="more">[...]</a></p>
-											</div>
-											<div class="post-item-info clearfix">
-												<div class="pull-left">
-													<span>24 June</span>   •   <a href="#">#video</a>
-												</div>
-												<div class="pull-right post-item-social">
-													<a href="#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
-													<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
-													<a href="#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="container-fluid post-sound">
-							<div class="container-medium">
-								<div class="row post-items">
-									<div class="post-item-banner embed-responsive embed-responsive-16by9">
-										<!-- <iframe  class="embed-responsive-item" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/186983384&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe> -->
-									</div>
-									<div class="col-md-12">
-										<div class="post-item">
-											<div class="post-item-paragraph">
-												<div>
-													<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
-													<a href="#" class="mute-text">Soundcloud</a>
-												</div>
-												<h3><a href="#">Show Me Love (Out Now)</a></h3>
-												<p class="five-lines">Consectetur adipiscing elit. Vivamus nec mauris pulvinar leo dignissim sollicitudin eleifend eget velit. Nunc sed dolor enim, vitae sodales diam. Mauris fermentum fringilla lorem, in rutrum massa sodales et. Praesent mollis sodales est, eget fringilla libero sagittis eget. Nunc gravida varius risus ac luctus. Mauris ornare eros sed libero euismod ornare.  Praesent mollis sodales est, eget fringilla libero sagittis eget. Nunc gravida varius risus ac luctus. Mauris ornare eros sed libero euismod ornare. Praesent mollis sodales est, eget fringilla libero sagittis eget. Nunc gravida varius risus ac luctus. Mauris ornare eros sed libero euismod ornare. Praesent mollis sodales est, eget fringilla libero sagittis eget. Nunc gravida varius risus ac luctus. Mauris ornare eros sed libero euismod ornare. </p>
-											</div>
-											<div class="post-item-info clearfix">
-												<div class="pull-left">
-													<span>24 June</span>   •   <a href="#">#music</a>
-												</div>
-												<div class="pull-right post-item-social">
-													<a href="#" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
-													<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
-													<a href="#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="container-fluid post-quote">
-							<div class="container-medium">
-								<div class="row post-items">
-									<div class="col-md-12">
-										<div class="post-item">
-											<div class="in-quote">
-												<img src="assets/img/img-17.png" alt="">
-												<div class="block-overlay">
-													<div class="overlay-quote">
-														<span class="quote-icon">“</span>
-														<a href="#" class="spot">The difference between a successful person and others is not a lack of strength, not a lack of knowledge, but rather a lack of will.</a>
-														<span class="name">- Vince Lombardi</span>
-													</div>
-												</div>
-											</div>
-											<div class="post-item-info clearfix">
-												<div class="pull-left">
-													<span>22 June</span>   •   <a href="#">#vision</a>
-												</div>
-												<div class="pull-right post-item-social">
-													<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
-													<a href="#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="container-fluid post-link">
-							<div class="container-medium">
-								<div class="row post-items">
-									<div class="col-md-12">
-										<div class="post-item">
-											<div class="in-link">
-												<img src="assets/img/img-18.png" alt="" />
-												<div class="block-overlay">
-													<div class="overlay-link">
-														<i class="fa fa-link fa-rotate-90"></i>
-														<a href="#">http://themeforest.net/category/wordpress</a>
-														<span class="link-text">Inside - Personal or Corparete<br />Flexible and Multipurpose WP Theme</span>
-													</div>
-												</div>
-											</div>
-											<div class="post-item-info clearfix">
-												<div class="pull-left">
-													<span>21 June</span>   •   <a href="#">#project</a>
-												</div>
-												<div class="post-item-social">
-													<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
-													<a href="#" class="post-like"><i class="fa fa-heart"></i><span>28</span></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 
 
 						<div class="row">
@@ -233,9 +58,8 @@
 				<aside class="col-md-4">
 
 					<div class="laread-right">
-
-						<form class="laread-form search-form">
-							<div class="input"><input type="text" class="form-control" placeholder="Search..."></div>
+						<form class="laread-form search-form" action="/search" method="get">
+							<div class="input"><input type="text" name="title" value="{{$title}}" class="form-control" placeholder="Search..."></div>
 							<button type="submit" class="btn btn-link"><i class="fa fa-search"></i></button>
 						</form>
 

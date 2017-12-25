@@ -2,8 +2,8 @@
 /*
  * @Author: zhangtao 
  * @Date: 2017-12-04 15:55:48 
- * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-24 21:52:51
+ * @Last Modified by: zhangtao
+ * @Last Modified time: 2017-12-24 21:42:08
  */
 namespace App;
 
@@ -30,10 +30,10 @@ class Posts extends Model
     static public function getArticleList($type, $title = '', $limit = '')
     {
         $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['status' => $type]);
+            ->where(['status' => $type, 'language' => \App\Tools\admin_language()]);
         if(!empty($title))
         {
-           $query = $query->orWhere('title', 'like', "%$title%");
+           $query = $query->where('title', 'like', "%$title%");
         }
         if(!empty($limit))
         {
@@ -51,7 +51,7 @@ class Posts extends Model
     static public function getRecentList()
     {
         return self::select('post_id', 'title', 'updated_at')
-                    ->where(['status' => self::STATUS_PUBLISH])
+                    ->where(['status' => self::STATUS_PUBLISH, 'language' => \App\Tools\admin_language()])
                     ->orderBy('post_id', 'desc')
                     ->limit(6)
                     ->get();
@@ -67,10 +67,10 @@ class Posts extends Model
     static public function getArchiveList($type, $title = '', $limit = '')
     {
         $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['status' => $type]);
+            ->where(['status' => $type, 'language' => \App\Tools\admin_language()]);
         if(!empty($title))
         {
-           $query = $query->orWhere('title', 'like', "%$title%");
+           $query = $query->where('title', 'like', "$title%");
         }
         if(!empty($limit))
         {
@@ -88,7 +88,7 @@ class Posts extends Model
     static public function getAuthorList($author, $limit = '')
     {
         $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['author' => $author]);
+            ->where(['author' => $author, 'language' => \App\Tools\admin_language()]);
         if(!empty($limit))
         {
             $query = $query->limit($limit);
@@ -165,7 +165,24 @@ class Posts extends Model
         }
         return $data;        
     }
- 
+
+    /**
+     * 获取根据分类获取文章列表
+     *
+     * @param string  $catId
+     * @param integer $limit
+     * @return void
+     */
+    static public function getPostList($catId, $limit = 10)
+    {
+        return self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
+            ->where(['status' => self::STATUS_PUBLISH, 'language' => \App\Tools\admin_language()])
+            ->where(['cat_id'=>$catId])
+            ->limit($limit)
+            ->orderBy('post_id', 'desc')
+            ->get();
+            
+    }    
 
    
 

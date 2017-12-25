@@ -16,19 +16,43 @@ class IndexController extends HomeController
      *
      * @return void
      */
-    public function index(Request $request)
+    public function index()
     {
-        $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, '', 10);
-        $catList = Categories::getSearchCat();
-        $tagList = Tags::getSearchTagList();
-        $recList = Posts::getRecentList();
-        
+        $data = $this->indexCommon();
         return view('Themes/'.$this->theme.'Home/index', [
-            'artList' => $artList,
-            'catList' => $catList,
-            'tagList' => $tagList,
-            'recList' => $recList
+            'artList' => $data['artList'],
+            'catList' => $data['catList'],
+            'tagList' => $data['tagList'],
+            'recList' => $data['recList'],
+            'title'   => $data['title']
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        $data    = $this->indexCommon();
+        $title   = $request->title;
+        return view('Themes/'.$this->theme.'Home/index', [
+            'artList' => $data['artList'],
+            'catList' => $data['catList'],
+            'tagList' => $data['tagList'],
+            'recList' => $data['recList'],
+            'title'   => $data['title']
+        ]);
+    }
+    /**
+     * 首页信息展示 和 搜索公共方法
+     *
+     * @return void
+     */
+    private function indexCommon()
+    {
+        $data['title']   = '';
+        $data['artList'] = Posts::getArchiveList(Posts::STATUS_PUBLISH, $data['title'], 10);
+        $data['catList'] = Categories::getSearchCat();
+        $data['tagList'] = Tags::getSearchTagList();
+        $data['recList'] = Posts::getRecentList();
+        return $data;
     }
 
     /**
@@ -46,11 +70,11 @@ class IndexController extends HomeController
         {
             Posts::where(['title' => $title])->increment('read_num', 1); // 每次点击当前文章阅读量自增1
         }
-        $artFind = (new Posts)->getOne(['title' => $title]); // 根据标题获取此信息
+        $artFind = (new Posts)->getOne(['title' => $title, 'language' => \App\Tools\admin_language()]); // 根据标题获取此信息
         $pid=$artFind->post_id;
         // echo '<pre>';
         // print_r($artFind);die;
-        $where   = ['cat_id' => $artFind->cat_id, 'status' => Posts::STATUS_PUBLISH];
+        $where   = ['cat_id' => $artFind->cat_id, 'status' => Posts::STATUS_PUBLISH, 'language' => \App\Tools\admin_language()];
         $prevNext= (new Posts)->getPrevAndNextInfo($where); // 获取详情页的同类信息 2条
         // echo '<pre>';
         // print_r($prevNext);die;
