@@ -16,7 +16,7 @@ Route::get('/','Home\IndexController@index');
 // 前台首页搜索
 Route::get('/search/{title?}','Home\IndexController@search');
 // 前台文章详情
-Route::get('/index/details/{title}', 'Home\IndexController@details');
+Route::get('/details/{title}', 'Home\IndexController@details');
 // 所有文章页
 Route::get('/archive', 'Home\IndexController@archive');
 
