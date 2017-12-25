@@ -31,7 +31,7 @@ class AuthController extends Controller
         if(is_null($user))
         {
             // 首次来-注册用户
-            $data['user_id'] = \App\User::getInsertId(array_merge($data,['open_id'=>$opendId]));
+            $data['user_id'] = \App\User::insertGetId(array_merge($data,['open_id'=>$opendId]));
         }
         else
         {
