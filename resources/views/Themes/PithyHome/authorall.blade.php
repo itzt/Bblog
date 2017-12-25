@@ -17,7 +17,7 @@
         <div class="author-item">
             <div class="author-picture">
                 <img src="{{$val->avatar}}" alt="" />
-            </div>/author/index/{{$val->id}}
+            </div>
             <div class="author-subdetail">
                 <h2><a href="/author/index/{{$val->id}}">{{$val->name}}</a></h2>
                 <p class="info-small">{{$val->profession}}   <span><i class="fa fa-map-marker"></i> {{$val->address}}</span></p>
