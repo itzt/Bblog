@@ -12,9 +12,11 @@
 			<div class="container-fluid">
 				<div class="container">
 					<div class="row post-items">
+						<!--
 						<div class="post-item-banner">
 							<img src="/assets/img/img-44.png" alt="" />
 						</div>
+						-->
 						<div class="col-md-2">
 							<div class="post-item-short">
 								<span class="big-text">{{date('d', strtotime($artFind->updated_at))}}</span>
@@ -32,9 +34,9 @@
 								</div>
 								<div class="post-item-info no-border clearfix">
 									<p class="post-tags">
-										<a href="#">fashion</a>
-										<a href="#">culture</a>
-										<a href="#">art</a>
+										@if(!empty($tags)) @foreach($tags as $tag)
+										<a href="/list/tag-{{$tag->tag_name}}">{{$tag->tag_name}}</a>
+										@endforeach @endif
 									</p>
 									<div class="post-item-social">
 										<a href="#"><i class="fa fa-facebook"></i></a>
@@ -94,7 +96,7 @@
 									<a class="author-photo" href="#"><img src="{{$artFind->admin->avatar}}" width="70px" height="70px" alt=""></a>
 									<div class="author-body">
 										<h4 class="author-name">{{$artFind->admin->name}}</h4>
-										<a href="#">view all post</a>
+										<a href="author/index/{{$artFind->author}}">view all post</a>
 									</div>
 									<div class="author-connection">
 										<a href="#"><i class="fa fa-twitter"></i></a>
@@ -124,7 +126,7 @@
 											<a href="javascript:void(0)" class="comment-reply active-comment reply" nickname="{{$v['nickname']}} "><i class="reply-icon"></i > Reply</a>
 										
 													
-											@if(!empty($v['children']))
+											@if(!empty($v['children'])&&is_array($v['children']))
 												@foreach($v['children'] as $val)
 													<div class="comment-item">
 														<a class="comment-photo" href="#">
@@ -157,8 +159,10 @@
 									<div class="comment-form main-comment-form">
 											<textarea class="comment-textarea" placeholder="Leave a comment..."></textarea>
 											<div class="at-focus">
+												<!--
 												<input class="comment-input"  name='nickname' placeholder="Name" type="text" />
 												<input class="comment-input"  name='email' placeholder="or Email" type="text" />
+												-->
 												<button class="comment-submit  btn-comment">Post Comment</button>
 											</div>
 									</div>
@@ -206,49 +210,7 @@
 						<div class="qr-content post-item-paragraph">
 
 							<article>
-								<h2>A Nice Street Cafe in London</h2>
-
-								<p>Consectetur adipiscing elit. Vivamus nec mauris pulvinar leo dignissim sollicitudin eleifend eget velit. Nunc sed dolor enim, vitae sodales diam. Mauris fermentum fringilla lorem, in rutrum massa sodales et. Praesent mollis sodales est, eget fringilla libero sagittis eget. Nunc gravida varius risus ac luctus. Mauris ornare eros sed libero euismod ornare. Nulla id sem a mauris egestas pulvinar vitae non dui. Cras odio tortor, feugiat nec sagittis sed, laoreet ut mauris. In hac habitasse platea dictumst.</p>
-
-								<p>What if instead your website used machine learning to build itself, and then rebuilt as necessary, based on data it was gathering about how it was being used? That's what The Grid is aiming to do. After you add content such as pictures, text, the stuff everyone enjoys interacting with your obligation to design...</p>
-
-								<h4>The Truth about Teens and Privacy</h4>
-
-								<p>Social media has introduced a new dimension to the well-worn fights over private space and personal expression. Teens do not want their parents to view their online profiles or look over their shoulder when they’re chatting with friends. Parents are no longer simply worried about what their children wear out of the house but what they photograph themselves wearing in their bedroom to post online. Interactions that were previously invisible to adults suddenly have traces, prompting parents to fret over.</p>
-
-								<h4>Here are some of the ways you may be already being hacked:</h4>
-
-								<ul class="in-list">
-									<li>Everyone makes mistakes</li>
-									<li>You can control only your behavior</li>
-									<li>Good habits create discipline</li>
-									<li>Remember the <u>big picture</u></li>
-									<li>Everyone learns differently</li>
-									<li>Focus on the Benefits, Not the Difficulties</li>
-									<li>Traditions are bonding opportunities</li>
-								</ul>
-
-								<p>This is not a comprehensive list. Rather, it is a snapshot in time of real-life events that are happening right now. In the future, we will likely read this list and laugh at all the things I failed to envision.</p>
-								<p class="with-img">
-									<a href="assets/img/banner-85-1.jpg" data-fluidbox-qr><img src="/assets/img/banner-85.jpg" alt=""></a>
-									<span class="img-caption">Walk through the Forest</span>
-								</p>
-								<p>Elit try-hard consectetur, dolore voluptate minim distillery. Bespoke Cosby sweater pug street art et keytar. Nihil fish whatever trust fund, dreamcatcher in fingerstache squid seitan accusamus. Organic Wes Anderson High Life setruhe authentic iPhone, aute art party hashtag fixie church-key art veniam Tumblr polaroid. DIY polaroid vinyl, sustainable hella scenester accusamus fanny pack. Ut Neutra enim pariatur cornhole actually Banksy, tote bag fugiat ad accusamus. Incididunt fixie normcore fingerstache. Freegan proident literally brunch before they sold out.
-								</p>
-
-								<p>Readymade fugiat narwhal, typewriter VHS aute stumptown hoodie irure put a bird on it. Fashion axe raw denim brunch put a bird on it voluptate Truffaut. Bitters PBR&amp;B nulla Odd Future swag leggings. Banh mi Wes Anderson butcher letterpress skateboard quis. Chambray hella retro viral Cosby sweater photo booth. Schlitz elit Cosby sweater, Blue Bottle non chambray chia. Single-origin coffee pickled.</p>
-
-								<h5>Blockquote</h5>
-
-								<p>Do officia aliqua, pop-up ut et occupy sriracha. YOLO meggings PBR sartorial mollit, Schlitz assumenda vero kitsch plaid post-ironic PBR&amp;B keffiyeh. Cosby sweater wolf YOLO Austin bespoke, American Apparel crucifix paleo flexitarian. Aliquip bitters food truck, incididunt tofu accusamus magna nesciunt typewriter drinking vinegar Shoreditch try-hard you probably haven’t heard of them labore. </p>
-
-								<blockquote>
-									<p><i>“The Muppets Take Manhattan”</i><br />
-									This movie was a disappointment. The Muppets do not take Manhattan at all. They merely visit it.<br />
-									<span>— No stars.</span></p>
-								</blockquote>
-
-								<p>Do officia aliqua, pop-up ut et occupy sriracha. YOLO meggings PBR sartorial mollit, Schlitz assumenda vero kitsch plaid post-ironic PBR&amp;B keffiyeh. Cosby sweater wolf YOLO Austin bespoke, American Apparel crucifix paleo flexitarian. Aliquip bitters food truck, incididunt tofu accusamus.</p>
+								{!! Parsedown::instance()->setMarkupEscaped(true)->text($artFind->html) !!}
 							</article>
 						</div>
 					</div>
@@ -287,7 +249,6 @@
 </body>
 </html>
 
-<script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
 <script>
 $().ready(function() {
 	//评论
@@ -295,17 +256,40 @@ $().ready(function() {
 		var email=$(this).prev().val();
 		var nickname=$(this).prev().prev().val();
 		var content=$(this).parent().prev().val();
-		$.get("/comment/add", {'content': content,'_token':"{{csrf_token()}}",'email':email,'nickname':nickname,'post_id':"{{$pid}}"},function(data){
-			
-			if(data.status==1){
-				layer.msg(data.message,{icon:1,time:1000});
-				window.location.reload();
-			}else{
-				layer.msg(data.message,{icon:0,time:1000});
-				window.location.reload();
-			}
+		
+		$.ajax({
+                'type':'post',
+				'url' :'/comment/add',
+				'data':{'content': content,'_token':"{{csrf_token()}}",'email':email,'nickname':nickname,'post_id':"{{$artFind->post_id}}"},
+                'success':function(data)
+                {
+                    // 200 请求，获取服务器消息与状态
+                    layer.msg(data.message,{icon:data.status});
 
-		},'json');
+                },
+                'error':function(data)
+                {                
+					var result = JSON.parse(data.responseText);
+					if(data.status == 301)
+					{
+						layer.msg(result.message);
+						layer.open({
+							type: 2,
+							title: '',
+							shadeClose: true,
+							shade: 0.8,
+							area: ['380px', '50%'],
+							content: '/auth/weixin' //iframe的url
+						}); 
+					}
+					else
+					{
+                    	// 非200/非301请求，获取错误消息
+                    	layer.msg(result.message,{icon:result.status});
+					}
+
+                }			
+		})
 
 	})
 
@@ -321,7 +305,7 @@ $().ready(function() {
 		var content=$(this).parent('.at-focus').prev().val();
 		var id=$(this).prop('id');
 		
-		$.get("/comment/index", {'parent_id':id,'content': content,'_token':"{{csrf_token()}}",'post_id':"{{$pid}}"},function(data){
+		$.get("/comment/index", {'parent_id':id,'content': content,'_token':"{{csrf_token()}}",'post_id':"{{$artFind->post_id}}"},function(data){
 
 
 			if(data.status==1){

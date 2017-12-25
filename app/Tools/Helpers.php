@@ -12,7 +12,23 @@ namespace App\Tools;
 
 use \Illuminate\Support\Facades\Cache;
 
-/** 记录管理员选择的语言 */
+/** 记录前台用户选择的语言 */
+function home_language($value=null)
+{
+    if(isset($value))
+    {
+        return Cache::put('home_language',$value,100);
+    }
+    else
+    {
+        
+        $language = Cache::get('home_language');
+        return empty($language) ? 'zh-CN' : $language;
+    }
+
+}
+
+/** 记录后台管理员选择的语言 */
 function admin_language($value=null)
 {
     if(isset($value))

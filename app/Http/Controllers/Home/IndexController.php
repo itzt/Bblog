@@ -63,24 +63,34 @@ class IndexController extends HomeController
      */
     public function details(Request $request)
     {
-        $pid = $request->id;
-     
-        $title   = $request->title; // 获取title值
-        if(!empty($title))
+        try
         {
+            // 获取title值
+            $title   = $request->title; 
+            if(!isset($title) || empty($title))
+            {
+                throw new \Exception('error');
+            }
             Posts::where(['title' => $title])->increment('read_num', 1); // 每次点击当前文章阅读量自增1
+            
+            $artFind = (new Posts)->getOne(['title' => $title]); // 根据标题获取此信息
+            
+            $where   = ['cat_id' => $artFind->cat_id, 'status' => Posts::STATUS_PUBLISH, 'language' => \App\Tools\home_language()];
+            $prevNext= (new Posts)->getPrevAndNextInfo($where); // 获取详情页的同类信息 2条
+            $data = [];
+            
+            // 文章关联标签
+            $tags = $artFind->postsTags;
+            
+            //$data=(new Comments)->getPrinmaryCate($artFind->post_id);
+            // dd($data);
+            return view('Themes/'.$this->theme.'Home/details', ['artFind'=>$artFind, 'prevNext'=>$prevNext, 'data'=>$data, 'tags'=>$tags]);
         }
-        $artFind = (new Posts)->getOne(['title' => $title, 'language' => \App\Tools\admin_language()]); // 根据标题获取此信息
-        $pid=$artFind->post_id;
-        // echo '<pre>';
-        // print_r($artFind);die;
-        $where   = ['cat_id' => $artFind->cat_id, 'status' => Posts::STATUS_PUBLISH, 'language' => \App\Tools\admin_language()];
-        $prevNext= (new Posts)->getPrevAndNextInfo($where); // 获取详情页的同类信息 2条
-        // echo '<pre>';
-        // print_r($prevNext);die;
-        $data=(new Comments)->getPrinmaryCate($pid);
-     
-        return view('Themes/'.$this->theme.'Home/details', ['artFind' => $artFind,'prevNext' => $prevNext,'pid'=>$pid,'data'=>$data]);
+        catch(\Exception $e)
+        {
+            return redirect('/error');
+        }
+
     }
 
     /**

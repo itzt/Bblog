@@ -24,7 +24,7 @@
 							<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
 							<a href="#" class="mute-text">{{date('d  F  Y', strtotime($val->updated_at))}}</a>
 						</div>
-						<h3><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h3>
+						<h3><a href="/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h3>
 						<p class="five-lines">{{mb_substr($val->html, 0, 120) }}<a href="#">[...]</a></p>
 					</div>
 					<div class="post-item-info clearfix">
@@ -76,7 +76,7 @@
 							<li class="title">RECENT POSTS</li>
 							@if(!empty($recList))
 							@foreach($recList as $val)
-								<li><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 15)}}...</a><i class="date">{{date('d F', strtotime($val->updated_at))}}</i></li>
+								<li><a href="/details/{{$val->title}}">{{mb_substr($val->title, 0, 15)}}...</a><i class="date">{{date('d F', strtotime($val->updated_at))}}</i></li>
 							@endforeach
 							@endif
 						</ul>
@@ -322,9 +322,10 @@ $(function(){
 			title: '',
 			shadeClose: true,
 			shade: 0.8,
-			area: ['380px', '60%'],
+			area: ['380px', '50%'],
 			content: '/auth/weixin' //iframe的url
 		}); 
+		layer.close(index);
 
 	})
 })
