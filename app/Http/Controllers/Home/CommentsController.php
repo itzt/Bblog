@@ -5,39 +5,27 @@ use App\Comments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-class CommentsController extends HomeController
+class CommentsController extends Controller
 {
     protected $userInfo = null;
 
     public function __construct(Request $request)
     {
-        try
-        {
-            parent::__construct($request);            
+        // 主动执行中间间拿到SESSION
+        // $this->middleware(function ($request, $next) {
+        //     // dd($request->session()->all());
+        //     if(!$request->session()->has('users'))
+        //     {
+        //         // 未登录-弹出登录二维码
+        //         throw new HttpException('401','请先登录.');
+        //     }
+        //     $this->userInfo =  $request->session()->get('users');
 
-            // 检测是否登录-暂且必须登录方可评论-后面可根据配置要求
-            if(true)
-            {
-                // 主动执行中间间拿到SESSION
-                $this->middleware(function ($request, $next) {
-                    // dd($request->session()->all());
-                    if(!$request->session()->has('users'))
-                    {
-                        // 未登录-弹出登录二维码
-                        throw new HttpException('401','请先登录.');
-                    }
-                    $this->userInfo =  $request->session()->get('users');
-
-                    return $next($request);
-                });  
-            }
-        
-        }
-        catch(\Exception $e)
-        {
-            return \App\Tools\ajax_exception($e->getStatusCode(),$e->getMessage());
-        }
+        //     // return $next($request);
+        //     return 1;
+        // });          
     }
+
     /**
      * 回复
      *
@@ -51,6 +39,13 @@ class CommentsController extends HomeController
                         
             if($request->ajax())
             {
+                // 检测是否登录-暂且必须登录方可评论-后面可根据配置要求
+                if(!$request->session()->has('users'))
+                {
+                    // 未登录-弹出登录二维码
+                    throw new HttpException('401','请先登录.');
+                }
+                $this->userInfo =  $request->session()->get('users');
 
                 //表中admin_id字段没有修改
                 $all = $request->all();
@@ -88,9 +83,17 @@ class CommentsController extends HomeController
     public function comment(Request $request)
     {
         try
-        {            
+        {   
             if($request->ajax())
             {
+                // 检测是否登录-暂且必须登录方可评论-后面可根据配置要求
+                if(!$request->session()->has('users'))
+                {
+                    // 未登录-弹出登录二维码
+                    throw new HttpException('401','请先登录.');
+                }
+
+                $this->userInfo =  $request->session()->get('users');
 
                 $all = $request->all();    
 

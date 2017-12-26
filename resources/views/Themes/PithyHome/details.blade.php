@@ -253,10 +253,12 @@ $().ready(function() {
                 },
                 'error':function(data)
                 {                
+
 					var result = JSON.parse(data.responseText);
+					
 					if(data.status == 401)
 					{
-						layer.msg(result.message);
+						//layer.msg(result.message);
 						layer.open({
 							type: 2,
 							title: '',
@@ -301,7 +303,7 @@ $().ready(function() {
 				var data = JSON.parse(result.responseText);
 				if(result.status == 401)
 				{
-					layer.msg(data.message);
+					//layer.msg(data.message);
 					layer.open({
 						type: 2,
 						title: '',
