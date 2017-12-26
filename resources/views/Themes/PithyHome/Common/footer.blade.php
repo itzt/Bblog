@@ -17,3 +17,23 @@
 	<script src="/assets/js/script.js"></script>
 	<script src="/assets/layer/layer.js"></script>
 	
+	<script>
+	$(function(){
+		$('.weixin-sign').click(function(){
+			var index = layer.load(1, {
+				shade: [0.1,'#fff'] //0.1透明度的白色背景
+			});
+
+			layer.open({
+				type: 2,
+				title: '',
+				shadeClose: true,
+				shade: 0.8,
+				area: ['380px', '60%'],
+				content: '/auth/weixin' //iframe的url
+			}); 
+			layer.close(index);
+
+		})
+	})
+	</script>		

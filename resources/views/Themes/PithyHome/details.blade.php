@@ -234,7 +234,7 @@ $().ready(function() {
 		
 		$.ajax({
                 'type':'post',
-				'url' :'/comment/add',
+				'url' :'/details/comment',
 				'data':{'content': content,'_token':"{{csrf_token()}}",'email':email,'nickname':nickname,'post_id':"{{$artFind->post_id}}"},
                 'success':function(data)
                 {
@@ -288,19 +288,36 @@ $().ready(function() {
 	$('.btn-golden').click(function(){
 		var content=$(this).parent('.at-focus').prev().val();
 		var id=$(this).prop('id');
-		
-		$.get("/comment/index", {'parent_id':id,'content': content,'_token':"{{csrf_token()}}",'post_id':"{{$artFind->post_id}}"},function(data){
-
-
-			if(data.status==1){
-				layer.msg(data.message,{icon:1,time:1000});
-				window.location.reload();
-			}else{
-				layer.msg(data.message,{icon:0,time:1000});
-				window.location.reload();
+		$.ajax({
+			'type':'post',
+			'url' :'/details/replay',
+			'data':{'parent_id':id,'content': content,'_token':"{{csrf_token()}}",'post_id':"{{$artFind->post_id}}"},
+			'success':function(result)
+			{
+				layer.msg(result.message);
+			},
+			'error':function(result)
+			{
+				var data = JSON.parse(result.responseText);
+				if(result.status == 401)
+				{
+					layer.msg(data.message);
+					layer.open({
+						type: 2,
+						title: '',
+						shadeClose: true,
+						shade: 0.8,
+						area: ['380px', '50%'],
+						content: '/auth/weixin' //iframe的url
+					}); 
+				}
+				else
+				{
+					// 非200/非301请求，获取错误消息
+					layer.msg(data.message,{icon:data.status});
+				}
 			}
-
-		},'json');
+		})
 	})
 
 	

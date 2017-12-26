@@ -27,7 +27,7 @@
 												<span class="article-number hidden-xs">{{date('m',strtotime($val->created_at))}}</span>
 											</div>
 											<div class="media-body">
-												<h4 class="media-heading"><a href="/index/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h4>
+												<h4 class="media-heading"><a href="/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h4>
 												<p>{{mb_substr($val->html, 0, 120) }}</p>
 												<div class="article-info"> <a href="/list/category-{{$val->cat->cat_name}}">{{$val->cat->cat_name}}</a>  •  <a href="/author/index/{{$val->author}}">{{$val->admin->name}}</a> • <a href="javascript:void(0);">{{count($val->comments)}} 评论</a></div>
 											</div>

@@ -37,7 +37,6 @@ function admin_language($value=null)
     }
     else
     {
-        
         $language = Cache::get('admin_language');
         return empty($language) ? 'zh-CN' : $language;
     }
@@ -143,7 +142,7 @@ function ajax_exception($statusCode,$message='')
 {
     if(empty($message)) $message = trans('common.server_exception');
     $data = ['status'=>\Config::get('constants.status_danger'),'message'=>$message];
-    return response()->json($data, $statusCode);
+    return response()->json($data, $statusCode)->send();exit;
 }
 
 

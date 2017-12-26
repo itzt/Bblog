@@ -234,12 +234,12 @@
 								@if(!empty($nav['son']))
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{$nav['nav_name']}}</a>
 								@else
-								<a href="{{$nav['jump_url']}}" >{{$nav['nav_name']}}</a>
+								<a href="{{$nav['jump_url']}}" @if($nav['is_open']) target="_blank" @endif>{{$nav['nav_name']}}</a>
 								@endif
 								@if(!empty($nav['son']))
 								<ul class="dropdown-menu" role="menu">
 									@foreach($nav['son'] as $val)
-									<li><a href="{{$val['jump_url']}}">{{$val['nav_name']}}</a></li>
+									<li><a href="{{$val['jump_url']}}" @if($val['is_open']) target="_blank" @endif>{{$val['nav_name']}}</a></li>
 						            @endforeach 
 								</ul>
 								@endif
@@ -251,3 +251,4 @@
 				</div>
 			</nav>
 		</header>
+	

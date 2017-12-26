@@ -20,8 +20,8 @@ class HomeController extends Controller
      */
     protected $cacheTime = 0;   // 开发阶段暂设为0
 
-
-    public function __construct(Request $request){
+    public function __construct(Request $request){      
+      
         // 记录本次URL
         session()->flash('goback', $request->url());
         
@@ -42,7 +42,6 @@ class HomeController extends Controller
             Cache::put('navList',$navList,$this->cacheTime);
         }        
         view()->share('navList',$navList);
-        
         // 载入皮肤
         $this->theme = env('DEFAULT_THEM','Pithy');
         

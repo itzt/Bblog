@@ -22,10 +22,10 @@
 					<div class="post-item-paragraph">
 						<div>
 							<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
-							<a href="#" class="mute-text">{{date('d  F  Y', strtotime($val->updated_at))}}</a>
+							<a href="javascript:void(0);" class="mute-text">{{date('d  F  Y', strtotime($val->updated_at))}}</a>
 						</div>
 						<h3><a href="/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h3>
-						<p class="five-lines">{{mb_substr($val->html, 0, 120) }}<a href="#">[...]</a></p>
+						<p class="five-lines">{{mb_substr($val->html, 0, 120) }}<a href="/details/{{$val->title}}">[...]</a></p>
 					</div>
 					<div class="post-item-info clearfix">
 						<div class="pull-left">
@@ -310,24 +310,4 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 @include('Themes.PithyHome.Common.footer');
 </body>
-<script>
-$(function(){
-	$('.weixin-sign').click(function(){
-		var index = layer.load(1, {
-  			shade: [0.1,'#fff'] //0.1透明度的白色背景
-		});
-
-		layer.open({
-			type: 2,
-			title: '',
-			shadeClose: true,
-			shade: 0.8,
-			area: ['380px', '50%'],
-			content: '/auth/weixin' //iframe的url
-		}); 
-		layer.close(index);
-
-	})
-})
-</script>
 </html>

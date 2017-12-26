@@ -97,15 +97,14 @@ class Posts extends Model
     /**
      * 获取前台文章信息
      *
-     * @param [type] $type
      * @param string $title
      * @param string $limit
      * @return void
      */
-    static public function getArchiveList($type, $title = '', $limit = '')
+    static public function getArchiveList($title = '', $limit = '')
     {
         $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
-            ->where(['status' => $type, 'language' => \App\Tools\admin_language()]);
+            ->where(['status' => self::STATUS_PUBLISH, 'language' => \App\Tools\home_language()]);
         if(!empty($title))
         {
            $query = $query->where('title', 'like', "$title%");

@@ -19,36 +19,30 @@ class IndexController extends HomeController
     public function index()
     {
         $data = $this->indexCommon();
-        return view('Themes/'.$this->theme.'Home/index', [
-            'artList' => $data['artList'],
-            'catList' => $data['catList'],
-            'tagList' => $data['tagList'],
-            'recList' => $data['recList'],
-            'title'   => $data['title']
-        ]);
+        return view('Themes/'.$this->theme.'Home/index', $data);
     }
 
+    /**
+     * 搜索-目前仅支持按标题
+     *
+     * @param Request $request
+     * @return void
+     */
     public function search(Request $request)
     {
-        $data    = $this->indexCommon();
-        $title   = $request->title;
-        return view('Themes/'.$this->theme.'Home/index', [
-            'artList' => $data['artList'],
-            'catList' => $data['catList'],
-            'tagList' => $data['tagList'],
-            'recList' => $data['recList'],
-            'title'   => $data['title']
-        ]);
+        $title   = $request->title;        
+        $data    = $this->indexCommon($title);
+        return view('Themes/'.$this->theme.'Home/index', $data);
     }
     /**
      * 首页信息展示 和 搜索公共方法
      *
      * @return void
      */
-    private function indexCommon()
+    private function indexCommon($title='')
     {
-        $data['title']   = '';
-        $data['artList'] = Posts::getArchiveList(Posts::STATUS_PUBLISH, $data['title'], 10);
+        $data['title']   = empty($title) ? '' : $title;
+        $data['artList'] = Posts::getArchiveList($data['title'], 10);
         $data['catList'] = Categories::getSearchCat();
         $data['tagList'] = Tags::getSearchTagList();
         $data['recList'] = Posts::getRecentList();
@@ -83,12 +77,7 @@ class IndexController extends HomeController
 
             // 文章关联的评论
             $data = $artFind->comments;
-            // dd($data);
-            // foreach($data as $val)
-            // {
-            //     var_dump($val->user);
-            // }
-            // die;
+
             return view('Themes/'.$this->theme.'Home/details', ['artFind'=>$artFind, 'recommendPosts'=>$recommendPosts, 'data'=>$data, 'tags'=>$tags]);
         }
         catch(\Exception $e)
@@ -97,19 +86,6 @@ class IndexController extends HomeController
             return redirect('/error');
         }
 
-    }
-
-    /**
-     * show article all list
-     *
-     * @return void
-     */
-    public function archive()
-    {
-        $title = '';
-        $artList = Posts::getArchiveList(Posts::STATUS_PUBLISH, $title, 6);
-
-        return view('Themes/'. $this->theme. 'Home/archive', ['artList' => $artList]);
     }
 
     /**

@@ -29,11 +29,11 @@ Route::get('/author/index/{aid}', 'Home\AuthorsController@index');
 Route::match(['get', 'post'],'/contacts', 'Home\ContactsController@index');
 
 // 前台评论与恢复
-Route::group(['prefix' => 'comment'], function(){
-    // 评论列表
-    Route::match(['get', 'post'],'/index', 'Home\CommentsController@index');  
-
-    Route::match(['get', 'post'],'/add', 'Home\CommentsController@add');  
+Route::group(['prefix' => 'details'], function(){
+    // 回复
+    Route::match(['get', 'post'],'/replay', 'Home\CommentsController@replay');  
+    // 评论
+    Route::match(['get', 'post'],'/comment', 'Home\CommentsController@comment');  
 });
 
 // 关于我们

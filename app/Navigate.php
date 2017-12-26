@@ -34,7 +34,7 @@ class Navigate extends Model
     public static function getNavigateTree($pid=self::ROOT,$level=1)
     {
         static $result = [];
-        $list = self::where(['parent_id'=>$pid])->get()->toArray(); 
+        $list = self::where(['parent_id'=>$pid,'language'=>\App\Tools\admin_language()])->get()->toArray(); 
         if(is_array($list))
         {
             foreach($list as $key=>$value)
@@ -55,12 +55,12 @@ class Navigate extends Model
      */
     public static function getHeaderNavigate($pid=self::ROOT)
     {
-        $list = self::where(['parent_id'=>$pid])->orderby('sort','ASC')->get()->toArray(); 
+        $list = self::where(['parent_id'=>$pid,'language'=>\App\Tools\home_language()])->orderby('sort','ASC')->get()->toArray(); 
         if(is_array($list))
         {
             foreach($list as $key=>$value)
             {
-                $list[$key]['son'] = self::getNavigateTree($value['nav_id']);
+                $list[$key]['son'] = self::getHeaderNavigate($value['nav_id']);
             }
         }
         return $list;        
