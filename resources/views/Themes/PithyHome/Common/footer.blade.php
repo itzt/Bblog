@@ -50,7 +50,7 @@ $(function(){
 							<div>\
 								<h5>\
 									<i class="fa fa-file-text-o"></i>\
-									<a href="#">'+data[i].title+'</a>\
+									<a href="/details/'+data[i].default_title+'">'+data[i].title+'</a>\
 								</h5>\
 								<div class="post-subinfo">\
 									<span>'+data[i].time+'</span>   •   \

@@ -228,11 +228,13 @@ class Posts extends Model
     {
         $query =  self::select('post_id', 'title', 'updated_at', 'author')
                      ->whereIn('post_id', $ids)
+                     ->limit(15)
                      ->get();
         $data = [];
         foreach($query as $key => $val)
         {
-            $data[$key]['title']        = $val->title;
+            $data[$key]['default_title']= $val->title;
+            $data[$key]['title']        = mb_substr($val->title, 0, 20);
             $data[$key]['post_id']      = $val->post_id;
             $data[$key]['author']       = $val->admin->name;
             $data[$key]['time']         = date('F d', strtotime($val->updated_at));

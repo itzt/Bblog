@@ -33,6 +33,15 @@ class HomeController extends Controller
             Cache::put('hotTags', $hotTags, $this->cacheTime);
         }
         view()->share('hotTags', $hotTags);
+        // 获取右上角默认展示的文章数据  （主要是给移动端的）
+        $postsList = Cache::get('postsList');
+        if(empty($postsList) && is_null($postsList))
+        {
+            $ids       = array_column(PostsTags::getAllPostId(), 'post_id');// 获取所有文章id
+            $postsList = Posts::getAllPostsList($ids);
+            Cache::put('postsList', $postsList, $this->cacheTime);
+        }
+        view()->share('postsList', $postsList);
 
         // 记录本次URL
         session()->flash('goback', $request->url());
@@ -70,6 +79,10 @@ class HomeController extends Controller
         if($request->ajax())
         {
             $tid      = intval($request->input('tid'));
+            if($tid == 0)
+            {
+                $tid = 'all';
+            }
             if(!empty($tid))
             {
                 $ids      = array_column(PostsTags::getAllPostId($tid), 'post_id');// 获取所有文章id
