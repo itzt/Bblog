@@ -43,8 +43,16 @@ class PostsTags extends Model
      * @param [type] $tid
      * @return void
      */
-    static public function getAllPostId($tid)
+    static public function getAllPostId($tid = '')
     {
-        return self::select('post_id')->where(['tag_id' => $tid])->get()->toArray();
+        if($tid == 'all' || $tid == '')
+        {
+            $query = self::select('post_id', 'tag_id');
+        }
+        else
+        {
+            $query = self::select('post_id', 'tag_id')->where(['tag_id' => $tid]);
+        }
+        return $query->get()->toArray();
     }
 }
