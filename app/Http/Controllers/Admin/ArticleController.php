@@ -59,6 +59,9 @@ class ArticleController extends CommonController
             // 验证标题的唯一性      
             $this->validate($request, ['title'  => 'required|unique:posts|max:120']);
             $post             = $request->all();
+            $tags             = $post['tags'];
+            unset($post['tags']);
+            
             $post['author']   = Session::get('id'); // 管理员id
             $post['language'] = \App\Tools\admin_language(); // 默认语言
             $post['html']     = $post['markdown'];

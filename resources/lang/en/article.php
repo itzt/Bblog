@@ -15,6 +15,8 @@ return [
     'add_title'          => 'Article title',
     'add_cat_id'         => 'Category column',
     'add_cat_value'      => 'Please select a category',
+    'add_tags'           => 'Article tags',
+    'add_tags_holder'    => 'Please enter tags to the Tab key or separated',
     'add_author'         => 'The authors',
     'add_is_allow'       => 'Allow comments',
     'add_is_page'        => 'A separate page',

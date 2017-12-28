@@ -1,5 +1,5 @@
 @include('Admin.Common._meta')
-
+<link rel="stylesheet" type="text/css" href="/admin/tags/jquery.tagsinput.min.css" />
 <title>{{trans('article.add_article_title')}} - H-ui.admin v3.1</title>
 <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
@@ -27,7 +27,12 @@
 				</select>
 				</span> </div>
 		</div>
-		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">{{trans('article.add_tags')}}：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="{{trans('article.add_tags_holder')}}" id="tags" name="tags">
+			</div>
+		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">{{trans('article.add_is_allow')}}：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
@@ -71,8 +76,11 @@
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/jquery.validate.js"></script> 
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="/admin/tags/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('#tags').tagsInput(); // 标签
+
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',
@@ -99,9 +107,7 @@ $(function(){
 			cat_id:{
 				required:true,
 			},
-			markdown:{
-				required:true,
-			}
+			
 		},
 		onkeyup:false,
 		focusCleanup:true,
@@ -113,7 +119,7 @@ $(function(){
 				'data'   : {'status': status},
 				'success': function (data) {
 					layer.msg(data.message, {icon:data.status});
-					parent.window.location.reload();
+					// parent.window.location.reload();
 				},
 				error: function (data) {
 					var result = JSON.parse(data.responseText);
