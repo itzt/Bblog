@@ -41,7 +41,7 @@ class CategoryController extends CommonController
             // 验证
             $this->validate($request, [
                 'cat_name'  => 'required|unique:categories|max:60',
-                'parent_id' => 'required',
+                // 'parent_id' => 'required',
             ]);
             $post = $request->except('_token');
             $res  = (new Categories)->insertAdd($post);
