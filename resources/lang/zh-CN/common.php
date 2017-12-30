@@ -99,6 +99,9 @@ return [
     'form_preservation' =>  '保存',
 
 
+    /** 是否 */
+    'yes'               =>  '是', 
+    'no'                =>  '否', 
 
     /** 分页通用 */
     'total_count'       =>  '共有数据',
@@ -115,6 +118,10 @@ return [
     /** 时间 */          
     'year'              => '年',
     'month'             => '月',
+    'one_hours'         => '1 小时',
+    'two_hours'         => '2 小时',
+    'three_hours'       => '3 小时',
+    'four_hours'        => '4 小时',
 
     /** 版权 */
     'thank'             => '感谢 必应科技技术团队核心成员',

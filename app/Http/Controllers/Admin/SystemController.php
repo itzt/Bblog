@@ -11,32 +11,27 @@ class SystemController extends CommonController
 {
 
     /**
-     * 屏蔽词
-     *
-     * @author BING
-     * @return [type] [description]
-     */
-    public function shielding()
-    {
-        return view('Admin/System/shielding');
-    }
-    /**
      * 系统设置
      *
      * @author BING
-     * @return [type] [description]
+     * @return void
      */
     public function setting(Request $request)
     {
-        $array= (new SetsModel())->setlist();
-
-        return view('Admin/System/setting',['array'=>$array]);
+        $setConfig = (new SetsModel())->setlist(); 
+        return view('Admin/System/setting',['array'=>$setConfig]);
     }
 
-    public function setadd(Request $request){
-
-
-        if($request->isMethod('POST')) {
+    /**
+     * 系统设置更新
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function setadd(Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
             $res = $request->all();
             $return= (new SetsModel())->saveSet($res);
          
@@ -49,8 +44,6 @@ class SystemController extends CommonController
                 return ['status'=>Config::get('constants.status_error'),'message'=>trans('common.message_failure')];
             }
         }
-
-
     }
 
 }

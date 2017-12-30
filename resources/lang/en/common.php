@@ -98,6 +98,10 @@ return [
     'form_reset'        =>  'Reset',
     'form_preservation' =>  'Save',
 
+    /** 是否 */
+    'yes'               =>  'Yes', 
+    'no'                =>  'No', 
+
     /** Paging general */
     'total_count'       =>  'A total of data',
 
@@ -113,6 +117,10 @@ return [
     /** Date */          
     'year'              => 'Y',
     'month'             => 'M',
+    'one_hours'         => 'One hours',
+    'two_hours'         => 'Two hours',
+    'three_hours'       => 'Three hours',
+    'four_hours'        => 'Four hours',    
 
     /** copyright */
     'thank'             => 'Thanks to the core members of Beijing bing science and technology team',
