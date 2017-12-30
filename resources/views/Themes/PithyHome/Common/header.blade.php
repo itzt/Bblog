@@ -58,18 +58,22 @@
 			<button type="button" class="remove-navbar"><i class="fa fa-times"></i></button>
 			<ul class="post-title-list clearfix">
 				<div id="tag-content">
-				<li class="pt-fashion pt-culture">
-					<div>
-						<h5>
-							<i class="fa fa-file-text-o"></i>
-							<a href="#">Five simple steps to designing grid systems preface</a>
-						</h5>
-						<div class="post-subinfo">
-							<span>June 28</span>   •   
-							<span>2 Comments</span>
+				@if(!empty($postsList))
+				@foreach($postsList as $val)
+					<li class="pt-fashion pt-culture">
+						<div>
+							<h5>
+								<i class="fa fa-file-text-o"></i>
+								<a href="/details/{{$val['default_title']}}">{{$val['title']}}...</a>
+							</h5>
+							<div class="post-subinfo">
+								<span>{{$val['time']}}</span>   •   
+								<span>{{$val['author']}}</span>
+							</div>
 						</div>
-					</div>
-				</li>
+					</li>
+				@endforeach
+				@endif
 				</div>
 			</ul>
 		</div>

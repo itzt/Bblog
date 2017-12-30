@@ -15,6 +15,8 @@ return [
     'add_title'          => '文章标题',
     'add_cat_id'         => '分类栏目',
     'add_cat_value'      => '请选择类型',
+    'add_tags'           => '文章标签',
+    'add_tags_holder'    => '请输入标签,以Tab键或者，分隔开',
     'add_author'         => '文章作者',
     'add_is_allow'       => '允许评论',
     'add_is_page'        => '单独页面',
