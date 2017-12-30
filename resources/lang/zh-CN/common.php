@@ -11,6 +11,7 @@ return [
     */
 
     /** 项目介绍 */
+    'app'               => 'B-blog',
     'title'             => 'B-blog.admin',
     'keywords'          => 'B-blog',
     'description'       => 'B-blog v1.0，是一款由必应科技开发的轻量级扁平化博客2.0系统，完全免费开源，适合中小型CMS后台系统。',

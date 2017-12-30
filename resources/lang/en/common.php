@@ -13,6 +13,7 @@ return [
     /** On the left side of the menu bar */
 
     /** 项目介绍 */
+    'app'               => 'B-blog',
     'title'             => 'B-blog.admin',
     'keywords'          => 'B-blog',
     'description'       => 'B-blog v1.0 It is a lightweight flat blog 2.0 system developed by bing technology, which is free and open source and suitable for middle and small CMS background systems.',
