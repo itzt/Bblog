@@ -28,7 +28,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l">
 		<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> {{trans('common.batch_delete')}}</a>  -->
 		<a class="btn btn-primary radius" data-title="{{trans('article.add_header')}}" data-href="/article/add" onclick="Hui_admin_tab(this)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> {{trans('article.show_now_create')}}</a></span> 
-		<span class="r">{{trans('common.total_count')}}：<strong>{{$artList->count()}}</strong> {{trans('common.item')}}</span> 
+		<span class="r">{{trans('common.total_count')}}：<strong>{{$artList->total()}}</strong> {{trans('common.item')}}</span> 
 	</div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
@@ -51,7 +51,7 @@
 							<td><input type="checkbox" value="" name=""></td>
 							<td class="text-l">{{$val->title}}</td>
 							<td>{{$val->cat->cat_name}}</td>
-							<td>{{$val->author}}</td>
+							<td>{{$val->admin->name}}</td>
 							<td>{{$val->updated_at}}</td>
 							<td>{{$val->read_num}}</td>
 							<td class="td-status">
@@ -81,8 +81,6 @@
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
-<!-- <script type="text/javascript" src="/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
-<script type="text/javascript" src="/admin/lib/laypage/1.2/laypage.js"></script> -->
 <script type="text/javascript">
 
 

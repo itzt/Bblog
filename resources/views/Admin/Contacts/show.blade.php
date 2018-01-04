@@ -52,8 +52,10 @@
 					<span class="label label-success radius">{{trans('contacts.con_no_read')}}</span>
 			    	@endif
                     </td>						
-					<td class="f-14"><a title="{{trans('contacts.con_details')}}" href="javascript:;" onclick="system_navigate_edit('{{trans('contacts.con_details')}}','/Contacts/update','{{$con->id}}','800','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe725;</i></a>
-						<a title="{{trans('common.do_delete')}}" href="javascript:;" onclick="system_navigate_del(this,'{{$con->id}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+					<td class="f-14">
+					<a title="{{trans('contacts.con_details')}}" class="update" href="javascript:;" onclick="system_navigate_edit('{{trans('contacts.con_details')}}','/Contacts/update','{{$con->id}}','800','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe725;</i></a>
+					<a title="{{trans('common.do_delete')}}" href="javascript:;" onclick="system_navigate_del(this,'{{$con->id}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
 				</tr>
                 @endforeach
 				@endif						
@@ -66,21 +68,20 @@
         
 	</div>
 </div>
-<!--_footer 作为公共模版分离出去-->
-@include('Admin.Common._footer')
- <!--/_footer 作为公共模版分离出去-->
 
-<!--请在下方写此页面业务相关的脚本-->
-<!-- <script type="text/javascript" src="/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script> -->
-<!-- <script type="text/javascript" src="/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> -->
-<!-- <script type="text/javascript" src="/admin/lib/laypage/1.2/laypage.js"></script> -->
+@include('Admin.Common._footer')
 
 <script type="text/javascript">
 
 /*系统-导航-编辑*/
 function system_navigate_edit(title,url,id,w,h){
-    layer_show(title,url+"/"+id,w,h);
+
+    layer_show(title,url+"/"+id,w,h);	
 }
+$('.update').click(function(){
+
+	$(this).parents('.text-c').find('.label').removeClass('label-success').addClass('label-deflut');
+})
 
 /*系统-导航-批量删除*/
 function batch_delete()

@@ -3,19 +3,52 @@
 namespace App;
 use DB;
 use Illuminate\Database\Eloquent\Model;
-
+use Config;
 class Comments extends Model
 {
-	protected $primaryKey='com_id';//表的主键 
+    protected $primaryKey='com_id';//表的主键 
+    
+     /**
+     * 可以被批量赋值的属性
+     *
+     * @var array
+     */
+    protected $fillable = ['nickname','email','content','user_id','post_id','ip','parent_id'];
+
     const PARENTID = 0;
+
+
+    /**
+     * 文章评论着的关联
+     *
+     * @return void
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }   
+
+    /**
+     * 获取评论对应的博客文章
+     *
+     * @return void
+     */
+    public function post(){
+        return $this->belongsTo('App\Posts','post_id');
+    }    
+    
     /**
      * 获取所有分类信息
      *
      * @return void
      */
-    public function getList()
+    static public function getList($where=array())
     {
-        return $this->select()->get()->toArray();
+        // 只索引评论
+        $map = array_merge($where,['parent_id'=>self::PARENTID]);
+        $result = self::where($map)->orderBy('com_id','desc')->paginate(Config::get('constants.page_size'));
+
+        return $result;
     }
     /** 
      * 有条件查询
@@ -24,7 +57,7 @@ class Comments extends Model
      */
     public function getWhere($where)
     {
-    	return $this->select('com_id')->where(['parent_id'=>$where])->get()->toArray();
+    	return $this->select('com_id')->whereIn('parent_id',$where)->get()->toArray();
     }
     /** 
      * 有条件删除
@@ -45,61 +78,8 @@ class Comments extends Model
     {
         return $this->insertGetId($post); // 返回自增id
     }
-    /**
-     * 层级关系分类列表
-     */
-    public function levelCatList()
-    {
-        return $this->getCategoryList($this->select()->get()->toArray());
-    }
 
-    /**
-     * 递归实现无限极分类
-     *
-     * @param [type] $data
-     * @param string $exclude
-     * @param integer $parentId
-     * @param integer $level
-     * @return void
-     */
-    static public function recursion($data, $exclude = '', $parentId = 0, $level = 0)
-    {
-        static $arr = []; //静态数组
-        foreach($data as $key => $val)
-        {
-            //判断当前父id是否和获取到的一致
-            if($val['parent_id'] == $parentId && $val['com_id'] != $exclude)
-            {
-                $val['level'] = $level;
-                $arr[] = $val;
-                self::recursion($data, $exclude, $val['com_id'], $level+1);
-            }
-        }
-        return $arr;
-    }
 
-    /**
-     * 添加需要的层级关系的分类列表
-     *
-     * @param array $data
-     * @return void
-     */
-    static public function getCommentList($data = [])
-    {
-        $arr = [];
-        $catList = self::recursion($data);
-        foreach($catList as $key => $val)
-        {
-        	$arr[$val['com_id']]['content'] =$val['nickname']."评论：".$val['content'];
-        	if($val['level']!=0){        		
-        		$arr[$val['com_id']]['content'] = str_repeat("　　$val[nickname]回复：", $val['level']).$val['content'];
-        	}
-        	$arr[$val['com_id']]['created_at']=$val['created_at'];
-        	$arr[$val['com_id']]['ip']=$val['ip'];
-        	$arr[$val['com_id']]['email']=$val['email'];
-        	$arr[$val['com_id']]['title']=$val['title'];
-        	$arr[$val['com_id']]['level']=$val['level'];            
-        }
-        return $arr;
-    }
+
+
 }

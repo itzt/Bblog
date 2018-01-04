@@ -1,6 +1,7 @@
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
-		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">Bblog.admin</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">B-blog</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">{{trans('common.title')}}</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">B-blog</a> <span class="logo navbar-slogan f-l mr-10 hidden-xs">{{trans('common.version')}}</span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+			<!--
 			<nav class="nav navbar-nav">
 				<ul class="cl">
 					<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
@@ -13,29 +14,44 @@
 					</li>
 				</ul>
 			</nav>
+			-->
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
-					<li>超级管理员</li>
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">admin <i class="Hui-iconfont"></i></a>
+					<li>
+						<a href="/AdminUsers/information">
+							<img src="{{Session::get('avatar')}}" class="round" style="width: 35px;height: 35px; border-radius: 70px;" >
+						</a>
+					</li>
+					<li class="dropDown dropDown_hover"> <a href="/AdminUsers/information" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont"></i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="/admin/information">个人信息</a></li>
-							<li><a href="#">切换账户</a></li>
-							<li><a href="{{url('Login/sign')}}">退出</a></li>
+							<li><a href="/AdminUsers/information">{{trans('common.information')}}</a></li>
+							<!--<li><a href="/Login/toggle">{{trans('common.change_over')}}</a></li>-->
+							<li><a href="/Login/reset">{{trans('common.reset_pass')}}</a></li>
+							<li><a href="/Login/logout">{{trans('common.logout')}}</a></li>
+							<!--<li><a href="/admin/information">{{trans('common.information')}}</a></li>
+							<li><a href="{{url('Login/sign')}}">{{trans('common.logout')}}</a></li>-->
 						</ul>
 					</li>
+					<li class="dropDown dropDown_hover">
+						<a href="javascript:;" class="dropDown_A">{{trans('common.change_language')}} <i class="Hui-iconfont">&#xe6d5;</i></a>
+						<ul class="dropDown-menu menu radius box-shadow">
+							<li><a href="javascript:changeLang('zh-CN');">{{trans('common.zh-CN')}}</a></li>
+							<li><a href="javascript:changeLang('en');">{{trans('common.en')}}</a></li>
+						</ul>
+					</li>					
 					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">
 								@if(isset($data['num'])) 
 									{{$data['num']}}
 									 @endif
 							</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
-					<li id="Hui-skin" class="dropDown right dropDown_hover"> <??><a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
+					<li id="Hui-skin" class="dropDown right dropDown_hover"> <??><a href="javascript:;" class="dropDown_A" title=""><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
-							<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
-							<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
-							<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
-							<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
-							<li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
+							<li><a href="javascript:;" data-val="default" title="{{trans('common.default_black')}}">{{trans('common.default_black')}}</a></li>
+							<li><a href="javascript:;" data-val="blue" title="{{trans('common.skin_blue')}}">{{trans('common.skin_blue')}}</a></li>
+							<li><a href="javascript:;" data-val="green" title="{{trans('common.skin_green')}}">{{trans('common.skin_green')}}</a></li>
+							<li><a href="javascript:;" data-val="red" title="{{trans('common.skin_red')}}">{{trans('common.skin_red')}}</a></li>
+							<li><a href="javascript:;" data-val="yellow" title="{{trans('common.skin_yellow')}}">{{trans('common.skin_yellow')}}</a></li>
+							<li><a href="javascript:;" data-val="orange" title="{{trans('common.skin_orange')}}">{{trans('common.skin_orange')}}</a></li>
 						</ul>
 					</li>
 				</ul>

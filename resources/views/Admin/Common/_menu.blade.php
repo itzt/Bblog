@@ -1,12 +1,12 @@
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 内容管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe616;</i> {{trans('common.content_manager')}}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/article/show"   data-title="创作列表" href="javascript:void(0)">创作列表</a></li>
-					<li><a data-href="/article/draft"  data-title="草稿箱"   href="javascript:void(0)">草稿箱</a></li>
-					<li><a data-href="/category/show"  data-title="栏目管理" href="javascript:void(0)">分类栏目</a></li>
+					<li><a data-href="/article/show"   data-title="{{trans('common.post_list')}}" href="javascript:void(0)">{{trans('common.post_list')}}</a></li>
+					<li><a data-href="/article/draft"  data-title="{{trans('common.draft_list')}}"   href="javascript:void(0)">{{trans('common.draft_list')}}</a></li>
+					<li><a data-href="/category/show"  data-title="{{trans('common.category')}}" href="javascript:void(0)">{{trans('common.category')}}</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -29,11 +29,11 @@
 			</dd>
 		</dl> -->
 		<dl id="menu-comments">
-			<dt><i class="Hui-iconfont">&#xe622;</i> 评论留言<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe622;</i> {{trans('common.com_of_mes')}}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/comment/show" data-title="评论列表" href="javascript:;">评论列表</a></li>
-					<li><a data-href="/Contacts/message" data-title="意见反馈" href="javascript:void(0)">留言列表</a></li>
+					<li><a data-href="/comment/show" data-title="{{trans('common.comment_list')}}" href="javascript:void(0);">{{trans('common.comment_list')}}</a></li>
+					<li><a data-href="/Contacts/message" data-title="{{trans('common.message_list')}}" href="javascript:void(0)">{{trans('common.message_list')}}</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -63,11 +63,11 @@
 		</dl> 
 		-->
 		<dl id="menu-system">
-			<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe62e;</i> {{trans('common.system_manager')}}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="/navigate/show" data-title="导航设置" href="javascript:void(0)">导航设置</a></li>
-					<li><a data-href="/system/setting" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
+					<li><a data-href="/navigate/show" data-title="{{trans('common.navigate_set')}}" href="javascript:void(0)">{{trans('common.navigate_set')}}</a></li>
+					<li><a data-href="/system/setting" data-title="{{trans('common.system_set')}}" href="javascript:void(0)">{{trans('common.system_set')}}</a></li>
 					<!-- <li><a data-href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li> -->
 					<!-- <li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li> -->
 <!--					<li><a data-href="/system/shielding" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>-->

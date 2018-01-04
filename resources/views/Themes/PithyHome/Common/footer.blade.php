@@ -15,4 +15,54 @@
 	<script src="/assets/js/calendar.js"></script>
 	<script src="/assets/js/jquery.touchSwipe.min.js"></script>
 	<script src="/assets/js/script.js"></script>
+	<script src="/assets/layer/layer.js"></script>
+	
+	<script>
+	$(function(){
+		$('.weixin-sign').click(function(){
+			var index = layer.load(1, {
+				shade: [0.1,'#fff'] //0.1透明度的白色背景
+			});
+
+			layer.open({
+				type: 2,
+				title: '',
+				shadeClose: true,
+				shade: 0.8,
+				area: ['380px', '60%'],
+				content: '/auth/weixin' //iframe的url
+			}); 
+			layer.close(index);
+
+		})
+	})
+
+// 右侧选项根据最新插入的标签或者全部标签进行查找文章
+$(function(){
+	$(document).on('click', '.search-tags', function(){
+		var tid = $(this).data('id'); // 获取当前标签id
+		var url = '/searchtag';
+		$.get(url, {'tid': tid}, function(data){
+			var content = '';
+			for(var i = 0; i < data.length; i++)
+			{
+				content += '<li class="pt-fashion pt-culture">\
+							<div>\
+								<h5>\
+									<i class="fa fa-file-text-o"></i>\
+									<a href="/details/'+data[i].default_title+'">'+data[i].title+'</a>\
+								</h5>\
+								<div class="post-subinfo">\
+									<span>'+data[i].time+'</span>   •   \
+									<span>'+data[i].author+'</span>\
+								</div>\
+							</div>\
+							</li>';
+				
+			}
+			$('#tag-content').html(content);
+		}, 'json');
+	})
+});
+</script>
 	

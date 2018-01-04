@@ -20,7 +20,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 		<a href="javascript:;" onclick="batch_delete()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> {{trans('common.batch_delete')}}</a>
-		<a class="btn btn-primary radius" onclick="system_navigate_add('{{trans('navigate.nav_create')}}','/navigate/create','800','400')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加导航</a>
+		<a class="btn btn-primary radius" onclick="system_navigate_add('{{trans('navigate.nav_create')}}','/navigate/create','800','400')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> {{trans('navigate.nav_create')}}</a>
 		</span>
 		<span class="r">{{trans('common.total_count')}}：<strong>{{$result->total()}}</strong> {{trans('common.item')}}</span>
 	</div>
@@ -44,7 +44,7 @@
                 @foreach ($result as $nav)
 				<tr class="text-c">
 					<td><input type="checkbox" name="navid[]" value="{{$nav->nav_id}}"></td>
-					<td>{{$nav->nav_name}}</td>
+					<td class="text-l">{{$nav->nav_name}}</td>
 					<td>{{$nav->jump_url}}</td>
 					<td>{{$nav->sort}}</td>
 					<td>{{$nav->created_at}}</td>

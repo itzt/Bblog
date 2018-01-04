@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Providers;
 use DB;
 use Illuminate\Support\ServiceProvider;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,9 +15,7 @@ class AppServiceProvider extends ServiceProvider
             $data['num']=DB::table('contacts')->where(['status'=>0])->count();
             $view->with('data',$data);
         });
-
     }
-
     /**
      * Register any application services.
      *

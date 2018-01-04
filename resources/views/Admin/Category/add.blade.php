@@ -8,7 +8,7 @@
 		<div id="tab-category" class="HuiTab">
 			{{csrf_field()}}
 			<div class="tabCon">
-				<div class="row cl">
+				<!-- <div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">
 						<span class="c-red">*</span>
 						{{trans('category.add_prev')}}：</label>
@@ -24,7 +24,7 @@
 					</div>
 					<div class="col-3">
 					</div>
-				</div>
+				</div> -->
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">
 						<span class="c-red">*</span>
@@ -77,7 +77,7 @@ $(function(){
 	});
 	$("#form-category-add").validate({
 		rules:{
-			sel_Sub: {required: true},
+			// sel_Sub: {required: true},
 			cat_name:{required: true}
 		},
 		onkeyup:false,

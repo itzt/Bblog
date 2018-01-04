@@ -3,27 +3,17 @@
  * @Author: DingBing 
  * @Date: 2017-12-11 15:49:44 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-11 15:53:22
+ * @Last Modified time: 2017-12-23 19:19:10
  */
 namespace App\Http\Controllers\Admin;
 use Config;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Validation\Validator;
 use \Symfony\Component\Console\Input\Input;
 use \Symfony\Component\HttpKernel\Exception\HttpException;
-class NavigateController extends Controller
+class NavigateController extends CommonController
 {
-    /**
-     * 验证失败返回格式自定义
-     *
-     * @param Validator $validator
-     * @return void
-     */
-    protected function formatValidationErrors(Validator $validator)
-    {
-        return \App\Tools\ajax_exception(\Config::get('constants.http_status_no_accept'),implode("\n",$validator->errors()->all()));
-    }
+
     /**
      * 导航列表展示
      *
@@ -32,7 +22,7 @@ class NavigateController extends Controller
     public function show(Request $request)
     {
         $navName = $request->input('nav_name',null);
-        $result = \App\Navigate::where('nav_name','like',"%$navName%")->orderBy('nav_id','desc')->paginate(Config::get('constants.page_size'));
+        $result = \App\Navigate::where('nav_name','like',"%$navName%")->where(['language'=>\App\Tools\admin_language()])->orderBy('nav_id','desc')->paginate(Config::get('constants.page_size'));
         return view('Admin/Navigate/show',['result'=>$result,'navName'=>$navName]);
     }
     /**
@@ -86,6 +76,7 @@ class NavigateController extends Controller
             ]);
             $all = $request->all();
             $all['is_open'] = $request->has('is_open') ? 1 : 0;
+            $all['language'] = \App\Tools\admin_language();
             // 数据入库
             $result = \App\Navigate::create($all);
             if($result)
@@ -97,7 +88,9 @@ class NavigateController extends Controller
                 return \App\Tools\ajax_error();
             }
         }
-        return view('Admin/Navigate/create');
+        // 上级导航
+        $navTree = \App\Navigate::getNavigateTree();
+        return view('Admin/Navigate/create')->with(['navTree'=>$navTree]);
     }
     
     
@@ -119,11 +112,17 @@ class NavigateController extends Controller
                 {
                     throw new HttpException(\Config::get('constants.http_status_no_accept'),trans('common.none_record'));
                 }
+                // 自己不能选择自己
+                if($request->parent_id == $nid)
+                {
+                    throw new HttpException(\Config::get('constants.http_status_no_accept'),trans('common.parent_myself'));
+                }
                 // 验证数据
                 $this->validate($request, [
                     'nav_name' => 'required|max:30',
                     'jump_url' => 'required',
                 ]);
+
                 $all = $request->except('_token');
                 $all['is_open'] = $request->has('is_open') ? 1 : 0;
                 // 数据入库
@@ -137,7 +136,9 @@ class NavigateController extends Controller
                     return \App\Tools\ajax_error();
                 }
             }
-            return view('Admin/Navigate/update',['navigate'=>$navigate]);
+            // 上级导航
+            $navTree = \App\Navigate::getNavigateTree();            
+            return view('Admin/Navigate/update',['navigate'=>$navigate])->with(['navTree'=>$navTree]);
         }
         catch(\Exception $e)
         {

@@ -13,19 +13,56 @@
 
 // 前台首页
 Route::get('/','Home\IndexController@index');
+// 前台首页搜索
+Route::get('/search/{title?}','Home\IndexController@search');
+// 前台文章详情
+Route::get('/details/{title}', 'Home\IndexController@details');
+// 所有文章页
+Route::get('/archive', 'Home\IndexController@archive');
+// 右上角选项根据标签搜索
+Route::get('/searchtag', 'Home\HomeController@searchtags');
+
+// 作者列表
+Route::get('/author/info','Home\AuthorsController@info');
+// 点击文章作者进入作者文章页
+Route::get('/author/index/{aid}', 'Home\AuthorsController@index');
+
+// 前台留言
+Route::match(['get', 'post'],'/contacts', 'Home\ContactsController@index');
+
+// 前台评论与恢复
+Route::group(['prefix' => 'details'], function(){
+    // 回复
+    Route::match(['get', 'post'],'/replay', 'Home\CommentsController@replay');  
+    // 评论
+    Route::match(['get', 'post'],'/comment', 'Home\CommentsController@comment');  
+});
+
 // 关于我们
 Route::get('/about','Home\AboutController@index');
+
 // 新闻
 Route::get('/news','Home\NewsController@index');
-// 作者
-Route::get('/authors','Home\AuthorsController@index');
+
+// 404
+Route::get('/error','Home\IndexController@error');
+// 【标签、分类】列表
+Route::get('/list/{param?}','Home\ListController@index');
+
+// 微信登录
+Route::get('/auth/weixin', 'Auth\AuthController@oauth');
+Route::get('/auth/weixin/callback', 'Auth\AuthController@callback');
+
 
 
 
 // 后台首页
 Route::get('/admin/index','Admin\IndexController@index');
-// 后台welcome
+// 后台欢迎页面
 Route::get('/admin/welcome','Admin\IndexController@welcome');
+// 后台语言切换
+Route::get('/admin/setlang','Admin\IndexController@setlanguage');
+
 // 后台article
 Route::group(['prefix' => 'article'], function () {
 	// 文章列表
@@ -54,8 +91,7 @@ Route::group(['prefix' => 'category'], function () {
 });
 // 后台system
 Route::group(['prefix' => 'system'], function () {
-	// 柱状图
-    Route::get('/bar','Admin\SystemController@bar');
+
     // 系统设置
     Route::get('/setting','Admin\SystemController@setting');
     
@@ -89,7 +125,7 @@ Route::group(['prefix' => 'navigate'],function(){
     // 修改导航
     Route::match(['get', 'post'],'/update/{id}','Admin\NavigateController@update');
 });
-// 后台
+// 后台Contacts
 Route::group(['prefix' => 'Contacts'], function () {
 
     // 留言
@@ -105,8 +141,11 @@ Route::group(['prefix' => 'Contacts'], function () {
 Route::group(['prefix' => 'AdminUsers'],function(){
     // 个人中心
     Route::any('/information','Admin\AdminUsersController@user_information');
+    Route::post('/reset','Admin\AdminUsersController@reset');
+    Route::post('/images','Admin\AdminUsersController@images');
 
 });
+
 // 登陆
 Route::group(['prefix' => 'Login'], function () {
         // 登陆
@@ -114,16 +153,25 @@ Route::group(['prefix' => 'Login'], function () {
         //注册
         Route::get('/register','Admin\AdminsController@register');
         //退出
-        Route::get('/sign','Admin\AdminsController@sign');
+        Route::get('/logout','Admin\AdminsController@logout');
+        //切换账户
+        Route::get('/toggle','Admin\AdminsController@logout');
+        //重置密码
+        Route::get('/reset','Admin\AdminsController@reset');
+        
 });
 
 // 后台comment
 Route::group(['prefix' => 'comment'], function(){
     // 评论列表
     Route::match(['get', 'post'],'/show', 'Admin\CommentController@show');
+    //评论删除
     Route::post('/del', 'Admin\CommentController@del');
-    // // 图库添加
-    // Route::get('/add', 'Admin\GalleriesController@add');
-    
+    //评论回复
+    Route::match(['get', 'post'],'/replay/{id?}', 'Admin\CommentController@replay');    
 });
+
+
+
+Auth::routes();
 

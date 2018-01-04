@@ -3,7 +3,7 @@
  * @Author: zhangtao 
  * @Date: 2017-12-04 15:23:26 
  * @Last Modified by: DingBing
- * @Last Modified time: 2017-12-14 10:25:17
+ * @Last Modified time: 2017-12-24 21:31:02
  */
 
 namespace App;
@@ -14,6 +14,24 @@ class Categories extends Model
 {
     const PARENTID = 0;
     protected $primaryKey = 'cat_id';
+
+    /**
+     * 获取分类下的所有文章。
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Posts','cat_id','cat_id');
+    }  
+
+    /**
+     * 获取前台首页需要的分类列表
+     *
+     * @return void
+     */
+    static public function getSearchCat()
+    {
+        return self::select('cat_id', 'cat_name')->where(['parent_id' => self::PARENTID])->limit(6)->get();
+    }
     /**
      * 获取所有分类信息
      *
@@ -82,5 +100,16 @@ class Categories extends Model
             $arr[$val['cat_id']] = str_repeat("　　|", $val['level']).$val['cat_name'];
         }
         return $arr;
+    }
+
+    /**
+     * 根据分类名称查询分类对象
+     *
+     * @param string $catName
+     * @return void
+     */
+    static public function getInfo($catName)
+    {
+        return self::where(['cat_name'=>$catName])->first();
     }
 }
