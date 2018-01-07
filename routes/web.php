@@ -61,8 +61,9 @@ Route::get('/admin/index','Admin\IndexController@index');
 // 后台欢迎页面
 Route::get('/admin/welcome','Admin\IndexController@welcome');
 // 后台语言切换
-Route::get('/admin/setlang','Admin\IndexController@setlanguage');
-
+Route::get('/admin/setlang','Admin\IndexController@setLanguage');
+// 清除缓存
+Route::get('/admin/clearCache','Admin\IndexController@clearCache');
 // 后台article
 Route::group(['prefix' => 'article'], function () {
 	// 文章列表
@@ -94,10 +95,8 @@ Route::group(['prefix' => 'system'], function () {
 
     // 系统设置
     Route::get('/setting','Admin\SystemController@setting');
-    
     Route::post('/setadd','Admin\SystemController@setadd');
-    // 屏蔽词
-    Route::get('/shielding','Admin\SystemController@shielding');
+
 });
 // 后台gallery
 Route::group(['prefix' => 'galleries'], function(){

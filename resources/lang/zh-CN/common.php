@@ -19,6 +19,7 @@ return [
 
     /** 顶部菜单栏 */
     'information'       =>  '个人信息',
+    'clear_cache'       =>  '清除缓存',
     'change_over'       =>  '切换用户',
     'reset_pass'        =>  '重置密码',
     'logout'            =>  '退出',

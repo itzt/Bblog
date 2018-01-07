@@ -30,6 +30,17 @@ class IndexController extends CommonController
     }
 
     /**
+     * 清除全站缓存
+     *
+     * @return void
+     */
+    public function clearCache()
+    {
+        Cache::flush();
+        return \App\Tools\ajax_success();
+    }
+
+    /**
      * 设置选择的语言
      *
      * @return void

@@ -22,7 +22,7 @@ class HomeController extends Controller
      * 前台数据缓存时间-分钟
      * 
      */
-    protected $cacheTime = 0;   // 开发阶段暂设为0
+    protected $cacheTime = 240;   // 开发阶段暂设为0
 
 
     public function __construct(Request $request)

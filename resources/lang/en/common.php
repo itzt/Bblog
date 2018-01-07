@@ -21,6 +21,7 @@ return [
 
     /** 顶部菜单栏 */
     'information'       =>  'Personal information',
+    'clear_cache'       =>  'Clear cache',    
     'change_over'       =>  'Switching user',
     'reset_pass'        =>  'Reset password',
     'logout'            =>  'Logout',
