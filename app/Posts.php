@@ -103,7 +103,7 @@ class Posts extends Model
      */
     static public function getArchiveList($title = '', $limit = '')
     {
-        $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
+        $query = self::select('post_id','title','author','cat_id','read_num','like_num','updated_at','status', 'html')
             ->where(['status' => self::STATUS_PUBLISH, 'language' => \App\Tools\home_language()]);
         if(!empty($title))
         {
@@ -139,7 +139,7 @@ class Posts extends Model
      * @return [type]        [description]
      */
     public function getOne($where){
-        return $this->select('post_id','title','author','cat_id','read_num','like_num','updated_at','status', 'html')
+        return $this->select('post_id','title','author','cat_id','read_num','like_num','updated_at','status', 'html', 'is_allow')
             ->where($where)->first();
     }
     /**

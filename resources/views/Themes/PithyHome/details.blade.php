@@ -38,6 +38,7 @@
 										<a href="/list/tag-{{$tag->tag_name}}">{{$tag->tag_name}}</a>
 										@endforeach @endif
 									</p>
+									<!-- 暂时关闭分享
 									<div class="post-item-social">
 										<a href="#"><i class="fa fa-facebook"></i></a>
 										<a href="#"><i class="fa fa-twitter"></i></a>
@@ -45,6 +46,7 @@
 										<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share" data-original-title="" title=""><i class="fa fa-share-alt"></i> 12</a>
 										<a href="#"><i class="fa fa-heart"></i> {{$artFind->like_num}}</a>
 									</div>
+									-->
 								</div>
 							</div>
 
@@ -73,12 +75,21 @@
 										<a href="/author/index/{{$artFind->author}}">view all post</a>
 									</div>
 									<div class="author-connection">
-										<a href="#"><i class="fa fa-twitter"></i></a>
+										@if(!empty($artFind->admin->twitter))
+										<a href="{{$artFind->admin->twitter}}"><i class="fa fa-twitter"></i></a>
+										@endif
+										@if(!empty($artFind->admin->facebook))
+										<a href="{{$artFind->admin->facebook}}"><i class="fa fa-facebook"></i></a>
+										@endif
+										@if(!empty($artFind->admin->sina_weibo))
+										<a href="{{$artFind->admin->sina_weibo}}"><i class="fa fa-weibo"></i></a>
+										@endif										
 										<a href="/contacts" target="_blank"><i class="fa fa-envelope"></i></a>
 									</div>
 								</div>
 							</div>
 							<!-- 评论回复 -->
+							@if($artFind->is_allow)
 							<div class="comment-box">
 								<a class="btn btn-golden" href="#">Leave a comment</a>
 								<div class="comment-tab">
@@ -143,6 +154,7 @@
 
 								</div>
 							</div>
+							@endif
 						</div>
 					</div>
 				</div>

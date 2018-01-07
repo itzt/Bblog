@@ -25,4 +25,8 @@ return [
     'Verify Password'   => 'Verify Password',
     'submit'            => 'Submit',
 
+    'sina_weibo'        => 'Weibo',
+    'facebook'          => 'Facebook',
+    'twitter'           => 'Twitter',        
+
 ];

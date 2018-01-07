@@ -57,22 +57,41 @@
 								
 								<div class="formControls col-xs-8 col-sm-9">
 									<div style="width:80px;height:80px;float:left;">
-										<img src="{{$data->avatar}}" alt="" class="ing" style="width:80px;height:80px;">
-										<span class="btn-upload" style="float:left;margin-left:80px;margin-top:-20px;"> <a href="javascript:void();" class="btn btn-primary radius upload=btn"><i class="Hui-iconfont">&#xe642;</i>{{trans('admin.Head portrait')}} </a>
+										<img src="{{$data->avatar}}" alt="" class="ing round" style="width:80px;height:80px;border-radius: 70px;">
+									</div>
+										<span class="btn-upload" style="margin-left:80px;margin-top:20px;"> <a href="javascript:void();" class="btn btn-primary radius upload=btn"><i class="Hui-iconfont">&#xe642;</i>{{trans('admin.Head portrait')}} </a>
 											<input type="file" multiple id="fil" class="input-file">
 										</span>
-									</div>
-							
 								</div>
-								
+
 							</div>
-							
+
 							<div class="row cl">
 								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.Website')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">
 									<input type="text" class="input-text" placeholder="http://" name="website" id="url" value="{{$data->website}}">
 								</div>
 							</div>
+
+							<div class="row cl">
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.sina_weibo')}}：</label>
+								<div class="formControls col-xs-8 col-sm-9">
+									<input type="text" class="input-text" placeholder="http://" name="sina_weibo" id="url" value="{{$data->sina_weibo}}">
+								</div>
+							</div>
+							<div class="row cl">
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.facebook')}}：</label>
+								<div class="formControls col-xs-8 col-sm-9">
+									<input type="text" class="input-text" placeholder="http://" name="facebook" id="url" value="{{$data->facebook}}">
+								</div>
+							</div>
+							<div class="row cl">
+								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.twitter')}}：</label>
+								<div class="formControls col-xs-8 col-sm-9">
+									<input type="text" class="input-text" placeholder="http://" name="twitter" id="url" value="{{$data->twitter}}">
+								</div>
+							</div>	
+
 							<div class="row cl">
 								<label class="form-label col-xs-4 col-sm-3">{{trans('admin.Personal profile')}}：</label>
 								<div class="formControls col-xs-8 col-sm-9">

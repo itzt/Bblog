@@ -42,6 +42,11 @@
     'set_email_pwd'        =>'邮箱密码',
     'set_email_accept'     =>'收件邮箱地址',
 
+    'sina_weibo'        => '新浪微博',
+    'facebook'          => '脸书',
+    'twitter'           => '推特',  
+        
+
     // placeholder
     'placeholder_login_comment'   =>'设置此项必须配置微信扫码登录接口',
     'placeholder_set_web'         =>'控制在25个字、50个字节以内',

@@ -11,46 +11,48 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="post-fluid post-medium-vertical">
-      
-<div class="container-fluid post-single">
-	<div class="container-medium">
-		<div class="row post-items">
-		@if(!empty($artList) && isset($artList))
-		@foreach($artList as $key => $val)
-			<div class="col-md-12">
-				<div class="post-item">
-					<div class="post-item-paragraph">
-						<div>
-							<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
-							<a href="javascript:void(0);" class="mute-text">{{date('d  F  Y', strtotime($val->updated_at))}}</a>
+						<!-- Start Index Posts-->
+						<div class="container-fluid post-single">
+							<div class="container-medium">
+								<div class="row post-items">
+								@if(!empty($artList) && isset($artList))
+								@foreach($artList as $key => $val)
+									<div class="col-md-12">
+										<div class="post-item">
+											<div class="post-item-paragraph">
+												<div>
+													<a href="#" class="quick-read qr-only-phone"><i class="fa fa-eye"></i></a>
+													<a href="javascript:void(0);" class="mute-text">{{date('d  F  Y', strtotime($val->updated_at))}}</a>
+												</div>
+												<h3><a href="/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h3>
+												<p class="five-lines">{{mb_substr($val->html, 0, 120) }}<a href="/details/{{$val->title}}">[...]</a></p>
+											</div>
+											<div class="post-item-info clearfix">
+												<div class="pull-left">
+													By　<a href="/author/index/{{$val->admin->id}}">{{$val->admin->name}}</a>   •   {{$val->cat->cat_name}}
+												</div>
+												<div class="pull-right post-item-social">
+													<!--<a href="#{{$val->title}}" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>-->
+													<!--<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>-->
+													<!--<a href="#" class="post-like"><i class="fa fa-heart"></i><span>{{$val->like_num}}</span></a>-->
+													<a href="#"><i class="fa fa-eye"></i><span>&nbsp;{{$val->read_num}}</span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endforeach
+								@endif
+								</div>
+							</div>
 						</div>
-						<h3><a href="/details/{{$val->title}}">{{mb_substr($val->title, 0, 30)}}...</a></h3>
-						<p class="five-lines">{{mb_substr($val->html, 0, 120) }}<a href="/details/{{$val->title}}">[...]</a></p>
-					</div>
-					<div class="post-item-info clearfix">
-						<div class="pull-left">
-							By　<a href="/author/index/{{$val->admin->id}}">{{$val->admin->name}}</a>   •   {{$val->cat->cat_name}}
-						</div>
-						<div class="pull-right post-item-social">
-							<a href="#{{$val->title}}" class="quick-read qr-not-phone"><i class="fa fa-eye"></i></a>
-							<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share"><i class="fa fa-share-alt"></i></a>
-							<a href="#" class="post-like"><i class="fa fa-heart"></i><span>{{$val->like_num}}</span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		@endforeach
-		@endif
-		</div>
-	</div>
-</div>
-
-
+						<!-- End Index Posts-->
+						<!--
 						<div class="row">
 							<div class="col-md-12">
 								<a href="medium-image-v1-2.html" class="post-nav post-older">OLDER →</a>
 							</div>
 						</div>
+						-->
 
 					</div>
 				</div>
@@ -91,7 +93,7 @@
 								@endif
 							</li>
 						</ul>
-
+						<!-- 订阅
 						<ul class="laread-list barbg-grey">
 							<li class="title">NEWSLETTER</li>
 							<li class="newsletter-bar">
@@ -105,22 +107,30 @@
 								</div>
 							</li>
 						</ul>
-
+						-->
+						<!-- 座右铭
 						<div class="laread-list quotes-basic">
 							<i class="fa fa-quote-left"></i>
 							<p>“The difference between stupidity and genius is that genius has its limits.”</p>
 							<span class="whosay">- Albert Einstein </span>
 						</div>
-
+						-->
 						<ul class="laread-list social-bar">
 							<li class="title">FOLLOW US</li>
 							<li class="social-icons">
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-google-plus"></i></a>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
+								@if(isset($sets['Facebook']))
+								<a href="{{$sets['Facebook']}}"><i class="fa fa-facebook"></i></a>
+								@endif
+								@if(isset($sets['Twitter']))
+								<a href="{{$sets['Twitter']}}"><i class="fa fa-twitter"></i></a>
+								@endif
+								@if(isset($sets['SinaWeibo']))
+								<a href="{{$sets['SinaWeibo']}}"><i class="fa fa-weibo"></i></a>
+								@endif
+								<!--<a href="#"><i class="fa fa-dribbble"></i></a>-->
 							</li>
 						</ul>
+						
 
 					</div>
 
@@ -131,11 +141,12 @@
 		<footer class="container-fluid footer">
 			<div class="container text-center">
 				<div class="footer-logo"><img src="assets/img/logo-black.png" alt=""></div>
-				<p class="laread-motto">Designed for Read.</p>
+				<p class="laread-motto">@if(isset($sets['FootNews'])) {{$sets['FootNews']}} @endif &nbsp;&nbsp; @if(isset($sets['RecordNum'])) {{$sets['RecordNum']}} @endif</p>
+				
 				<div class="laread-social">
-					<a href="#" class="fa fa-twitter"></a>
-					<a href="#" class="fa fa-facebook"></a>
-					<a href="#" class="fa fa-pinterest"></a>
+					@if(isset($sets['Facebook']))<a href="#" class="fa fa-facebook"></a>@endif
+					@if(isset($sets['Twitter']))<a href="#" class="fa fa-twitter"></a>@endif
+					@if(isset($sets['SinaWeibo']))<a href="#" class="fa fa-weibo"></a>@endif
 				</div>
 			</div>
 		</footer>

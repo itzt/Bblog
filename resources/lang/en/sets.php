@@ -41,6 +41,10 @@
     'set_email_pwd' => 'password',
     'set_email_accept' => 'inbox address',
 
+    'sina_weibo'        => 'Weibo',
+    'facebook'          => 'Facebook',
+    'twitter'           => 'Twitter',    
+        
     // placeholder
     'placeholder_login_comment' => 'setting this must configure the WeChat scan login interface',
     'placeholder_set_web' => 'control in 25 words, 50 bytes',

@@ -68,6 +68,13 @@
 					</div>
 				</div>
 
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.set_group')}}</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<textarea class="textarea" name="Group"><?= isset($array['Group'])?$array['Group']:'';?></textarea>
+					</div>
+				</div>				
+
 			</div>
 			<!--
 			<div class="tabCon">
@@ -154,11 +161,11 @@
 				
 					<div class="formControls skin-minimal col-xs-8 col-sm-9">
 						<span class="select-box">
-						<select class="select" size="1" name="cacheTime">
-							<option value="60" @if(isset($array['cacheTime'])&& ($array['cacheTime']==60)) selected @endif> {{trans('common.one_hours')}}</option>
-							<option value="120" @if(isset($array['cacheTime'])&& ($array['cacheTime']==120)) selected @endif> {{trans('common.two_hours')}}</option>
-							<option value="180" @if(isset($array['cacheTime'])&& ($array['cacheTime']==180)) selected @endif> {{trans('common.three_hours')}}</option>
-							<option value="240" @if(isset($array['cacheTime'])&& ($array['cacheTime']==240)) selected @endif> {{trans('common.four_hours')}}</option>
+						<select class="select" size="1" name="CacheTime">
+							<option value="60" @if(isset($array['CacheTime'])&& ($array['CacheTime']=='60')) selected @endif> {{trans('common.one_hours')}}</option>
+							<option value="120" @if(isset($array['CacheTime'])&& ($array['CacheTime']=='120')) selected @endif> {{trans('common.two_hours')}}</option>
+							<option value="180" @if(isset($array['CacheTime'])&& ($array['CacheTime']=='180')) selected @endif> {{trans('common.three_hours')}}</option>
+							<option value="240" @if(isset($array['CacheTime'])&& ($array['CacheTime']=='240')) selected @endif> {{trans('common.four_hours')}}</option>
 						</select>
 						</span>								
 					</div>
@@ -179,12 +186,23 @@
 				</div>
 
 				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.set_group')}}</label>
+					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.sina_weibo')}}</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<textarea class="textarea" name="Group"><?= isset($array['Group'])?$array['Group']:'';?></textarea>
+						<input type="text" placeholder="http://" value="<?= isset($array['SinaWeibo'])?$array['SinaWeibo']:'';?>" class="input-text" name="SinaWeibo">
 					</div>
 				</div>
-
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.facebook')}}</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" placeholder="http://" value="<?= isset($array['Facebook'])?$array['Facebook']:'';?>" class="input-text" name="Facebook">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.twitter')}}</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" placeholder="http://" value="<?= isset($array['Twitter'])?$array['Twitter']:'';?>" class="input-text" name="Twitter">
+					</div>
+				</div>								
 
 							
 			</div>
@@ -240,6 +258,7 @@ $(function(){
                 url:'/system/setadd',
 				success:function (data) {	
 					layer.msg(data.message, {icon:data.status});
+					window.location.reload();
                 },
 				error:function (data) {
                     layer.msg(data.message, {icon:data.status});

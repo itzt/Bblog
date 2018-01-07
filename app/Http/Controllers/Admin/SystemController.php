@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\SetsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \Illuminate\Support\Facades\Cache;
 
 class SystemController extends CommonController
 {
@@ -19,6 +20,7 @@ class SystemController extends CommonController
     public function setting(Request $request)
     {
         $setConfig = (new SetsModel())->setlist(); 
+        // dd($setConfig);
         return view('Admin/System/setting',['array'=>$setConfig]);
     }
 
@@ -32,9 +34,10 @@ class SystemController extends CommonController
     {
         if($request->isMethod('POST'))
         {
+            // 清除设置缓存
+            Cache::forget('setConfig');
             $res = $request->all();
             $return= (new SetsModel())->saveSet($res);
-         
             if($return)
             {
                 return ['status'=>Config::get('constants.status_success'),'message'=>trans('common.message_success')];
