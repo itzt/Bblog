@@ -44,7 +44,10 @@
     'sina_weibo'        => 'Weibo',
     'facebook'          => 'Facebook',
     'twitter'           => 'Twitter',    
-        
+    
+    'index_title'       => 'Index title',  
+    'index_text'        => 'Index describe',  
+
     // placeholder
     'placeholder_login_comment' => 'setting this must configure the WeChat scan login interface',
     'placeholder_set_web' => 'control in 25 words, 50 bytes',

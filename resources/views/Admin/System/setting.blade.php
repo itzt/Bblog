@@ -204,6 +204,18 @@
 					</div>
 				</div>								
 
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.index_title')}}</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" placeholder="B-blog" value="<?= isset($array['IndexTitle'])?$array['IndexTitle']:'';?>" class="input-text" name="IndexTitle">
+					</div>
+				</div>	
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.index_text')}}</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" placeholder="B-blog. Designed for Read." value="<?= isset($array['IndexText'])?$array['IndexText']:'';?>" class="input-text" name="IndexText">
+					</div>
+				</div>									
 							
 			</div>
 		</div>

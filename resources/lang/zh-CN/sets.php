@@ -42,9 +42,14 @@
     'set_email_pwd'        =>'邮箱密码',
     'set_email_accept'     =>'收件邮箱地址',
 
-    'sina_weibo'        => '新浪微博',
-    'facebook'          => '脸书',
-    'twitter'           => '推特',  
+    'sina_weibo'           => '新浪微博',
+    'facebook'             => '脸书',
+    'twitter'              => '推特',  
+
+    'index_title'          => '首页标题',  
+    'index_text'           => '首页描述',  
+
+    
         
 
     // placeholder

@@ -1,12 +1,12 @@
 @include('Themes.PithyHome.Common.header');
-
+		
 		<div class="container">
 			<div class="head-text">
-				<h1>LaRead</h1>
-				<p class="lead-text">Blog. Designed for Read.</p>
+				<h1>@if(isset($sets['IndexTitle'])) {{$sets['IndexTitle']}} @endif</h1>
+				<p class="lead-text">@if(isset($sets['IndexText'])) {{$sets['IndexText']}} @endif</p>
 			</div>
 		</div>
-
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
