@@ -73,7 +73,7 @@ class Tags extends Model
         {
             foreach($tags as $key=>$tag)
             {
-                $data[$key]['href'] = '/tag-'.$tag['tag_name'];
+                $data[$key]['href'] = '/list/tag-'.$tag['tag_name'];
                 $data[$key]['name'] = $tag['tag_name'];
             }
         }

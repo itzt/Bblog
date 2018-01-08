@@ -126,7 +126,7 @@ class Categories extends Model
         {
             foreach($categories as $key=>$category)
             {
-                $data[$key]['href'] = '/category-'.$category['cat_name'];
+                $data[$key]['href'] = '/list/category-'.$category['cat_name'];
                 $data[$key]['name'] = $category['cat_name'];
             }
         }
