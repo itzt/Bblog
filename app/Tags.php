@@ -59,4 +59,25 @@ class Tags extends Model
                      ->get();
     }
 
+
+    /**
+     * 活跃的标签
+     *
+     * @return void
+     */
+    static public function activeTags()
+    {
+        $tags = self::select()->get()->toArray();
+        $data = [];
+        if(is_array($tags))
+        {
+            foreach($tags as $key=>$tag)
+            {
+                $data[$key]['href'] = '/tag-'.$tag['tag_name'];
+                $data[$key]['name'] = $tag['tag_name'];
+            }
+        }
+        return $data;
+    }
+
 }

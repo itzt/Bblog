@@ -111,8 +111,11 @@ Route::group(['prefix' => 'galleries'], function(){
 
 // 后台Navigate
 Route::group(['prefix' => 'navigate'],function(){
-    // 导航列表
+
+    // 导航列表    
     Route::get('/show','Admin\NavigateController@show');
+    // 查询导航类型
+    Route::get('/type','Admin\NavigateController@getType');    
     // 导航删除
     Route::post('/delete','Admin\NavigateController@delete');
     // 导航批量删除

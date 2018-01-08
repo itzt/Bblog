@@ -216,8 +216,29 @@ class Posts extends Model
             ->limit($limit)
             ->orderBy('post_id', 'desc')
             ->get();
-            
     }
+
+    /**
+     * 活跃页面
+     *
+     * @return void
+     */
+    static public function activePages()
+    {
+        $pages = self::select('post_id','title')
+            ->where(['status'=>self::STATUS_PUBLISH, 'is_page'=>1 ,'language'=>\App\Tools\admin_language()])->get()->toArray();
+        $data = [];
+        if(is_array($pages))
+        {
+            foreach($pages as $key=>$page)
+            {
+                $data[$key]['href'] = '/details/'.$page['title'];
+                $data[$key]['name'] = $page['title'];
+            }
+        }
+        return $data;
+    }
+
     /**
      * 右上角选项根据标签获取对应的文章
      *

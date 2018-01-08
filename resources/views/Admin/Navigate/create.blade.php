@@ -33,10 +33,23 @@
 				</div>
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">
-						<span class="c-red">*</span>
-						{{trans('navigate.nav_name')}}：</label>
+						<span class="c-red">*</span>{{trans('navigate.nav_name')}}：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" placeholder="" id="" name="nav_name">
+						<span class="select-box" style="width: 20%;">
+						<select id="type" class="select">
+							<option value="">请选择...</option>
+							<option value="tag">标签</option>
+							<option value="category">栏目</option>
+							<option value="page">页面</option>
+							<option value="link">链接</option>
+						</select>
+						</span>
+						
+						<span class="select-box" style="width: 80%;float:right;">
+						<select id="select-data" class="select">
+						</select>
+						</span>	
+						<input type="text" class="input-text" value="" placeholder="" id="" name="nav_name">					
 					</div>
 					<div class="col-3">
 					</div>
@@ -83,9 +96,7 @@
 					<label class="form-label col-xs-4 col-sm-3">{{trans('navigate.is_new_open')}}：</label>
 					<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 						<div class="check-box">
-
 							<input type="checkbox" checked id="checkbox-pinglun" name="is_open" >
-
 							<label for="checkbox-pinglun">&nbsp;</label>
 						</div>
 					</div>
@@ -114,6 +125,33 @@
 <script type="text/javascript" src="/admin/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript">
 $(function(){
+	/** 获取数据 */
+	$('#type').change(function(){
+		var type = $(this).val();
+		$('input[name="nav_name"]').val('');
+		$('input[name="jump_url"]').val('').attr('disabled',false);
+
+		$.get('/navigate/type',{'type':type,'rand':Math.random()},function(result){
+			var html = '<option value="">请选择...</option>';
+			if(result.status)
+			{
+				$(result.data).each(function(i,row){
+					html += '<option value="'+row.href+'" name="'+row.name+'">'+row.name+'</option>';
+				})
+				$('#select-data').html(html);
+			}
+		})
+	})
+
+	/** 生成链接 */
+	$('#select-data').change(function(){
+		var link = $(this).val();
+		var name = $(this).find("option:selected").attr('name');
+		$('input[name="nav_name"]').val(name);
+		$('input[name="jump_url"]').val(link);		
+		//$('input[name="jump_url"]').val(link).attr('disabled',true);
+	})
+
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
 		radioClass: 'iradio-blue',

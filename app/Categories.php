@@ -112,4 +112,25 @@ class Categories extends Model
     {
         return self::where(['cat_name'=>$catName])->first();
     }
+
+    /**
+     * 活跃的分类
+     *
+     * @return void
+     */
+    static public function activeCategories()
+    {
+        $categories =  self::select('cat_id', 'cat_name')->get()->toArray();
+        $data = [];
+        if(is_array($categories))
+        {
+            foreach($categories as $key=>$category)
+            {
+                $data[$key]['href'] = '/category-'.$category['cat_name'];
+                $data[$key]['name'] = $category['cat_name'];
+            }
+        }
+        return $data;        
+    }
+    
 }
