@@ -38,7 +38,7 @@ return [
     'close_all'         =>  '关闭全部',
     'issues'            =>  '反馈',    
     'feedback'          =>  '温馨提示：',
-    'welcome'           =>  '欢迎使用Bblog开源博客系统',
+    'welcome'           =>  '欢迎管理员登录系统',
     'feedback_message'  =>  '如果您使用过程中，有任何问题，欢迎反馈。',
     'recent_login'      =>  '最近登录信息',
     'stat'              =>  '信息统计',

@@ -82,7 +82,7 @@
 							@endforeach
 							@endif
 						</ul>
-
+						<!-- 标签
 						<ul class="laread-list">
 							<li class="title">TAGS</li>
 							<li class="bar-tags">
@@ -93,6 +93,7 @@
 								@endif
 							</li>
 						</ul>
+						-->
 						<!-- 订阅
 						<ul class="laread-list barbg-grey">
 							<li class="title">NEWSLETTER</li>
