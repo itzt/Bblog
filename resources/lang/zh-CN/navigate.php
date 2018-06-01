@@ -18,7 +18,10 @@ return [
     'parent_nav'    =>  '上级导航',
     'top_nav'       =>  '顶级导航',
     'nav_create'    =>  '添加导航',
-    'sort'          =>  '排序'
+    'sort'          =>  '排序',
     
+    'select'        =>  '请选择...',
+    'page'          =>  '页面',
+    'link'          =>  '链接地址',
 
 ];

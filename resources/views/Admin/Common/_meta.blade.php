@@ -31,4 +31,12 @@ function changeLang(lang)
 		window.location.reload();
 	});
 }
+/*清除缓存*/
+function clearCache()
+{
+	$.get('/admin/clearCache',{'rand':Math.random()},function(result){
+		layer.msg('{{trans('common.message_success')}}');
+		window.location.reload();
+	});
+}
 </script>

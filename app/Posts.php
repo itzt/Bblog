@@ -103,7 +103,7 @@ class Posts extends Model
      */
     static public function getArchiveList($title = '', $limit = '')
     {
-        $query = self::select('post_id','title','author','cat_id','read_num','updated_at','status', 'html')
+        $query = self::select('post_id','title','author','cat_id','read_num','like_num','updated_at','status', 'html')
             ->where(['status' => self::STATUS_PUBLISH, 'language' => \App\Tools\home_language()]);
         if(!empty($title))
         {
@@ -139,7 +139,7 @@ class Posts extends Model
      * @return [type]        [description]
      */
     public function getOne($where){
-        return $this->select('post_id','title','author','cat_id','read_num','like_num','updated_at','status', 'html')
+        return $this->select('post_id','title','author','cat_id','read_num','like_num','updated_at','status', 'html', 'is_allow')
             ->where($where)->first();
     }
     /**
@@ -216,8 +216,29 @@ class Posts extends Model
             ->limit($limit)
             ->orderBy('post_id', 'desc')
             ->get();
-            
     }
+
+    /**
+     * 活跃页面
+     *
+     * @return void
+     */
+    static public function activePages()
+    {
+        $pages = self::select('post_id','title')
+            ->where(['status'=>self::STATUS_PUBLISH, 'is_page'=>1 ,'language'=>\App\Tools\admin_language()])->get()->toArray();
+        $data = [];
+        if(is_array($pages))
+        {
+            foreach($pages as $key=>$page)
+            {
+                $data[$key]['href'] = '/details/'.$page['title'];
+                $data[$key]['name'] = $page['title'];
+            }
+        }
+        return $data;
+    }
+
     /**
      * 右上角选项根据标签获取对应的文章
      *
