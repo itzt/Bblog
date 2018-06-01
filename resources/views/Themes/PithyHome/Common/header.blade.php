@@ -29,13 +29,7 @@
 <!-- Custom styles for this template -->
 <link href="/assets/css/style.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<style>
 
-	.ahmad{
-		background: #1b1464 url(/assets/img/bg-header.png) repeat-x 50% 0;
-		height: 100px;
-	}
-</style>
 </head>
 <body>
 	<div class="page-loader">
@@ -88,48 +82,31 @@
 	<div class="canvas">
 		<div class="canvas-overlay"></div>
 		<header>
-			<nav class="navbar navbar-fixed-top nav-down navbar-laread ahmad">
+			<nav class="navbar navbar-fixed-top nav-down navbar-laread">
 				<div class="container">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="/"><img height="64" src="/assets/img/logo-light.png" alt=""></a>
 					</div>
-					<!--
 					<div class="get-post-titles">
 						<button type="button" class="navbar-toggle push-navbar" data-navbar-type="default">
 							<i class="fa fa-bars"></i>
 						</button>
 					</div>
-				-->
-					
-					<div class="get-post-titles">
-						<ul class="nav navbar-nav">
-							<!--
-							<li>
-								<button href="#" class="dropdown-toggle navbar-toggle push-navbar" data-toggle="dropdown" role="button" aria-expanded="true">
-								<i class="fa fa-bars"></i>
-							</li>
-							-->
-							<li>
-								<a href="/?lang=en" class="modal-form">
-									<img src="/assets/img/en.png" alt="en" title="English">
-								</a>
-							</li>
 
-					</div>
-
-
-					<!--
-					<a href="javascript:void(0);" class="modal-form">
-						<img src="/assets/img/en.png" alt="en" title="English">
+					@if(!empty(session('users.nickname')))
+						<a href="javascript:void(0);" title="{{session('users.nickname')}}" class="modal-form">
+							<img src="@if(!empty(session('users.avatar'))) {{session('users.avatar')}} @else /avatar.jpg @endif" class="round" style="width: 35px;height: 35px; border-radius: 70px;" title="{{session('users.nickname')}}" alt="{{session('users.nickname')}}">					
+						</a>	
+					@else
+					<a href="javascript:void(0);" class="modal-form weixin-sign">
+						<i class="fa fa-user"></i>
 					</a>
-					-->
+					@endif
 
-					<!--
 					<button type="button" class="navbar-toggle collapsed menu-collapse" data-toggle="collapse" data-target="#main-nav">
 						<span class="sr-only">Toggle navigation</span>
 						<i class="fa fa-plus"></i>
 					</button>
-					-->
 					<div class="collapse navbar-collapse" id="main-nav">
 						<ul class="nav navbar-nav">
 							@if($navList) @foreach($navList as $nav)

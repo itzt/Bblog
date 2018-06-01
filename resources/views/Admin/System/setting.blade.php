@@ -20,7 +20,7 @@
 				<span>{{trans('sets.set_basic')}}</span>
 				<!--<span>{{trans('sets.set_security')}}</span>-->
 				<!--<span>{{trans('sets.set_email')}}</span>-->
-				<!-- <span>{{trans('sets.set_shield')}}</span>-->
+				<span>{{trans('sets.set_shield')}}</span>
 				<span>{{trans('sets.set_other')}}</span>
 
 			</div>
@@ -148,13 +148,11 @@
 				</div>
 			</div>
 			-->
-			<!--
 			<div class="tabCon">
 				<div>
 					<textarea class="textarea" style="width:98%; height:300px; resize:none" name="Shielding"><?= isset($array['Shielding'])?$array['Shielding']:'';?></textarea>
 				</div>
 			</div>
-			-->
 			<div class="tabCon">
 
 				<div class="row cl">
@@ -172,7 +170,7 @@
 						</span>								
 					</div>
 				</div>
-				<!--
+
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2" data-toggle="tooltip" data-placement="bottom" title="{{trans('sets.placeholder_login_comment')}}"><i class="Hui-iconfont">&#xe633;</i> {{trans('sets.login_comment')}}</label>
 					<div class="formControls skin-minimal col-xs-8 col-sm-9">
@@ -186,7 +184,6 @@
 						</div>
 					</div>
 				</div>
-				-->
 
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-2">{{trans('sets.sina_weibo')}}</label>

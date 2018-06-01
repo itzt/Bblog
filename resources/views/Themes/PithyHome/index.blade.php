@@ -82,7 +82,7 @@
 							@endforeach
 							@endif
 						</ul>
-						<!-- 标签
+
 						<ul class="laread-list">
 							<li class="title">TAGS</li>
 							<li class="bar-tags">
@@ -93,7 +93,6 @@
 								@endif
 							</li>
 						</ul>
-						-->
 						<!-- 订阅
 						<ul class="laread-list barbg-grey">
 							<li class="title">NEWSLETTER</li>
@@ -139,17 +138,7 @@
 			</div>
 		</div>
 
-		<footer class="container-fluid footer">
-			<div class="container text-center">
-				<div class="footer-logo"><img src="/assets/img/logo-black.png" alt=""></div>
-				<p class="laread-motto">{{$sets['FootNews']}}-{{$sets['RecordNum']}}</p>
-				<div class="laread-social">
-					<a href="#" class="fa fa-twitter"></a>
-					<a href="#" class="fa fa-facebook"></a>
-					<a href="#" class="fa fa-pinterest"></a>
-				</div>
-			</div>
-		</footer>
+		@include('Themes.PithyHome.Common.copyright');
 	</div>
 <!-- 文章详情 begin -->
 	<div id="quick-read" class="qr-white-theme">

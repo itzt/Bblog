@@ -13,8 +13,8 @@ return [
     /** On the left side of the menu bar */
 
     /** 项目介绍 */
-    'app'               => 'Private custom',
-    'title'             => 'Ahmad.admin',
+    'app'               => 'B-blog',
+    'title'             => 'B-blog.admin',
     'keywords'          => 'B-blog',
     'description'       => 'B-blog v1.0 It is a lightweight flat blog 2.0 system developed by bing technology, which is free and open source and suitable for middle and small CMS background systems.',
     'version'           => 'v1.0',
@@ -40,7 +40,7 @@ return [
     'close_all'         =>  'Close all',
     'issues'            =>  'issues',    
     'feedback'          =>  'Warm tips:',
-    'welcome'           =>  'Welcome to administrator ahmad.',
+    'welcome'           =>  'Welcome to the Bblog open source blogging system.',
     'feedback_message'  =>  'If you have any questions during your use, welcome feedback.',
     'recent_login'      =>  'Recent login information',
     'stat'              =>  'Statistical information',

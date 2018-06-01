@@ -32,7 +32,7 @@
 				</span> </div>
 		</div>
 
-		<!--
+		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">{{trans('article.add_is_allow')}}：</label>
 			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
@@ -51,7 +51,6 @@
 				</div>
 			</div>
 		</div>
-		-->
 		<div class="row cl">
 			<div id="test-editormd">
 				<textarea name="markdown" id="article_content" style="display:none;">{{$artFind->markdown}}</textarea>

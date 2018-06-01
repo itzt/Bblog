@@ -37,11 +37,11 @@
 					<div class="formControls col-xs-8 col-sm-9">
 						<span class="select-box" style="width: 20%;">
 						<select id="type" class="select">
-							<option value="">{{trans('navigate.select')}}</option>
-							<!--<option value="tag">标签</option>-->
-							<option value="category">{{trans('category.show_title')}}</option>
-							<option value="page">{{trans('navigate.page')}}</option>
-							<option value="link">{{trans('navigate.link')}}</option>
+							<option value="">请选择...</option>
+							<option value="tag">标签</option>
+							<option value="category">栏目</option>
+							<option value="page">页面</option>
+							<option value="link">链接</option>
 						</select>
 						</span>
 						

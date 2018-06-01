@@ -18,7 +18,7 @@ return [
     'add_cat_desc'      => 'Say something...Can be ignored',
 
     // Category a list
-    'show_title'        => 'Category',
+    'show_title'        => 'Category column',
     'show_break'        => 'Column management',
     'show_add_category' => 'Add columns',
     'show_list_catname' => 'Column name',

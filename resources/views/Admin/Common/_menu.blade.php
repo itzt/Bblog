@@ -32,7 +32,7 @@
 			<dt><i class="Hui-iconfont">&#xe622;</i> {{trans('common.com_of_mes')}}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<!--<li><a data-href="/comment/show" data-title="{{trans('common.comment_list')}}" href="javascript:void(0);">{{trans('common.comment_list')}}</a></li>-->
+					<li><a data-href="/comment/show" data-title="{{trans('common.comment_list')}}" href="javascript:void(0);">{{trans('common.comment_list')}}</a></li>
 					<li><a data-href="/Contacts/message" data-title="{{trans('common.message_list')}}" href="javascript:void(0)">{{trans('common.message_list')}}</a></li>
 				</ul>
 			</dd>

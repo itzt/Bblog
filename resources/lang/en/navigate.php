@@ -18,11 +18,7 @@ return [
     'parent_nav'    =>  'The higher the navigation',
     'top_nav'       =>  'Top navigation',
     'nav_create'    =>  'Add navigation',
-    'sort'          =>  'The sorting',
-
-    'select'        =>  'Please select...',
-    'page'          =>  'Post Page',
-    'link'          =>  'Link address',
+    'sort'          =>  'The sorting'
     
 
 ];
