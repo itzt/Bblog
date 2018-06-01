@@ -30,6 +30,17 @@ class IndexController extends CommonController
     }
 
     /**
+     * 清除全站缓存
+     *
+     * @return void
+     */
+    public function clearCache()
+    {
+        Cache::flush();
+        return \App\Tools\ajax_success();
+    }
+
+    /**
      * 设置选择的语言
      *
      * @return void
@@ -70,16 +81,16 @@ class IndexController extends CommonController
                     }
                     
                     //统计给定月阶段内评论数量
-                    if(!$commentsCount = $this->getCommentsCount($month))
-                    {
-                        throw new HttpException(\Config::get('constants.http_status_server_error'),trans('common.server_exception'));
-                    }
+                    // if(!$commentsCount = $this->getCommentsCount($month))
+                    // {
+                    //     throw new HttpException(\Config::get('constants.http_status_server_error'),trans('common.server_exception'));
+                    // }
 
                     // 统计会员数
-                    if(!$usersCount = $this->getUsersCount($month))
-                    {
-                        throw new HttpException(\Config::get('constants.http_status_server_error'),trans('common.server_exception'));
-                    }
+                    // if(!$usersCount = $this->getUsersCount($month))
+                    // {
+                    //     throw new HttpException(\Config::get('constants.http_status_server_error'),trans('common.server_exception'));
+                    // }
 
                     $result = [
                         'message'=>'',
@@ -88,8 +99,8 @@ class IndexController extends CommonController
                             'month' =>array_column($month,'show'),
                             'series'=>[
                                 ['name'  =>trans('common.article'), 'data'  =>$postsCount],
-                                ['name'  =>trans('common.comment'), 'data'  =>$commentsCount],
-                                ['name'  =>trans('common.users'),   'data'  =>$usersCount],
+                                // ['name'  =>trans('common.comment'), 'data'  =>$commentsCount],
+                                // ['name'  =>trans('common.users'),   'data'  =>$usersCount],
                                 
                                 // ['name'  =>'访客','data'  =>[42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]],
                             ]

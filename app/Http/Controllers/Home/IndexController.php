@@ -82,7 +82,6 @@ class IndexController extends HomeController
         }
         catch(\Exception $e)
         {
-            dd($e);
             return redirect('/error');
         }
 

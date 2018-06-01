@@ -11,6 +11,7 @@ return [
     */
 
     /** 项目介绍 */
+    'app'               => 'B-blog',
     'title'             => 'B-blog.admin',
     'keywords'          => 'B-blog',
     'description'       => 'B-blog v1.0，是一款由必应科技开发的轻量级扁平化博客2.0系统，完全免费开源，适合中小型CMS后台系统。',
@@ -18,6 +19,7 @@ return [
 
     /** 顶部菜单栏 */
     'information'       =>  '个人信息',
+    'clear_cache'       =>  '清除缓存',
     'change_over'       =>  '切换用户',
     'reset_pass'        =>  '重置密码',
     'logout'            =>  '退出',
@@ -36,7 +38,7 @@ return [
     'close_all'         =>  '关闭全部',
     'issues'            =>  '反馈',    
     'feedback'          =>  '温馨提示：',
-    'welcome'           =>  '欢迎使用Bblog开源博客系统',
+    'welcome'           =>  '欢迎管理员登录系统',
     'feedback_message'  =>  '如果您使用过程中，有任何问题，欢迎反馈。',
     'recent_login'      =>  '最近登录信息',
     'stat'              =>  '信息统计',
@@ -98,6 +100,9 @@ return [
     'form_preservation' =>  '保存',
 
 
+    /** 是否 */
+    'yes'               =>  '是', 
+    'no'                =>  '否', 
 
     /** 分页通用 */
     'total_count'       =>  '共有数据',
@@ -114,6 +119,10 @@ return [
     /** 时间 */          
     'year'              => '年',
     'month'             => '月',
+    'one_hours'         => '1 小时',
+    'two_hours'         => '2 小时',
+    'three_hours'       => '3 小时',
+    'four_hours'        => '4 小时',
 
     /** 版权 */
     'thank'             => '感谢 必应科技技术团队核心成员',

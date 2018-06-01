@@ -25,4 +25,8 @@ return [
     'password'          => '密码',
     'Verify Password'   => '密码验证',
 
+    'sina_weibo'        => '作者微博',
+    'facebook'          => '作者脸书',
+    'twitter'           => '作者推特',        
+
 ];

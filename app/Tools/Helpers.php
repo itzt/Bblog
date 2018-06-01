@@ -23,7 +23,7 @@ function home_language($value=null)
     {
         
         $language = Cache::get('home_language');
-        return empty($language) ? 'zh-CN' : $language;
+        return empty($language) ? 'en' : $language;
     }
 
 }
@@ -38,7 +38,7 @@ function admin_language($value=null)
     else
     {
         $language = Cache::get('admin_language');
-        return empty($language) ? 'zh-CN' : $language;
+        return empty($language) ? 'en' : $language;
     }
 
 }

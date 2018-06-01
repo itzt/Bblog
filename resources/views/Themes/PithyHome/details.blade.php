@@ -3,8 +3,8 @@
 
 		<div class="container">
 			<div class="head-text text-highlight">
-				<h1>TYPOGRAPHY</h1>
-				<p class="lead-text">H1   •   HIGHTLIGH   •   DROPCAP</p>
+				<h1>{{$artFind->title}}</h1>
+				<p class="lead-text"><i class="fa fa-at"></i></a>&nbsp;{{$artFind->admin->name}}   •   <i class="fa fa-eye"></i></a>&nbsp;{{$artFind->read_num}}</p>
 			</div>
 		</div>
 
@@ -26,7 +26,7 @@
 						<div class="col-md-10 ">
 							<div class="post-item">
 								<div class="post-item-paragraph">
-									<h2><a href="#" class="quick-read"><i class="fa fa-eye"></i></a>{{$artFind->title}}</h2>
+									<h2><a href="#" class="quick-read"><i class="fa fa-expand"></i></a></h2>
 									<p class="post-item-two-column">
 										{!! Parsedown::instance()->setMarkupEscaped(true)->text($artFind->html) !!}
 									</p>
@@ -38,6 +38,7 @@
 										<a href="/list/tag-{{$tag->tag_name}}">{{$tag->tag_name}}</a>
 										@endforeach @endif
 									</p>
+									<!-- 暂时关闭分享
 									<div class="post-item-social">
 										<a href="#"><i class="fa fa-facebook"></i></a>
 										<a href="#"><i class="fa fa-twitter"></i></a>
@@ -45,6 +46,7 @@
 										<a href="#" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-placement="top" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>" class="pis-share" data-original-title="" title=""><i class="fa fa-share-alt"></i> 12</a>
 										<a href="#"><i class="fa fa-heart"></i> {{$artFind->like_num}}</a>
 									</div>
+									-->
 								</div>
 							</div>
 
@@ -73,12 +75,21 @@
 										<a href="/author/index/{{$artFind->author}}">view all post</a>
 									</div>
 									<div class="author-connection">
-										<a href="#"><i class="fa fa-twitter"></i></a>
+										@if(!empty($artFind->admin->twitter))
+										<a href="{{$artFind->admin->twitter}}"><i class="fa fa-twitter"></i></a>
+										@endif
+										@if(!empty($artFind->admin->facebook))
+										<a href="{{$artFind->admin->facebook}}"><i class="fa fa-facebook"></i></a>
+										@endif
+										@if(!empty($artFind->admin->sina_weibo))
+										<a href="{{$artFind->admin->sina_weibo}}"><i class="fa fa-weibo"></i></a>
+										@endif										
 										<a href="/contacts" target="_blank"><i class="fa fa-envelope"></i></a>
 									</div>
 								</div>
 							</div>
 							<!-- 评论回复 -->
+							@if($artFind->is_allow)
 							<div class="comment-box">
 								<a class="btn btn-golden" href="#">Leave a comment</a>
 								<div class="comment-tab">
@@ -143,23 +154,14 @@
 
 								</div>
 							</div>
+							@endif
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<footer class="container-fluid footer">
-			<div class="container text-center">
-				<div class="footer-logo"><img src="/assets/img/logo-black.png" alt=""></div>
-				<p class="laread-motto">Designed for Read.</p>
-				<div class="laread-social">
-					<a href="#" class="fa fa-twitter"></a>
-					<a href="#" class="fa fa-facebook"></a>
-					<a href="#" class="fa fa-pinterest"></a>
-				</div>
-			</div>
-		</footer>
+		@include('Themes.PithyHome.Common.copyright');
 	</div>
 
 	<div id="quick-read" class="qr-white-theme">
@@ -192,15 +194,17 @@
 			</div>
 		</div>
 		<div class="quick-read-bottom">
-			<p class="qr-info">By <a href="#">Daniele Zedda</a>   •   18 February</p>
+			<p class="qr-info">By <a href="#">{{$artFind->admin->name}}</a>   •   {{date('d', strtotime($artFind->updated_at))}} {{date('F', strtotime($artFind->updated_at))}}</p>
 			<div class="qr-nav">
-				<a href="#" class="qr-prev">← PREV POST</a>
-				<a href="#" class="qr-share" tabindex="0" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>"><i class="fa fa-share-alt"></i></a>
+				<!--<a href="#" class="qr-prev">← PREV POST</a>-->
+				<!--<a href="#" class="qr-share" tabindex="0" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" data-content="<a href='#'><i class='fa fa-facebook'></i></a><a href='#'><i class='fa fa-twitter'></i></a>"><i class="fa fa-share-alt"></i></a>-->
 				<a href="#" class="qr-comment"><i class="fa fa-comment"></i></a>
-				<a href="#" class="qr-like"><i class="fa fa-heart"></i> 34</a>
-				<a href="#" class="qr-next">NEXT POST →</a>
+				<a href="#" class="qr-like"><i class="fa fa-eye"></i> {{$artFind->read_num}}</a>
+				<!--<a href="#" class="qr-like"><i class="fa fa-heart"></i> 34</a>-->
+				<!--<a href="#" class="qr-next">NEXT POST →</a>-->
 			</div>
 		</div>
+		<!--
 		<div class="quick-read-bottom qr-bottom-2 hide">
 			<div class="qr-nav">
 				<a href="#" class="qr-prev">← PREV POST</a>
@@ -212,8 +216,10 @@
 					<a href='#'><i class='fa fa-facebook'></i></a>
 					<a href='#'><i class='fa fa-twitter'></i></a>
 				</div>
+				
 			</div>
 		</div>
+		-->
 	</div>
 
 	<!-- Bootstrap core JavaScript

@@ -28,7 +28,7 @@ return [
     'http_status_server_error'  => '500', // 服务器内部错误
 
     /** 每页展示条数 */
-    'page_size'         => 2,
+    'page_size'         => 20,
 
 
 

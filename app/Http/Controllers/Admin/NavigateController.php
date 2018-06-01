@@ -201,4 +201,42 @@ class NavigateController extends CommonController
             return \App\Tools\ajax_exception($e->getStatusCode(), $e->getMessage());
         }        
     }
+
+    /**
+     * 根据类型获取导航数据
+     *
+     * @return void
+     */
+    public function getType(Request $request)
+    {
+        try
+        {
+            if($request->ajax() && $request->isMethod('get'))
+            {
+                $type = $request->input('type','');
+                if($type == 'tag')
+                {
+                    return \App\Tools\ajax_success('',\App\Tags::activeTags());
+                }
+                else if($type == 'page')
+                {
+                    return \App\Tools\ajax_success('',\App\Posts::activePages());
+                }                
+                else if($type == 'category')
+                {
+                    return \App\Tools\ajax_success('',\App\Categories::activeCategories());
+                }
+                else if($type == 'link')
+                {
+                    return \App\Tools\ajax_success();
+                }
+
+            }
+        }
+        catch(\Exception $e)
+        {
+            dd($e);
+            return \App\Tools\ajax_exception($e->getStatusCode(), $e->getMessage());
+        }           
+    }
 }

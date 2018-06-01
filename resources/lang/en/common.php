@@ -13,13 +13,15 @@ return [
     /** On the left side of the menu bar */
 
     /** 项目介绍 */
-    'title'             => 'B-blog.admin',
+    'app'               => 'Private custom',
+    'title'             => 'Ahmad.admin',
     'keywords'          => 'B-blog',
     'description'       => 'B-blog v1.0 It is a lightweight flat blog 2.0 system developed by bing technology, which is free and open source and suitable for middle and small CMS background systems.',
     'version'           => 'v1.0',
 
     /** 顶部菜单栏 */
     'information'       =>  'Personal information',
+    'clear_cache'       =>  'Clear cache',    
     'change_over'       =>  'Switching user',
     'reset_pass'        =>  'Reset password',
     'logout'            =>  'Logout',
@@ -38,7 +40,7 @@ return [
     'close_all'         =>  'Close all',
     'issues'            =>  'issues',    
     'feedback'          =>  'Warm tips:',
-    'welcome'           =>  'Welcome to the Bblog open source blogging system.',
+    'welcome'           =>  'Welcome to administrator ahmad.',
     'feedback_message'  =>  'If you have any questions during your use, welcome feedback.',
     'recent_login'      =>  'Recent login information',
     'stat'              =>  'Statistical information',
@@ -97,6 +99,10 @@ return [
     'form_reset'        =>  'Reset',
     'form_preservation' =>  'Save',
 
+    /** 是否 */
+    'yes'               =>  'Yes', 
+    'no'                =>  'No', 
+
     /** Paging general */
     'total_count'       =>  'A total of data',
 
@@ -112,6 +118,10 @@ return [
     /** Date */          
     'year'              => 'Y',
     'month'             => 'M',
+    'one_hours'         => 'One hours',
+    'two_hours'         => 'Two hours',
+    'three_hours'       => 'Three hours',
+    'four_hours'        => 'Four hours',    
 
     /** copyright */
     'thank'             => 'Thanks to the core members of Beijing bing science and technology team',

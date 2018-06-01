@@ -42,7 +42,7 @@
 
 			</div>
 		</div>
-
+		<!--
 		<table class="table table-border table-bordered table-bg">
 			<thead>
 				<tr>

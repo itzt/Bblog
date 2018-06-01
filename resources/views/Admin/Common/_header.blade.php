@@ -22,8 +22,9 @@
 							<img src="{{Session::get('avatar')}}" class="round" style="width: 35px;height: 35px; border-radius: 70px;" >
 						</a>
 					</li>
-					<li class="dropDown dropDown_hover"> <a href="/AdminUsers/information" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont"></i></a>
+					<li class="dropDown dropDown_hover"> <a href="/AdminUsers/information" class="dropDown_A">{{Session::get('name')}}<i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
+							<li><a href="javascript:clearCache();">{{trans('common.clear_cache')}}</a></li>							
 							<li><a href="/AdminUsers/information">{{trans('common.information')}}</a></li>
 							<!--<li><a href="/Login/toggle">{{trans('common.change_over')}}</a></li>-->
 							<li><a href="/Login/reset">{{trans('common.reset_pass')}}</a></li>
@@ -39,11 +40,12 @@
 							<li><a href="javascript:changeLang('en');">{{trans('common.en')}}</a></li>
 						</ul>
 					</li>					
-					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">
-								@if(isset($data['num'])) 
-									{{$data['num']}}
-									 @endif
-							</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+					<li id="Hui-msg"> <a href="#" title="消息">
+						@if(isset($data['num']) && $data['num']>0)
+						<span class="badge badge-danger">{{$data['num']}}</span>
+						@endif
+					<i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+
 					<li id="Hui-skin" class="dropDown right dropDown_hover"> <??><a href="javascript:;" class="dropDown_A" title=""><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="javascript:;" data-val="default" title="{{trans('common.default_black')}}">{{trans('common.default_black')}}</a></li>

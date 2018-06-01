@@ -4,8 +4,10 @@
 		<section class="post-fluid">
 			<div class="container-fluid">
 				<div class="row archive-banner">
+					<!--
 					<h1 class="archive-h1">Archive</h1>
 					<p class="lead about-lead">Go back into time and read all the goodies we ever had to show you here on our blog </p>
+					-->
 					<form>
 						<div class="form-group archive-search">
 							<input type="search" class="form-control" placeholder="In case you’re lost, just search...">
@@ -52,17 +54,7 @@
 
 		</div><!-- /.container -->
 
-		<footer class="container-fluid footer">
-			<div class="container text-center">
-				<div class="footer-logo"><img src="/assets/img/logo-black.png" alt=""></div>
-				<p class="laread-motto">Designed for Read.</p>
-				<div class="laread-social">
-					<a href="#" class="fa fa-twitter"></a>
-					<a href="#" class="fa fa-facebook"></a>
-					<a href="#" class="fa fa-pinterest"></a>
-				</div>
-			</div>
-		</footer>
+		@include('Themes.PithyHome.Common.copyright');
 	</div>
 
 	<!-- Bootstrap core JavaScript

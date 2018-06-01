@@ -22,9 +22,21 @@ class HomeController extends Controller
      * 前台数据缓存时间-分钟
      * 
      */
-    protected $cacheTime = 0;   // 开发阶段暂设为0
+    protected $cacheTime = 240;   // 开发阶段暂设为0
 
-    public function __construct(Request $request){
+
+    public function __construct(Request $request)
+    {
+        // 读取后台配置-视图间共享数据
+        $sets = Cache::get('sets');
+        if(is_null($sets))
+        {
+            $sets = (new \App\SetsModel)->setlist();
+            $this->cacheTime = $sets['CacheTime'];
+            Cache::put('sets',$sets,$this->cacheTime);
+        }
+        view()->share('sets',$sets);
+
         // 读取最后三条标签信息
         $hotTags = Cache::get('hotTags');
         if(empty($hotTags) && is_null($hotTags))
@@ -46,15 +58,6 @@ class HomeController extends Controller
         // 记录本次URL
         session()->flash('goback', $request->url());
         
-        // 读取后台配置-视图间共享数据
-        $sets = Cache::get('sets');
-        if(is_null($sets))
-        {
-            $sets = (new \App\SetsModel)->setlist();
-            Cache::put('sets',$sets,$this->cacheTime);
-        }
-        view()->share('sets',$sets);
-        
         // 查询公共导航-视图间共享数据
         $navList = Cache::get('navList');
         if(is_null($navList))
@@ -63,6 +66,8 @@ class HomeController extends Controller
             Cache::put('navList',$navList,$this->cacheTime);
         }        
         view()->share('navList',$navList);
+
+
         // 载入皮肤
         $this->theme = env('DEFAULT_THEM','Pithy');
         
