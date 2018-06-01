@@ -2,8 +2,8 @@
 
 		<div class="container">
 			<div class="head-text">
-				<h1>LaRead</h1>
-				<p class="lead-text">Blog. Designed for Read.</p>
+				<h1>{{$sets['IndexTitle']}}</h1>
+				<p class="lead-text">{{$sets['IndexText']}}</p>
 			</div>
 		</div>
 
@@ -130,8 +130,8 @@
 
 		<footer class="container-fluid footer">
 			<div class="container text-center">
-				<div class="footer-logo"><img src="assets/img/logo-black.png" alt=""></div>
-				<p class="laread-motto">Designed for Read.</p>
+				<div class="footer-logo"><img src="/assets/img/logo-black.png" alt=""></div>
+				<p class="laread-motto">{{$sets['FootNews']}}-{{$sets['RecordNum']}}</p>
 				<div class="laread-social">
 					<a href="#" class="fa fa-twitter"></a>
 					<a href="#" class="fa fa-facebook"></a>
