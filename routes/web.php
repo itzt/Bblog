@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/hello', 'Home\IndexController@index');
+
 // 前台首页
 Route::get('/','Home\IndexController@index');
 // 前台首页搜索
